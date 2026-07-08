@@ -26,7 +26,8 @@
    ============================================================ */
 :root {
   --brand-purple: #6d5dfe;
-  --brand-cyan: #14d8c4;
+  --brand-purple-light: #8a7dff;
+  --brand-cyan: #39bfbf;
   --success: #22c55e;
   --warning: #f59e0b;
   --danger: #ef4444;
@@ -54,7 +55,7 @@ body {
 
 [data-theme="light"] {
   --bg: #ffffff;
-  --bg-elevated: #f6f7f9;
+  --bg-elevated: #dddddd;
   --surface: #ffffff;
   --surface-2: #fafbfc;
   --surface-hover: #f1f3f6;
