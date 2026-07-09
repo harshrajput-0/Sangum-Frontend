@@ -2,15 +2,17 @@ import { Outlet } from "react-router-dom";
 import { Navbar } from "@/shared/components/navigation/PublicNavbar";
 import { Footer } from "@/shared/components/navigation/PublicFooter";
 
-export const PublicLayout = () => {
+const AuthLayout = () => {
     return (
-        <div>
+        <>
             <Navbar />
-            <main className="flex-1 mb-10">
+            <main className="flex-1 mt-(var:(--topbar-height))">
                 <Outlet />
             </main>
-            
+
             <Footer />
-        </div>
+        </>
     )
 }
+
+export default AuthLayout

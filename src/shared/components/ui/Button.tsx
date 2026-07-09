@@ -5,6 +5,7 @@ export type ButtonVariant =
   | "primary"
   | "secondary"
   | "outline"
+  | "doutline"
   | "ghost"
   | "danger"
   | "danger-outline"
@@ -26,12 +27,14 @@ const base =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "border-transparent bg-[var(--brand-purple)] text-white hover:bg-[var(--brand-purple-dark)]",
+    "border-transparent bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)]",
   secondary:
-    "border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)] hover:bg-[var(--surface-hover)]",
+    "border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)] hover:bg-[var(--primary-hover)]",
   outline:
-    "border-[var(--border-strong)] bg-transparent text-[var(--text)] hover:bg-[var(--surface-hover)]",
-  ghost: "border-transparent bg-transparent text-[var(--text-secondary)] hover:bg-[var(--surface-hover)] hover:text-[var(--text)]",
+    "border-current bg-transparent text-current hover:bg-[var(--primary-hover)] hover:text-white hover:border-0",
+    doutline:
+    "border-[var(--dborder-strong)] bg-transparent text-[var(--dtext)] hover:bg-[var(--dsurface-hover)]",
+  ghost: "border-transparent bg-transparent text-[var(--text-secondary)] hover:bg-[var(--primary-hover)] hover:text-[var(--text)]",
   danger: "border-transparent bg-[var(--danger)] text-white hover:opacity-90",
   "danger-outline":
     "border-[var(--danger)] bg-transparent text-[var(--danger)] hover:bg-[var(--danger-bg-dark)]",

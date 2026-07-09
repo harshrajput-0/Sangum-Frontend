@@ -20,12 +20,12 @@ export const Navbar: React.FC = () => {
         fixed top-0 left-0 right-0 z-50
         transition-all duration-300
         ${scrolled
-          ? "bg-bg backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
+          ? "bg-bg backdrop-blur-xl border-b border-border text-text"
+          : "bg-transparent text-text-secondary hover:border-0"
         }
       `}
     >
-      <div className="max-w-full mx-auto px-6 h-16 flex items-center justify-between bg-bg text-text">
+      <div className="max-w-full mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5 group">
 
@@ -54,7 +54,7 @@ export const Navbar: React.FC = () => {
         {/* Nav links — desktop */}
         <div className="hidden md:flex items-center gap-8 text-sm text-text-secondary justify-center">
 
-          <Link to="/" className="hover:text-text transition-colors">Home</Link>
+          <Link to="/" className=" hover:text-text transition-colors">Home</Link>
           <Link to="/pricing" className="hover:text-text transition-colors">Pricing</Link>
           <Link to="/legal" className="hover:text-text transition-colors">Legal</Link>
           <Link to="/about" className="hover:text-text transition-colors">About</Link>
@@ -65,7 +65,7 @@ export const Navbar: React.FC = () => {
             <ThemeToggle />
 
           {/* Desktop */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2 text-text-secondary">
             <Button variant="outline" size="sm">Login</Button>
             <Button size="sm">Register</Button>
           </div>
@@ -88,14 +88,14 @@ export const Navbar: React.FC = () => {
         <div className="md:hidden border-t border-border bg-bg/95 backdrop-blur-md">
           
           <div className="flex flex-col  gap-1">
-          <Link to="/community" className="p-4 text-text-secondary hover:bg-text/3 transition">Community</Link>
+          <Link to="/" className="p-4 text-text-secondary hover:bg-text/3 transition">Home</Link>
           <Link to="/pricing" className="p-4 text-text-secondary hover:bg-text/3 transition">Pricing</Link>
           <Link to="/legal" className="p-4 text-text-secondary hover:bg-text/3 transition">Legal</Link>
           <Link to="/about" className="p-4 text-text-secondary hover:bg-text/3 transition">About</Link>
           <Link to="/contact" className="p-4 text-text-secondary hover:bg-text/3 transition">Contact Us</Link>
             <div className="flex flex-col gap-3 pt-4">
               <Button variant="outline">Login</Button>
-              <Button>Register</Button>
+              <Button variant="primary">Register</Button>
             </div>
           </div>
         </div>

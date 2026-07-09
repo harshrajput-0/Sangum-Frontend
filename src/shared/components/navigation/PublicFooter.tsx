@@ -1,6 +1,7 @@
 // src/shared/components/navigation/PublicFooter.tsx
 import { Link } from "react-router-dom"
 import { GithubIcon, LinkIcon, TwitterIcon } from "@/styles/icons"
+import { SangumLogoFull } from "@/assests/images/SangumLogo"
 
 const footerLinks = {
   Platform: [
@@ -25,18 +26,18 @@ export const Footer = () => {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border bg-surface w-full">
+    <footer className="border-t border-(--dborder) bg-(--dsurface) w-full">
       <div className="mx-auto p-8">
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10">
           {/* Logo + tagline */}
           <div>
             <Link to="/" className="flex items-center gap-2.5 mb-4">
               {/* reuse your Sangam logo svg here */}
-              <span className="text-xl font-bold text-text tracking-tight">
-                SANGUM
+              <span className="text-xl font-bold text-(--dtext) tracking-tight">
+                <SangumLogoFull width={120}/>
               </span>
             </Link>
-            <p className="text-sm text-text-secondary leading-relaxed max-w-xs">
+            <p className="text-sm text-(--dtext-secondary)  leading-relaxed max-w-xs">
               A platform for developers to connect, share knowledge, and
               build together.
             </p>
@@ -45,7 +46,7 @@ export const Footer = () => {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
-              <h3 className="text-sm font-semibold text-text mb-4">
+              <h3 className="text-sm font-semibold text-(--dtext) mb-4">
                 {heading}
               </h3>
               <ul className="flex flex-col gap-3">
@@ -53,7 +54,7 @@ export const Footer = () => {
                   <li key={link.label}>
                     <Link
                       to={link.to}
-                      className="text-sm text-text-secondary hover:text-text transition-colors"
+                      className="text-sm text-(--dtext-secondary)  hover:text-(--dtext) transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -65,8 +66,8 @@ export const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-text-muted">
+        <div className="mt-12 pt-8 border-t border-(--dborder) flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-(--dtext-muted) ">
             © {year} Sangum. All rights reserved.
           </p>
 
@@ -76,7 +77,7 @@ export const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Twitter"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-border text-text-muted hover:text-text hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
             >
               <TwitterIcon size={16} />
             </a>
@@ -85,7 +86,7 @@ export const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-border text-text-muted hover:text-text hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
             >
               <GithubIcon size={16} />
             </a>
@@ -94,7 +95,7 @@ export const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-border text-text-muted hover:text-text hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
             >
               <LinkIcon size={16} />
             </a>
