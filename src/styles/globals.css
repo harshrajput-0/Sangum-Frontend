@@ -47,22 +47,22 @@ body {
   --surface-hover: #1d2530;
   --border: #2a3441;
   --border-strong: #384455;
-  --text: #fffdfc;
+ --text: #f2f5f7;
   --text-secondary: #c5c7cb;
-  --text-muted: #959698;
+  --text-muted: #9ca5b1;
 
 }
 
 [data-theme="light"] {
   --bg: #ffffff;
-  --bg-elevated: #dddddd;
-  --surface: #ffffff;
-  --surface-2: #fafbfc;
+  --bg-elevated: #f8fafc;
+  --surface: #fcfcfd;
+  --surface-2: #f5f7fa;
   --surface-hover: #f1f3f6;
   --border: #e3e7ed;
   --border-strong: #cbd2dc;
   --text: #11151a;
-  --text-secondary: #4b5565;
+  --text-secondary: #475569;
   --text-muted: #8a94a6;
 
 }

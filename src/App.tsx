@@ -33,9 +33,9 @@ function App() {
           <Route path="disclaimer" element={<DisclaimerPage />} />
           <Route path="cookies" element={<CookiePolicyPage />} />
         </Route>
-
-
       </Route>
+
+      
     </Routes>
   )
 }
