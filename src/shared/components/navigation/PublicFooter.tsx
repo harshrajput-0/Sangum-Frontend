@@ -1,7 +1,7 @@
 // src/shared/components/navigation/PublicFooter.tsx
 import { Link } from "react-router-dom"
 import { GithubIcon, LinkIcon, TwitterIcon } from "@/styles/icons"
-import { SangumLogoFull } from "@/assests/images/SangumLogo"
+import { SangumLogoFull } from "@/shared/components/ui/icons/SangumLogo"
 
 const footerLinks = {
   Platform: [

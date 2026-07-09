@@ -31,7 +31,7 @@ const variants: Record<ButtonVariant, string> = {
   secondary:
     "border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)] hover:bg-[var(--primary-hover)]",
   outline:
-    "border-current bg-transparent text-current hover:bg-[var(--primary-hover)] hover:text-white hover:border-0",
+    "border-current bg-transparent text-current hover:bg-[var(--primary-hover)] hover:text-white hover:border-[var(--primary-hover)]",
     doutline:
     "border-[var(--dborder-strong)] bg-transparent text-[var(--dtext)] hover:bg-[var(--dsurface-hover)]",
   ghost: "border-transparent bg-transparent text-[var(--text-secondary)] hover:bg-[var(--primary-hover)] hover:text-[var(--text)]",
