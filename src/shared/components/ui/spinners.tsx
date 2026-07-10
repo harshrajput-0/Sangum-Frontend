@@ -23,7 +23,7 @@ export function Spinner({ size = "md", color, className }: SpinnerProps) {
       aria-label="Loading"
       style={color ? { color } : undefined}
       className={cn(
-        "inline-block flex-shrink-0 animate-spin rounded-full border-current border-t-transparent",
+        "inline-block shrink-0 animate-spin rounded-full border-current border-t-transparent",
         sizes[size],
         className,
       )}

@@ -20,13 +20,13 @@ export function Checkbox({ checked, onChange, label, required, className }: Chec
       <span
         aria-hidden="true"
         className={cn(
-          "flex items-center justify-center w-[18px] h-[18px] mt-0.5 rounded-[5px] border transition-colors duration-150 flex-shrink-0 peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--brand-purple-light)]",
-          checked ? "bg-[var(--brand-purple)] border-[var(--brand-purple)]" : "bg-[var(--input-bg)] border-[var(--border-strong)]"
+          "flex items-center justify-center w-[18px] h-[18px] mt-0.5 rounded-[5px] border transition-colors duration-150 shrink-0 peer-focus-visible:ring-2 peer-focus-visible:ring-(--brand-purple-light)",
+          checked ? "bg-brand-purple border-brand-purple" : "bg-(--input-bg) border-border-strong"
         )}
       >
-        {checked && <CheckIcon className="w-3 h-3 text-[var(--text-on-brand)]" />}
+        {checked && <CheckIcon className="w-3 h-3 text-(--text-on-brand)" />}
       </span>
-      <span className="text-[length:var(--fs-sm)] text-[var(--text-secondary)] leading-snug">{label}</span>
+      <span className="text-(length:--fs-sm) text-text-secondary leading-snug">{label}</span>
     </label>
   );
 }

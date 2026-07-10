@@ -55,7 +55,7 @@ export function OAuthButtonGroup({
 }: OAuthButtonGroupProps) {
   return (
     <div className={cn("flex flex-col", className)}>
-          <Divider label="or" className="my-4" />
+          <Divider label="or continue with" className="my-4" />
 
       <div className="flex justify-center gap-3.5">
         {providers.map((p) => (

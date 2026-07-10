@@ -1,18 +1,19 @@
 import { Outlet } from "react-router-dom";
 import { Navbar } from "@/shared/components/navigation/PublicNavbar";
-import { Footer } from "@/shared/components/navigation/PublicFooter";
+import MinFooter from "@/shared/components/navigation/MinFooter";
 
 const AuthLayout = () => {
-    return (
-        <>
-            <Navbar />
-            <main className="flex-1 mt-(var:(--topbar-height))">
-                <Outlet />
-            </main>
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
 
-            <Footer />
-        </>
-    )
-}
+      <main className="flex-1 mt-(--topbar-height)">
+        <Outlet />
+      </main>
 
-export default AuthLayout
+      <MinFooter />
+    </div>
+  );
+};
+
+export default AuthLayout;

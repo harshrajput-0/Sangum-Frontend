@@ -12,6 +12,9 @@ import DisclaimerPage from './modules/marketing/legal/DisclaimerPage'
 import CookiePolicyPage from './modules/marketing/legal/CookiePolicyPage'
 // import RegisterPage from './shared/hooks/RegisterPage'
 
+import AuthLayout from './layouts/AuthLayout';
+import PreviewTestingPage from './modules/marketing/pages/PreviewTestingPage'
+
 
 
 
@@ -33,6 +36,10 @@ function App() {
           <Route path="disclaimer" element={<DisclaimerPage />} />
           <Route path="cookies" element={<CookiePolicyPage />} />
         </Route>
+      </Route>
+
+      <Route element={<AuthLayout />}>
+      <Route path="/test" element={<PreviewTestingPage />}/>
       </Route>
 
       

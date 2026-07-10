@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * SearchInput
@@ -100,10 +100,10 @@ export function SearchInput({
         autoFocus={autoFocus}
         disabled={disabled}
         className={cx(
-          "w-full rounded-[var(--radius-md)] border border-[color:var(--border)] bg-[color:var(--input-bg)] py-[10px] pl-[38px]",
+          "w-full rounded-md border border-border bg-(--input-bg) py-[10px] pl-[38px]",
           current ? "pr-[38px]" : "pr-[14px]",
-          "text-[length:var(--fs-sm)] text-text placeholder:text-text-muted",
-          "transition-colors duration-150 focus:outline-none focus:border-[color:var(--brand-purple)] focus:[box-shadow:var(--shadow-glow-purple)]",
+          "text-(length:--fs-sm) text-text placeholder:text-text-muted",
+          "transition-colors duration-150 focus:outline-none focus:border-brand-purple focus:[box-shadow:var(--shadow-glow-purple)]",
           "disabled:cursor-not-allowed disabled:opacity-50"
         )}
       />

@@ -99,7 +99,7 @@ export function TagInput({
       {label && (
         <label
           htmlFor={autoId}
-          className="mb-[var(--sp-2)] block text-[length:var(--fs-sm)] font-medium text-text-secondary"
+          className="mb-(--sp-2) block text-(length:--fs-sm) font-medium text-text-secondary"
         >
           {label}
         </label>
@@ -108,16 +108,16 @@ export function TagInput({
       <div
         onClick={() => inputRef.current?.focus()}
         className={cx(
-          "flex min-h-[42px] w-full flex-wrap items-center gap-[6px] rounded-[var(--radius-md)] border bg-[color:var(--input-bg)] px-[10px] py-[8px]",
-          "transition-colors duration-150 focus-within:border-[color:var(--brand-purple)] focus-within:[box-shadow:var(--shadow-glow-purple)]",
+          "flex min-h-[42px] w-full flex-wrap items-center gap-[6px] rounded-md border bg-(--input-bg) px-[10px] py-[8px]",
+          "transition-colors duration-150 focus-within:border-brand-purple focus-within:[box-shadow:var(--shadow-glow-purple)]",
           disabled && "cursor-not-allowed opacity-50",
-          error ? "border-[color:var(--danger)]" : "border-[color:var(--border)]"
+          error ? "border-danger" : "border-border"
         )}
       >
         {value.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center gap-[6px] rounded-[var(--radius-full)] bg-[rgba(109,93,254,0.15)] px-[10px] py-[4px] text-[length:var(--fs-xs)] font-medium text-[color:var(--brand-purple-light)]"
+            className="inline-flex items-center gap-[6px] rounded-(--radius-full) bg-[rgba(109,93,254,0.15)] px-[10px] py-[4px] text-(length:--fs-xs) font-medium text-(--brand-purple-light)"
           >
             {tag}
             {!disabled && (
@@ -145,20 +145,20 @@ export function TagInput({
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 120)}
             placeholder={value.length === 0 ? placeholder : ""}
-            className="min-w-[100px] flex-1 bg-transparent text-[length:var(--fs-sm)] text-text placeholder:text-text-muted focus:outline-none"
+            className="min-w-[100px] flex-1 bg-transparent text-(length:--fs-sm) text-text placeholder:text-text-muted focus:outline-none"
           />
         )}
       </div>
 
       {showSuggestions && filteredSuggestions.length > 0 && (
-        <ul className="absolute z-10 mt-[var(--sp-1)] w-full overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--border)] bg-[color:var(--surface)] [box-shadow:var(--shadow-md)]">
+        <ul className="absolute z-10 mt-(--sp-1) w-full overflow-hidden rounded-md border border-border bg-surface [box-shadow:var(--shadow-md)]">
           {filteredSuggestions.map((s) => (
             <li key={s}>
               <button
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => addTag(s)}
-                className="w-full px-[14px] py-[8px] text-left text-[length:var(--fs-sm)] text-text hover:bg-[color:var(--surface-hover)]"
+                className="w-full px-[14px] py-[8px] text-left text-(length:--fs-sm) text-text hover:bg-surface-hover"
               >
                 {s}
               </button>
@@ -168,11 +168,11 @@ export function TagInput({
       )}
 
       {error ? (
-        <p role="alert" className="mt-[var(--sp-1)] text-[length:var(--fs-xs)] text-[color:var(--danger)]">
+        <p role="alert" className="mt-(--sp-1) text-(length:--fs-xs) text-danger">
           {error}
         </p>
       ) : helperText ? (
-        <p className="mt-[var(--sp-1)] text-[length:var(--fs-xs)] text-text-muted">
+        <p className="mt-(--sp-1) text-(length:--fs-xs) text-text-muted">
           {helperText}
         </p>
       ) : null}

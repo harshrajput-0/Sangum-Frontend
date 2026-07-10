@@ -105,7 +105,7 @@ export function MultiImageUpload({
   return (
     <div className={cx("w-full", className)}>
       {label && (
-        <label className="mb-[var(--sp-2)] block text-[length:var(--fs-sm)] font-medium text-[color:var(--text-secondary)]">
+        <label className="mb-[var(--sp-2)] block text-[length:var(--fs-sm)] font-medium text-text-secondary">
           {label}
         </label>
       )}
