@@ -1,15 +1,15 @@
 // src/App.tsx
 import { Routes, Route } from 'react-router-dom'
-import { LandingPage } from '@/modules/marketing/pages/LandingPage'
-import AboutPage from '@/modules/marketing/pages/AboutPage'
+import { LandingPage } from '@/modules/pages/marketing/LandingPage'
+import AboutPage from '@/modules/pages/marketing/AboutPage'
 import { PublicLayout } from './layouts/PublicLayout'
-import ContactPage from './modules/marketing/pages/ContactPage'
+import ContactPage from './modules/pages/marketing/ContactPage'
 
-import LegalHubPage from '@/modules/marketing/pages/LegalHubPage'
-import TermsPage from '@/modules/marketing/legal/TermsOfServicePage'
-import PrivacyPage from '@/modules/marketing/legal/PrivacyPolicyPage'
-import DisclaimerPage from '@/modules/marketing/legal/DisclaimerPage'
-import CookiePolicyPage from '@/modules/marketing/legal/CookiePolicyPage'
+import LegalHubPage from '@/modules/pages/legal/LegalHubPage'
+import TermsPage from '@/modules/pages/legal/TermsOfServicePage'
+import PrivacyPage from '@/modules/pages/legal/PrivacyPolicyPage'
+import DisclaimerPage from '@/modules/pages/legal/DisclaimerPage'
+import CookiePolicyPage from '@/modules/pages/legal/CookiePolicyPage'
 
 import AuthLayout from '@/layouts/AuthLayout';
 import RegisterPage from './modules/auth/pages/RegisterPage'
