@@ -1,16 +1,13 @@
-import { Navbar } from '@/shared/components/navigation/PublicNavbar'
-import { Outlet } from 'react-router-dom'
+import { PublicHeader } from "@/shared/components/navigation/PublicHeader"
+import { Outlet } from "react-router-dom"
 
 const BareLayout = () => {
-  return (
-  <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-1 mt-16">
-                <Outlet />
-            </main>
-            
+    return (
+        <div>
+            <PublicHeader />
+            <Outlet />
         </div>
-  )
+    )
 }
 
 export default BareLayout

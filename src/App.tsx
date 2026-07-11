@@ -14,7 +14,10 @@ import CookiePolicyPage from '@/modules/pages/legal/CookiePolicyPage'
 import AuthLayout from '@/layouts/AuthLayout';
 import RegisterPage from './modules/auth/pages/RegisterPage'
 import LoginPage from './modules/auth/pages/LoginPage'
-import PreviewTestingPage from './modules/marketing/pages/PreviewTestingPage'
+
+import BareLayout from './layouts/BareLayout'
+import PreviewTestingPage from '@/testing/PreviewTestingPage'
+
 
 
 
@@ -39,13 +42,16 @@ function App() {
       </Route>
 
       <Route element={<AuthLayout />}>
-      <Route path="/test" element={<PreviewTestingPage />}/>
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/login" element={<LoginPage />} />
-
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Route>
 
-      
+      <Route element={<BareLayout />}>
+        <Route path="/test" element={<PreviewTestingPage />} />
+      </Route>
+
+
+
     </Routes>
   )
 }

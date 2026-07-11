@@ -22,7 +22,7 @@ const footerLinks = {
   ],
 }
 
-export const Footer = () => {
+export const PublicFooter = () => {
   const year = new Date().getFullYear()
 
   return (

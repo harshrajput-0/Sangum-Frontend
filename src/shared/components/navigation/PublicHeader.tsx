@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "../../../shared/components/ui/Button";
+import { Button } from "../ui/Button";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import { SangumLogoHorizontal } from "../ui/icons/SangumLogo";
 
-export const Navbar: React.FC = () => {
+export const PublicHeader: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
