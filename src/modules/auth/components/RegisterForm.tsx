@@ -190,7 +190,7 @@ export function RegisterForm({
                 href={termsHref}
                 target="_blank"
                 rel="noreferrer"
-                className="text-brand-purple hover:underline"
+                className="text-primary hover:underline"
               >
                 Terms of Service
               </a>{" "}
@@ -199,7 +199,7 @@ export function RegisterForm({
                 href={privacyHref}
                 target="_blank"
                 rel="noreferrer"
-                className="text-brand-purple hover:underline"
+                className="text-primary hover:underline"
               >
                 Privacy Policy
               </a>
@@ -224,7 +224,7 @@ export function RegisterForm({
         type="submit"
         disabled={isLoading}
         className={cn(
-          "w-full rounded-[var(--radius-md)] bg-(--brand-purple) py-[10px]",
+          "w-full rounded-[var(--radius-md)] bg-(--primary) py-[10px]",
           "text-(length:--fs-sm) font-medium text-white",
           "transition-opacity duration-150 hover:opacity-90",
           "disabled:cursor-not-allowed disabled:opacity-60"

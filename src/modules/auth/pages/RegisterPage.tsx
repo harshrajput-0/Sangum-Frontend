@@ -1,5 +1,5 @@
 import AuthFormHeader from "@/modules/auth/components/AuthFormHeader";
-import RegisterForm from "@/modules/auth/components/RegisterFrom";
+import RegisterForm from "@/modules/auth/components/RegisterForm";
 import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
 import { Link } from "react-router-dom";
 
@@ -34,7 +34,7 @@ const RegisterPage = () => {
               <p className="text-center text-[length:var(--fs-sm)] text-[var(--text-secondary)] mt-[18px]">
         Already have an account?{" "}
       
-          <Link to="/Login" className="text-[var(--brand-purple-light)] hover:underline">
+          <Link to="/Login" className="text-[var(--primary-light)] hover:underline">
           Log in
           </Link>
       </p>

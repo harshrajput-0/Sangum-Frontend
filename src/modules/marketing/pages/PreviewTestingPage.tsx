@@ -35,7 +35,7 @@ const PreviewTestingPage = () => {
               <p className="text-center text-[length:var(--fs-sm)] text-[var(--text-secondary)] mt-5">
         Don't have an account?{" "}
       
-          <Link to="/register" className="text-[var(--brand-purple-light)] hover:underline">
+          <Link to="/register" className="text-[var(--primary-light)] hover:underline">
           Register
           </Link>
       </p>
