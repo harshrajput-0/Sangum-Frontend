@@ -13,6 +13,7 @@ import CookiePolicyPage from '@/modules/marketing/legal/CookiePolicyPage'
 
 import AuthLayout from '@/layouts/AuthLayout';
 import RegisterPage from './modules/auth/pages/RegisterPage'
+import LoginPage from './modules/auth/pages/LoginPage'
 import PreviewTestingPage from './modules/marketing/pages/PreviewTestingPage'
 
 
@@ -40,6 +41,7 @@ function App() {
       <Route element={<AuthLayout />}>
       <Route path="/test" element={<PreviewTestingPage />}/>
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
 
       </Route>
 

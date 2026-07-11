@@ -183,6 +183,7 @@ export function RegisterForm({
           checked={values.agreeToTerms}
           onChange={(checked) => setField("agreeToTerms", checked)}
           required
+          className="my-2"
           label={
             <>
               I agree to the{" "}
@@ -190,7 +191,7 @@ export function RegisterForm({
                 href={termsHref}
                 target="_blank"
                 rel="noreferrer"
-                className="text-primary hover:underline"
+                className="text-primary-light hover:underline"
               >
                 Terms of Service
               </a>{" "}
@@ -199,7 +200,7 @@ export function RegisterForm({
                 href={privacyHref}
                 target="_blank"
                 rel="noreferrer"
-                className="text-primary hover:underline"
+                className="text-primary-light hover:underline"
               >
                 Privacy Policy
               </a>

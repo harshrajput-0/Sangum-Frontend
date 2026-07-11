@@ -50,8 +50,13 @@ export const Navbar: React.FC = () => {
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-2 text-text-secondary">
-            <Button variant="outline" size="sm">Login</Button>
-            <Button size="sm">Register</Button>
+            <Button variant="outline" size="sm">
+              <Link to="/login">Login</Link>
+            </Button>
+
+            <Button size="sm">
+              <Link to="/register" >Register</Link>
+            </Button>
           </div>
           
 
