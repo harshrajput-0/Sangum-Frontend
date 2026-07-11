@@ -22,6 +22,21 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
+
+
+    --dbg: #0b0f14;
+  --dbg-elevated: #11161d;
+  --dsurface: #171d25;
+  --dsurface-2: #202833;
+  --dsurface-hover: #26303d;
+  --dsurface-active: #2d3947;
+  --dborder: #313d4d;
+  --dborder-strong: #445266;
+  --dtext: #f8fafc;
+  --dtext-secondary: #cbd5e1;
+  --dtext-muted: #94a3b8;
+  --dtext-disabled: #64748b;
+  --dtext-on-primary: #ffffff;
 }
 
 /* ============================================================
