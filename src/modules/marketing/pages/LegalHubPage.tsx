@@ -62,7 +62,7 @@ const legalDocs: LegalDoc[] = [
 
 export default function LegalHubPage() {
   return (
-    <div className="w-full pt-16">
+    <div className="w-full">
       {/* Hero */}
       <section className="mx-auto max-w-[1280px] px-4 pt-[60px] pb-10 text-center md:px-6">
         <span className="mb-2.5 block text-(length:--fs-xs) font-bold uppercase tracking-[0.08em] text-brand-purple">
@@ -77,7 +77,7 @@ export default function LegalHubPage() {
       </section>
 
       {/* Doc cards */}
-      <section className="mx-auto mb-[60px] max-w-[1280px] px-4 md:px-6">
+      <section className="mx-auto mb-20 max-w-[1280px] px-4 md:px-6 ">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {legalDocs.map((doc) => (
             <div

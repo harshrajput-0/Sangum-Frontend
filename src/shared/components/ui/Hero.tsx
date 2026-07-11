@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center bg-(--dbg) justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center bg-(--dbg) justify-center overflow-hidden">
       {/* Background glow blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-150 h-120 bg-brand-purple/10 rounded-full blur-[120px]" />

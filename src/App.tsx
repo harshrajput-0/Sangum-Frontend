@@ -7,12 +7,12 @@ import ContactPage from './modules/marketing/pages/ContactPage'
 
 import LegalHubPage from '@/modules/marketing/pages/LegalHubPage'
 import TermsPage from '@/modules/marketing/legal/TermsOfServicePage'
-import PrivacyPage from './modules/marketing/legal/PrivacyPolicyPage'
-import DisclaimerPage from './modules/marketing/legal/DisclaimerPage'
-import CookiePolicyPage from './modules/marketing/legal/CookiePolicyPage'
-// import RegisterPage from './shared/hooks/RegisterPage'
+import PrivacyPage from '@/modules/marketing/legal/PrivacyPolicyPage'
+import DisclaimerPage from '@/modules/marketing/legal/DisclaimerPage'
+import CookiePolicyPage from '@/modules/marketing/legal/CookiePolicyPage'
 
-import AuthLayout from './layouts/AuthLayout';
+import AuthLayout from '@/layouts/AuthLayout';
+import RegisterPage from './modules/auth/pages/RegisterPage'
 import PreviewTestingPage from './modules/marketing/pages/PreviewTestingPage'
 
 
@@ -26,7 +26,6 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
-        {/* <Route path="/register" element={<RegisterPage />} /> */}
 
         {/* /legal, /legal/terms, /legal/privacy, /legal/disclaimer, /legal/cookies */}
         <Route path="/legal">
@@ -40,6 +39,8 @@ function App() {
 
       <Route element={<AuthLayout />}>
       <Route path="/test" element={<PreviewTestingPage />}/>
+      <Route path="/register" element={<RegisterPage />} />
+
       </Route>
 
       

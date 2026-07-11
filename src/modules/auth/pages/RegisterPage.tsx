@@ -1,8 +1,7 @@
 import AuthFormHeader from "@/modules/auth/components/AuthFormHeader";
-import { OAuthButtonGroup } from "@/modules/auth/components/OAuthButtonGroup";
-import LgoinForm from "@/modules/auth/components/LoginForm";
+import RegisterForm from "@/modules/auth/components/RegisterFrom";
+import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
 import { Link } from "react-router-dom";
-
 
 export interface AuthLayoutProps {
   eyebrow: string;
@@ -18,30 +17,31 @@ export interface AuthLayoutProps {
 
 
 
-const PreviewTestingPage = () => {
+const RegisterPage = () => {
   return (
     <main className='w-full h-full  p-8 flex items-center justify-center'>
-      <div className="mx-auto br-red p-4 justify-center max-w-[480px] h-full my-auto">
+      <div className=" items-center justify-center max-w-[480px] h-full my-auto">
 
         <AuthFormHeader
-          eyebrow="Welcome Back"
-          title="Log in to your"
+          eyebrow="Join Sangum"
+          title="Create your"
           description="Join thousands of developers building the future together. It's free and only takes a minute."
         />
 
-        <LgoinForm onSubmit={(values) => { console.log(values) }} />
-          <OAuthButtonGroup />
+        <RegisterForm onSubmit={(values) => { console.log(values) }} />
+        <OAuthButtonGroup />
 
-              <p className="text-center text-[length:var(--fs-sm)] text-[var(--text-secondary)] mt-5">
-        Don't have an account?{" "}
+              <p className="text-center text-[length:var(--fs-sm)] text-[var(--text-secondary)] mt-[18px]">
+        Already have an account?{" "}
       
-          <Link to="/register" className="text-[var(--brand-purple-light)] hover:underline">
-          Register
+          <Link to="/Login" className="text-[var(--brand-purple-light)] hover:underline">
+          Log in
           </Link>
       </p>
+
       </div>
     </main>
   )
 }
 
-export default PreviewTestingPage
+export default RegisterPage

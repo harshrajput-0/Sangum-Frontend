@@ -47,8 +47,6 @@ export interface RegisterFormProps {
   minPasswordLength?: number;
   /** Initial values, useful for pre-filling (e.g. invited email) */
   defaultValues?: Partial<RegisterFormValues>;
-  /** Shows a "Already have an account? Sign in" row when provided */
-  onSignInClick?: () => void;
   /** href for the Terms of Service link */
   termsHref?: string;
   /** href for the Privacy Policy link */
@@ -65,7 +63,6 @@ export function RegisterForm({
   submitError,
   minPasswordLength = 8,
   defaultValues,
-  onSignInClick,
   termsHref = "#",
   privacyHref = "#",
   className,
@@ -228,27 +225,13 @@ export function RegisterForm({
         disabled={isLoading}
         className={cn(
           "w-full rounded-[var(--radius-md)] bg-(--brand-purple) py-[10px]",
-          "text-(length:--fs-sm) font-medium text-(--text-on-brand)",
+          "text-(length:--fs-sm) font-medium text-white",
           "transition-opacity duration-150 hover:opacity-90",
           "disabled:cursor-not-allowed disabled:opacity-60"
         )}
       >
         {isLoading ? "Creating account…" : "Create Account"}
       </button>
-
-      {onSignInClick && (
-        <p className="text-center text-(length:--fs-sm) text-text-muted">
-          Already have an account?{" "}
-          <button
-            type="button"
-            onClick={onSignInClick}
-            className="font-medium text-brand-purple hover:underline"
-          >
-            Sign in
-          </button>
-        </p>
-      )}
-
       
     </form>
   );

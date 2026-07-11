@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
         transition-all duration-300
         ${scrolled
           ? "bg-bg backdrop-blur-xl border-b border-border text-text"
-          : "bg-transparent text-text-secondary hover:border-0"
+          : "bg-bg text-text border-border"
         }
       `}
     >
