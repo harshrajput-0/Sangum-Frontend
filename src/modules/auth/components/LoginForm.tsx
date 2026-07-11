@@ -4,7 +4,7 @@ import React, { useCallback, useState } from "react";
 import { cn } from "@/shared/utils/cn";
 import { FormField, fieldControlClass } from "@/shared/components/form/FormField";
 import PasswordInput from "@/shared/components/form/PasswordInput";
-// import { Checkbox } from "@/shared/components/ui/Checkbox";
+import { Checkbox } from "@/shared/components/ui/Checkbox";
 import { Link } from "react-router-dom";
 
 
@@ -32,9 +32,9 @@ export interface LoginFormValues {
   password: string;
   rememberMe: boolean;
 }
- 
+
 export type LoginFormErrors = Partial<Record<keyof LoginFormValues, string>>;
- 
+
 export interface LoginFormProps {
   /** Called with the validated values once the form passes client-side checks */
   onSubmit: (values: LoginFormValues) => void | Promise<void>;
@@ -46,6 +46,8 @@ export interface LoginFormProps {
   defaultValues?: Partial<LoginFormValues>;
   /** Shows a "Forgot password?" link when provided */
   onForgotPasswordClick?: () => void;
+  /** Shows a "Don't have an account? Sign up" row when provided */
+  onSignUpClick?: () => void;
   /** Extra classes for the outer <form> */
   className?: string;
 }
@@ -61,18 +63,17 @@ export function LoginForm({
   isLoading = false,
   submitError,
   defaultValues,
-//   onForgotPasswordClick,
   className,
 }: LoginFormProps) {
 
   // Stores the form state 
-   const [values, setValues] = useState<LoginFormValues>({
+  const [values, setValues] = useState<LoginFormValues>({
     email: defaultValues?.email ?? "",
     password: "",
     rememberMe: defaultValues?.rememberMe ?? false,
   });
   const [errors, setErrors] = useState<LoginFormErrors>({});
- 
+
   const setField = useCallback(
     <K extends keyof LoginFormValues>(key: K, value: LoginFormValues[K]) => {
       setValues((prev) => ({ ...prev, [key]: value }));
@@ -80,15 +81,15 @@ export function LoginForm({
     },
     []
   );
- 
+
   const validate = (v: LoginFormValues): LoginFormErrors => {
     const next: LoginFormErrors = {};
- 
+
     if (!v.email.trim()) next.email = "Enter your email address.";
     else if (!EMAIL_RE.test(v.email)) next.email = "Enter a valid email address.";
- 
+
     if (!v.password) next.password = "Enter your password.";
- 
+
     return next;
   };
 
@@ -97,11 +98,11 @@ export function LoginForm({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isLoading) return;
- 
+
     const nextErrors = validate(values);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
- 
+
     await onSubmit(values);
   };
 
@@ -139,33 +140,23 @@ export function LoginForm({
         error={errors.password}
       />
 
-      {/* <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <Checkbox
           checked={values.rememberMe}
           onChange={(checked) => setField("rememberMe", checked)}
           label="Remember me"
         />
 
-        {onForgotPasswordClick && (
-          <buttononForgotPasswordClick
-            type="button"
-            onClick={onForgotPasswordClick}
-            className="text-(length:--fs-sm) font-medium text-primary hover:underline"
-          >
-            Forgot password?
-          </button>
-        )}
-      </div> */}
+        <Link to="/forgetPassword" className="text-[length:var(--fs-sm)] text-[var(--primary-light)] hover:underline left-0">
+          Forgot Password
+        </Link>
 
-      
-<div className="flex justify-end">
-  <Link
-    to="/forgetPassword"
-    className="text-[length:var(--fs-sm)] text-[var(--primary-light)] hover:underline"
-  >
-    Forgot Password
-  </Link>
-</div>
+      </div>
+
+
+
+
+
 
 
       {submitError && (
@@ -186,7 +177,7 @@ export function LoginForm({
       >
         {isLoading ? "Signing in…" : "Sign In"}
       </button>
-     
+
     </form>
   );
 }

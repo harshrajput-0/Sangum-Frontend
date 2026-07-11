@@ -1,7 +1,7 @@
 import AuthFormHeader from "@/modules/auth/components/AuthFormHeader";
 import LoginForm from "@/modules/auth/components/LoginForm";
 import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export interface AuthLayoutProps {
   eyebrow: string;
@@ -28,16 +28,19 @@ const LoginPage = () => {
           description="Join thousands of developers building the future together. It's free and only takes a minute."
         />
 
-        <LoginForm onSubmit={(values) => { console.log(values) }} />
+        <LoginForm 
+        onSubmit={(values) => { console.log(values) }} />
           <OAuthButtonGroup />
 
-              <p className="text-center text-[length:var(--fs-sm)] text-[var(--text-secondary)] mt-5">
+
+
+              {/* <p className="text-center text-[length:var(--fs-sm)] text-[var(--text-secondary)] mt-5">
         Don't have an account?{" "}
       
           <Link to="/register" className="text-[var(--primary-light)] hover:underline">
           Register
           </Link>
-      </p>
+      </p> */}
       </div>
     </main>
   )

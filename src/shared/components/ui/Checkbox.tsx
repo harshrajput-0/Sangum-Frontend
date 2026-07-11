@@ -15,12 +15,12 @@ export interface CheckboxProps {
 /** Square checkbox + label. A real (visually-hidden) checkbox input backs the custom box, so keyboard/screen-reader behavior stays native. Used for "Remember me" and "I agree to the Terms". */
 export function Checkbox({ checked, onChange, label, required, className }: CheckboxProps) {
   return (
-    <label className={cn("flex items-start gap-2 cursor-pointer select-none", className)}>
+    <label className={cn("flex items-center gap-2 cursor-pointer select-none", className)}>
       <input type="checkbox" checked={checked} required={required} onChange={(e) => onChange(e.target.checked)} className="sr-only peer" />
       <span
         aria-hidden="true"
         className={cn(
-          "flex items-center justify-center w-[18px] h-[18px] mt-0.5 rounded-[5px] border transition-colors duration-150 shrink-0 peer-focus-visible:ring-2 peer-focus-visible:ring-(--brand-purple-light)",
+          "flex items-center justify-center w-[18px] h-[18px] rounded-[5px] border transition-colors duration-150 shrink-0 peer-focus-visible:ring-2 peer-focus-visible:ring-(--brand-purple-light)",
           checked ? "bg-brand-purple border-brand-purple" : "bg-(--input-bg) border-border-strong"
         )}
       >
