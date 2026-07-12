@@ -23,8 +23,7 @@
   --color-warning: var(--warning);
   --color-danger: var(--danger);
 
-
-    --dbg: #0b0f14;
+  --dbg: #0b0f14;
   --dbg-elevated: #11161d;
   --dsurface: #171d25;
   --dsurface-2: #202833;
@@ -63,8 +62,6 @@
   --dtext-muted: #94a3b8;
   --dtext-disabled: #64748b;
   --dtext-on-primary: #ffffff;
-
-
 
   /* Primary */
   --primary: #6d5dfe;
@@ -138,7 +135,7 @@
   --role-verified: #3b82f6;
   --role-user: #9aa3af;
 
-    /* ---- Radius scale ---- */
+  /* ---- Radius scale ---- */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
@@ -190,7 +187,6 @@
   --t-fast: 120ms var(--ease);
   --t-base: 200ms var(--ease);
 }
-
 
 body {
   background-color: var(--bg);

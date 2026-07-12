@@ -1,11 +1,8 @@
-// import React from 'react'
+import { ErrorState } from "@/modules/pages/system/components/ErrorState"
 
 const NotFound = () => {
   return (
-        <main className='w-full h-full  p-8 flex items-center justify-center'>
-            
-
-    </main>
+    <ErrorState variant="crash" code={404} title="Page not found" message="Looks like you've taken a wrong turn" size="lg" />
   )
 }
 

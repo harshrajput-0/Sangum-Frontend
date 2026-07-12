@@ -17,6 +17,7 @@ import LoginPage from './modules/auth/pages/LoginPage'
 
 import BareLayout from './layouts/BareLayout'
 import PreviewTestingPage from '@/testing/PreviewTestingPage'
+import NotFound from '@/modules/pages/system/NotFound'
 
 
 
@@ -48,6 +49,8 @@ function App() {
 
       <Route element={<BareLayout />}>
         <Route path="/test" element={<PreviewTestingPage />} />
+        {/* Catch all non existent routes  */}
+        <Route path="*" element={<NotFound />} />
       </Route>
 
 
