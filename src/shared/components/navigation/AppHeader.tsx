@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import { SangumLogoHorizontal } from "../ui/icons/SangumLogo";
 
-export const PublicHeader: React.FC = () => {
+
+export const AppHeader: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -14,6 +15,8 @@ export const PublicHeader: React.FC = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+
 
   return (
     <nav
@@ -47,6 +50,7 @@ export const PublicHeader: React.FC = () => {
 
         <div className="flex items-center gap-2 justify-end">
             <ThemeToggle />
+
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-2 text-text-secondary">

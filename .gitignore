@@ -24,6 +24,8 @@ dist-ssr
 *.sw?
 
 # Folders
+sidebar/
+user
 
 
 # Files
