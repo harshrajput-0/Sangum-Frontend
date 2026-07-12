@@ -1,26 +1,29 @@
 // src/App.tsx
 import { Routes, Route } from 'react-router-dom'
 import { LandingPage } from '@/modules/pages/marketing/LandingPage'
-import AboutPage from '@/modules/pages/marketing/AboutPage'
-import { PublicLayout } from './layouts/PublicLayout'
-import ContactPage from './modules/pages/marketing/ContactPage'
 
+// Public Layout 
+import { PublicLayout } from '@/layouts/PublicLayout'
+import AboutPage from '@/modules/pages/marketing/AboutPage'
+import ContactPage from '@/modules/pages/marketing/ContactPage'
 import LegalHubPage from '@/modules/pages/legal/LegalHubPage'
 import TermsPage from '@/modules/pages/legal/TermsOfServicePage'
 import PrivacyPage from '@/modules/pages/legal/PrivacyPolicyPage'
 import DisclaimerPage from '@/modules/pages/legal/DisclaimerPage'
 import CookiePolicyPage from '@/modules/pages/legal/CookiePolicyPage'
 
+// Auth Layout 
 import AuthLayout from '@/layouts/AuthLayout';
-import RegisterPage from './modules/auth/pages/RegisterPage'
-import LoginPage from './modules/auth/pages/LoginPage'
+import RegisterPage from '@/modules/auth/pages/RegisterPage'
+import LoginPage from '@/modules/auth/pages/LoginPage'
 
-import BareLayout from './layouts/BareLayout'
+// Bare Layout 
+import BareLayout from '@/layouts/BareLayout'
 import PreviewTestingPage from '@/testing/PreviewTestingPage'
 import NotFound from '@/modules/pages/system/NotFound'
 
-
-
+// App Lyout 
+// import AppLayout from '@/layouts/AppLayout'
 
 
 
@@ -48,11 +51,15 @@ function App() {
       </Route>
 
       <Route element={<BareLayout />}>
-        <Route path="/test" element={<PreviewTestingPage />} />
         {/* Catch all non existent routes  */}
         <Route path="*" element={<NotFound />} />
-      </Route>
+        <Route path="/test" element={<PreviewTestingPage />} />
 
+      </Route>
+{/* 
+      <Route element={<AppLayout />}>
+        <Route path="/test" element={<PreviewTestingPage />} />
+      </Route> */}
 
 
     </Routes>

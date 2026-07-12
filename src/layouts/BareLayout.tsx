@@ -3,9 +3,9 @@ import { Outlet } from "react-router-dom"
 
 const BareLayout = () => {
     return (
-        <div>
+        <div className="h-full">
             <PublicHeader />
-            <main className="w-full max-w-screen min-h-screen items-center h-full flex justify-center pb-30" >
+            <main className="w-full max-w-screen max-h-full items-center h-full flex flex-1" >
                 <Outlet />
             </main>
         </div>
