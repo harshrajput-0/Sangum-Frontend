@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { ReactNode, ChangeEvent, FormEvent } from "react";
+import { usePageTitle } from "@/shared/hooks/usePageTitle";
 
 export interface ContactFormValues {
   name: string;
@@ -88,6 +89,9 @@ const inputClasses =
   "w-full rounded-sm border border-border bg-[var(--input-bg)] px-3.5 py-2.5 text-(length:--fs-sm) text-text placeholder:text-text-muted transition-colors focus:outline-none focus:border-[var(--brand-purple)] focus:[box-shadow:var(--shadow-glow-purple)]";
 
 function FaqAccordionItem({ faq, isOpen, onToggle }: { faq: Faq; isOpen: boolean; onToggle: () => void }) {
+
+    usePageTitle("Contact Us — Sangum");
+  
   return (
     <div className="mb-2.5 overflow-hidden rounded-lg border border-border bg-surface">
       <button
@@ -127,6 +131,7 @@ function FaqAccordionItem({ faq, isOpen, onToggle }: { faq: Faq; isOpen: boolean
 }
 
 export default function ContactPage({ onSubmit }: ContactPageProps) {
+
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);

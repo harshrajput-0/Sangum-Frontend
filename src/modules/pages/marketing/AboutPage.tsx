@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { usePageTitle } from "@/shared/hooks/usePageTitle";
+
 
 interface MissionItem {
   title: string;
@@ -42,6 +44,7 @@ const stats: { value: string; label: string }[] = [
 ];
 
 export default function AboutPage() {
+  usePageTitle("About Us — Sangum");
   return (
     <div className="w-full">
       {/* Hero */}
