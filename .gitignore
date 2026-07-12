@@ -29,6 +29,6 @@ dist-ssr
 # Files
 token.css
 AuthForm.tsx
-Sidebar.tsx
+Sidebar2.tsx
 AppLayout.tsx
 Topbar.tsx
