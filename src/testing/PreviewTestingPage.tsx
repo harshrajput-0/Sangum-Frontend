@@ -1,14 +1,13 @@
-import Sidebar from "@/shared/components/navigation/Sidebar";
-import { useState } from "react";
-// import { AppHeader } from "@/shared/components/navigation/AppHeader";
-// import SidebarToggle from "@/shared/components/navigation/SidebarToggle";
+import { Progress } from "@/modules/pages/marketing/components/DProgress"
 
 const PreviewTestingPage = () => {
-  const [collapsed, setCollapsed] = useState(false);
   return (
     <div className="pt-16">
 
-<Sidebar collapsed={collapsed} onCollapsedChange={setCollapsed} />
+{/* <Sidebar collapsed={collapsed} onCollapsedChange={setCollapsed} /> */}
+<Progress />
+<Progress />
+<Progress />
     </div>
   )
 }

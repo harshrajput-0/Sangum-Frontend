@@ -75,20 +75,20 @@ const badgeColors: Record<SidebarBadgeVariant, string> = {
 
 // Default Sidebar Items 
 const defaultNavItems: SidebarNavItem[] = [
-  { key: "home", label: "Home", icon: <IconHome /> },
-  { key: "communities", label: "Communities", icon: <IconUsers /> },
-  { key: "explore", label: "Explore", icon: <IconCompass /> },
-  { key: "messages", label: "Messages", icon: <IconMail />, badge: { label: 3, variant: "purple" } },
-  { key: "notifications", label: "Notifications", icon: <IconBell />, badge: { label: 5, variant: "danger" } },
-  { key: "bookmarks", label: "Bookmarks", icon: <IconBookmark /> },
-  { key: "resources", label: "Resources", icon: <IconBook /> },
+  { key: "home", label: "Home", icon: <IconHome />, href: "/home" },
+  { key: "communities", label: "Communities", icon: <IconUsers />, href: "/communities" },
+  { key: "explore", label: "Explore", icon: <IconCompass />, href: "explore" },
+  { key: "messages", label: "Messages", icon: <IconMail />, badge: { label: 3, variant: "purple" }, href: "messages" },
+  { key: "notifications", label: "Notifications", icon: <IconBell />, badge: { label: 5, variant: "danger" }, href: "notifications" },
+  { key: "bookmarks", label: "Bookmarks", icon: <IconBookmark />, href: "/bookmarks" },
+  { key: "resources", label: "Resources", icon: <IconBook />, href: "/resources" },
   { key: "events", label: "Events", icon: <IconCalendar />, comingSoon: true },
 ];
 
 // Communities
 const defaultCommunities: SidebarCommunity[] = [
-  { key: "mern", name: "MERN Developers", initials: "N", color: "var(--success,#22c55e)" },
-  { key: "ts", name: "TypeScript Nation", initials: "TS", color: "var(--info,#3b82f6)" },
+  { key: "mern", name: "MERN Developers", initials: "N", color: "var(--success,#22c55e)", href: "/mern" },
+  { key: "ts", name: "TypeScript Nation", initials: "TS", color: "var(--info,#3b82f6)", href: "/ts" },
 ];
 
 const focusRing =

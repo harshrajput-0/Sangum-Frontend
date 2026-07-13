@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../../../shared/components/ui/Button";
+import { Button } from "../../../../shared/components/ui/Button";
 
 export const Hero: React.FC = () => {
   const [email, setEmail] = useState("");

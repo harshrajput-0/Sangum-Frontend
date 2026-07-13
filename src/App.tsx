@@ -23,7 +23,8 @@ import PreviewTestingPage from '@/testing/PreviewTestingPage'
 import NotFound from '@/modules/pages/system/NotFound'
 
 // App Lyout 
-// import AppLayout from '@/layouts/AppLayout'
+import AppLayout from '@/layouts/AppLayout'
+import { HomePage, CommunitiesPage, ExplorePage, MessagesPage, NotificationsPage, BookmarksPage, ResourcesPage } from './testing/PlaceHolderPages'
 
 
 
@@ -53,13 +54,21 @@ function App() {
       <Route element={<BareLayout />}>
         {/* Catch all non existent routes  */}
         <Route path="*" element={<NotFound />} />
-        <Route path="/test" element={<PreviewTestingPage />} />
+        {/* <Route path="/test" element={<PreviewTestingPage />} /> */}
 
       </Route>
-{/* 
+
       <Route element={<AppLayout />}>
         <Route path="/test" element={<PreviewTestingPage />} />
-      </Route> */}
+
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/communities" element={<CommunitiesPage />} />
+        <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/bookmarks" element={<BookmarksPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
+      </Route>
 
 
     </Routes>
