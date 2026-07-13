@@ -24,7 +24,7 @@ import NotFound from '@/modules/pages/system/NotFound'
 
 // App Lyout 
 import AppLayout from '@/layouts/AppLayout'
-import { HomePage, CommunitiesPage, ExplorePage, MessagesPage, NotificationsPage, BookmarksPage, ResourcesPage } from './testing/PlaceHolderPages'
+import { HomePage, CommunitiesPage, ExplorePage, MessagesPage, NotificationsPage, BookmarksPage, ResourcesPage, MernPage, TsPage } from './testing/PlaceHolderPages'
 
 
 
@@ -68,6 +68,9 @@ function App() {
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/bookmarks" element={<BookmarksPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+
+        <Route path="/mern" element={<MernPage />} />
+        <Route path="/ts" element={<TsPage />} />
       </Route>
 
 

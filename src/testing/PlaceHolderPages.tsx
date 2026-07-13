@@ -57,3 +57,12 @@ export function ResourcesPage() {
 export function EventsPage() {
   return <RouteCheck icon={<IconCalendar />} pageKey="events" />;
 }
+
+
+export function MernPage() {
+  return <RouteCheck icon={<IconUsers />} pageKey="Mern Community" />;
+}
+
+export function TsPage() {
+  return <RouteCheck icon={<IconUsers />} pageKey="Mern Community" />;
+}

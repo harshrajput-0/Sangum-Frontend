@@ -13,6 +13,7 @@ import {
 } from "@/shared/components/ui/icons/SidebarIcons";
 import { SangumIcon, SangumLogoHorizontal } from "@/shared/components/ui/icons/SangumLogo";
 import { cn } from "@/shared/utils/cn";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -143,8 +144,8 @@ function NavIcon({
 export default function Sidebar({
   items = defaultNavItems,
   communities = defaultCommunities,
-  activeKey: activeKeyProp,
-  defaultActiveKey,
+  // activeKey: activeKeyProp,
+  // defaultActiveKey,
   onItemClick,
   collapsed: collapsedProp,
   defaultCollapsed = false,
@@ -164,12 +165,8 @@ export default function Sidebar({
     onCollapsedChange?.(value);
   };
 
-  const [internalActiveKey, setInternalActiveKey] = useState(defaultActiveKey ?? items[0]?.key);
-  const isActiveControlled = activeKeyProp !== undefined;
-  const activeKey = isActiveControlled ? activeKeyProp : internalActiveKey;
 
   const handleItemClick = (key: string) => {
-    if (!isActiveControlled) setInternalActiveKey(key);
     onItemClick?.(key);
   };
 
@@ -213,8 +210,8 @@ export default function Sidebar({
       )}
     >
       <div className={cn("mb-3 flex items-center", collapsed ? "justify-center" : "justify-between gap-2")}>
-        <a
-          href={logoHref}
+        <NavLink
+          to={logoHref}
           onClick={handleLogoClick}
           title={collapsed ? "Expand sidebar" : undefined}
           aria-label={collapsed ? "Expand sidebar" : "Go to home"}
@@ -230,7 +227,7 @@ export default function Sidebar({
           ) : (
             <SangumLogoHorizontal className="h-6 w-auto text-text" />
           )}
-        </a>
+        </NavLink>
 
         {!collapsed && (
           <button
@@ -253,7 +250,6 @@ export default function Sidebar({
 
       <nav aria-label="Primary" className="flex flex-col gap-1">
         {items.map((item) => {
-          const isActive = item.key === activeKey;
           const iconEl = <NavIcon icon={item.icon} badge={item.badge} collapsed={collapsed} />;
           const label = (
             <CollapsingLabel collapsed={collapsed}>
@@ -290,16 +286,16 @@ export default function Sidebar({
           }
 
           return (
-            <a
+            <NavLink
               key={item.key}
-              href={item.href ?? "#"}
+              to={item.href ?? "#"}
               title={collapsed ? item.label : undefined}
               onClick={(e) => {
                 e.stopPropagation();
                 if (!item.href) e.preventDefault();
                 handleItemClick(item.key);
               }}
-              className={cn(
+              className={({ isActive }) => cn(
                 itemBaseClasses,
                 focusRing,
                 "cursor-pointer",
@@ -310,15 +306,17 @@ export default function Sidebar({
             >
               {iconEl}
               {label}
-            </a>
+            </NavLink>
           );
         })}
       </nav>
 
+      {/* Divider  */}
       <hr className="my-2.5 border-t border-(--border,#242432)" />
 
+      {/* Setting Button */}
       <a
-        href="#settings"
+        href="/settings"
         title={collapsed ? "Settings" : undefined}
         onClick={(e) => {
           e.stopPropagation();
@@ -328,7 +326,7 @@ export default function Sidebar({
         className={cn(
           itemBaseClasses,
           focusRing,
-          "cursor-pointer text-(--text-secondary,#b8b8c4) hover:bg-(--surface-hover,rgba(255,255,255,0.06)) hover:text-(--text,#f4f4f6)"
+          "cursor-pointer text-(--text-secondary,#b8b8c4) hover:bg-(--surface-hover,rgba(255,255,255,0.06)) hover:text-(--text,#f4f4f6)",
         )}
       >
         <IconSettings className="h-[18px] w-[18px] shrink-0" />
@@ -337,6 +335,7 @@ export default function Sidebar({
         </CollapsingLabel>
       </a>
 
+      {/* Communities Section  */}
       <div
         aria-hidden={collapsed}
         className={cn(
@@ -350,9 +349,9 @@ export default function Sidebar({
             <span className="mb-2 block px-1 text-[12px] text-(--text-muted,#7a7a8c)">Your communities</span>
             <div className="flex flex-col gap-1">
               {communities.map((c) => (
-                <a
+                <NavLink
                   key={c.key}
-                  href={c.href ?? "#"}
+                  to={c.href ?? "#"}
                   onClick={(e) => e.stopPropagation()}
                   className={cn(
                     "flex items-center gap-3 rounded-(--radius-md,10px) px-3 py-1.5 text-[13px] font-medium",
@@ -367,7 +366,7 @@ export default function Sidebar({
                     {c.initials}
                   </span>
                   <span className="truncate">{c.name}</span>
-                </a>
+                </NavLink>
               ))}
             </div>
           </>
