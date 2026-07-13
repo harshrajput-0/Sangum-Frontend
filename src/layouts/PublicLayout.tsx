@@ -4,10 +4,10 @@ import { PublicFooter } from "@/shared/components/navigation/PublicFooter";
 
 export const PublicLayout = () => {
     return (
-  <div className="min-h-screen flex flex-col">
+  <div>
             <PublicHeader />
             
-            <main className="flex-1 mt-16">
+            <main>
                 <Outlet />
             </main>
             

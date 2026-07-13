@@ -16,9 +16,6 @@ interface LegalArticleLayoutProps {
 
 // For some reason tailwind grid isn't working so i am using css 
 const STYLES = `
-.legal-shell{
-margin-top: 64px;
-}
   .legal-container {
     max-width: var(--container-max, 1280px);
     margin: 0 auto;
