@@ -25,12 +25,11 @@ dist-ssr
 
 # Folders
 sidebar/
-user
+postcomponents
 
 
 # Files
 token.css
 AuthForm.tsx
 Sidebar2.tsx
-AppLayout.tsx
 Topbar.tsx

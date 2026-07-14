@@ -199,7 +199,7 @@ export default function Sidebar({
       onClick={handleRailClick}
       style={{ width: toCssLength(collapsed ? collapsedWidth : width), height: toCssLength(height) }}
       className={cn(
-        "sticky top-0 flex shrink-0 flex-col overflow-y-auto",
+        "sticky top-0 hidden phone:flex shrink-0 flex-col overflow-y-auto",
         "border-r border-(--border,#242432) bg-(--bg,#0b0b12) p-3.5 font-(--font-sans,'Inter',ui-sans-serif,system-ui,sans-serif)",
         "transition-[width] duration-200",
         ease,

@@ -1,11 +1,17 @@
 /* global.css  */
 @import "tailwindcss";
 
+
+@theme {
+  --breakpoint-phone: 480px;
+  --breakpoint-tablet: 640px;
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-elevated: var(--bg-elevated);
   --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
+  /* --color-surface-2: var(--surface-2); */
   --color-surface-hover: var(--surface-hover);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
@@ -202,7 +208,7 @@ body {
 
   /* Surfaces */
   --surface: #171d25;
-  --surface-2: #202833;
+  /* --surface-2: #202833; */
   --surface-hover: #26303d;
   --surface-active: #2d3947;
 
@@ -243,17 +249,17 @@ body {
 
 [data-theme="light"] {
   /* Backgrounds */
-  --bg: #f8fafc;
-  --bg-elevated: #ffffff;
+  --bg: #eef0f6;
+  --bg-elevated: #eef0f6;
 
   /* Surfaces */
   --surface: #ffffff;
-  --surface-2: #f8fafc;
-  --surface-hover: #f1f5f9;
+  /* --surface-2: #f8fafc; */
+  --surface-hover: #e0e3ee;
   --surface-active: #e8edf3;
 
   /* Borders */
-  --border: #e2e8f0;
+  --border: #e0e3ee;
   --border-strong: #cbd5e1;
 
   /* Typography */

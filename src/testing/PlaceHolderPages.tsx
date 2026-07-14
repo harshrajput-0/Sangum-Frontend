@@ -10,6 +10,7 @@ import {
   IconCalendar,
 } from "@/shared/components/ui/icons/SidebarIcons"; // adjust to wherever these icons actually live in your project
 
+
 /**
  * Shared layout only — this is not itself a page and nothing below loops
  * over defaultNavItems. Each export is its own standalone function so you
@@ -21,6 +22,8 @@ function RouteCheck({ icon, pageKey }: { icon: ReactNode; pageKey: string }) {
       <div className="flex h-32 w-32 items-center justify-center rounded-2xl bg-bg text-3xl text-text">
         {icon}
       </div>
+<div className="bg-red-500 sm:bg-green-500 h-20 w-20" />
+<div className="phone:bg-blue-500 bg-red-500 h-20 w-20" />
       <p className="text-lg font-medium text-text">This is {pageKey} Page</p>
     </div>
   );
