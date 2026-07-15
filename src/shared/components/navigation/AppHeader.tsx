@@ -20,18 +20,7 @@ export const AppHeader: React.FC = () => {
 
 
   return (
-    <nav
-      // className={`
-      //   fixed top-0 w-full z-99
-      //   transition-all duration-300 boder-border
-      //   ${scrolled
-      //     ? "bg-prima border-b border-border text-text"
-      //     : "bg-bg text-text backdrop-blur-3xl border-red"
-      //   }
-      // `}
-      className="sticky top-0 w-full z-99 transition-all duration-300 border-border bg-bg text-text border-b flex items-center justify-between p-6 h-14"
-    >
-      {/* <div className=" mx-auto px-6 h-14 flex items-center justify-between"> */}
+    <nav className="sticky top-0 w-full z-99 transition-all duration-300 border-border bg-bg text-text border-b flex items-center justify-between p-6 h-14">
 <DummySearch />
 
         <div className="hidden tablet:flex items-center gap-2 justify-end">
@@ -41,7 +30,8 @@ export const AppHeader: React.FC = () => {
             <ThemeToggle />
             
             <IconButton icon={<NotificationsIcon/>} aria-label="Notification"></IconButton>
-            <UserAvatar displayName="Avatar" username="avatar" size="sm"/>
+            {/* // href recieve endpoints */}
+            <UserAvatar displayName="Avatar" username="avatar" size="sm" href="userss"/>
             
 
 

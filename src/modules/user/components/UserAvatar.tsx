@@ -90,6 +90,8 @@ export function UserAvatar({
         )}
         style={{ backgroundColor: avatarUrl ? undefined : colorFromString(username || displayName) }}
       >
+
+        {/* Avatar URL Wiring Here  */}
         {avatarUrl ? (
           <img src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />
         ) : (
