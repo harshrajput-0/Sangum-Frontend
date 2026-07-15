@@ -3,7 +3,8 @@
 import { ProfileHeader, ProfileCommentCard, type ProfileCommentData, ProfileCommunityRow, type ProfileCommunityData } from "./components";
 
 import { EmptyBoxIcon } from "./components/icon";
-import { PostCard, PostSkeleton } from "@/modules/post/components";
+import { PostSkeleton } from "@/modules/post/components";
+import { PostCard } from "@/modules/post/components/PostCard";
 import type { PostData } from "@/modules/post/types/types";
 
 import { ResourceList, type ResourceData } from "@/modules/resources/components";
@@ -69,8 +70,8 @@ export function ProfilePage({
   onTabChange,
   posts,
   postsLoading = false,
-  onPostLikeToggle,
-  onPostBookmarkToggle,
+  // onPostLikeToggle,
+  // onPostBookmarkToggle,
   onPostComment,
   onPostShare,
   onPostTagClick,
@@ -107,8 +108,8 @@ export function ProfilePage({
                 key={post.id}
                 post={post}
                 currentUsername={currentUsername}
-                onLikeToggle={(next) => onPostLikeToggle?.(post.id, next)}
-                onBookmarkToggle={(next) => onPostBookmarkToggle?.(post.id, next)}
+                // onLikeToggle={(next) => onPostLikeToggle?.(post.id, next)} 
+                // onBookmarkToggle={(next) => onPostBookmarkToggle?.(post.id, next)}
                 onComment={() => onPostComment?.(post.id)}
                 onShare={() => onPostShare?.(post.id)}
                 onTagClick={onPostTagClick}

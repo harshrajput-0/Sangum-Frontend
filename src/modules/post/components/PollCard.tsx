@@ -2,7 +2,7 @@
 "use client"; // manages local "which option did I pick" state — remove if not on Next.js App Router
 
 import React, { useState } from "react";
-import { formatCompactNumber } from "@/shared/utils/formatCompactNumber";
+import { formatCompactNumber } from "@/shared/utils/fromatCompactNumber";
 import { cn } from "@/shared/utils/cn";
 import type { PostPollData } from "../types/types";
 
@@ -12,7 +12,13 @@ export interface PollCardProps {
   className?: string;
 }
 
+
+
+
 function timeLeftLabel(closesAt?: string | Date): string | null {
+
+
+  
   if (!closesAt) return null;
   const end = typeof closesAt === "string" ? new Date(closesAt) : closesAt;
   const ms = end.getTime() - Date.now();
@@ -25,7 +31,7 @@ function timeLeftLabel(closesAt?: string | Date): string | null {
 /** Vote bars + percentages, and handles casting a vote. Shows live results once the viewer has voted (or the poll has closed); shows clickable options otherwise. */
 export function PollCard({ poll, onVote, className }: PollCardProps) {
   const [localVote, setLocalVote] = useState<string | null | undefined>(poll.votedOptionId);
-  const closed = !!poll.closesAt && new Date(poll.closesAt).getTime() <= Date.now();
+  // const closed = !!poll.closesAt && new Date(poll.closesAt).getTime() <= Date.now();              // Fix Later
   const showResults = !!localVote || closed;
   const left = timeLeftLabel(poll.closesAt);
 
