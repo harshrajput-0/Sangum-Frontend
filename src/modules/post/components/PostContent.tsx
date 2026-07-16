@@ -15,6 +15,7 @@ export interface PostContentProps {
   className?: string;
 }
 
+
 /** Renders the body text, tags, and whichever type-specific block the post needs — media grid, link preview, or poll — based on `post.type`. */
 export function PostContent({ post, onMediaClick, onVote, onTagClick, className }: PostContentProps) {
   return (
