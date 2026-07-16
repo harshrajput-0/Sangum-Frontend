@@ -5,7 +5,7 @@ import { cn } from "@/shared/utils/cn";
 import { FormField, fieldControlClass } from "@/shared/components/form/FormField";
 import PasswordInput from "@/shared/components/form/PasswordInput";
 import { Checkbox } from "@/shared/components/ui/Checkbox";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 
 /**
@@ -147,7 +147,7 @@ export function LoginForm({
           label="Remember me"
         />
 
-        <Link to="/forgetPassword" className="text-[length:var(--fs-sm)] text-[var(--primary-light)] hover:underline left-0">
+        <Link href="/forgetPassword" className="text-(length:--fs-sm) text-primary-light hover:underline left-0">
           Forgot Password
         </Link>
 
@@ -169,7 +169,7 @@ export function LoginForm({
         type="submit"
         disabled={isLoading}
         className={cn(
-          "mt-2 w-full rounded-[var(--radius-md)] bg-(--primary) py-[11px]",
+          "mt-2 w-full rounded-md bg-primary py-[11px]",
           "text-(length:--fs-sm) font-medium text-white",
           "transition-opacity duration-150 hover:opacity-90",
           "disabled:cursor-not-allowed disabled:opacity-60"

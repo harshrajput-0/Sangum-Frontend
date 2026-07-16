@@ -73,7 +73,7 @@ export const Progress: React.FC = () => {
             Roadmap
           </h2>
           <p className="text-text-secondary">
-            We're building in the open. Here's where things stand.
+            {"We're building in the open. Here's where things stand."}
           </p>
         </div>
 

@@ -1,3 +1,5 @@
+"use client";
+
 import LegalArticleLayout from "@/layouts/LegalArticleLayout";
 import { usePageTitle } from "@/shared/hooks/usePageTitle";
 
@@ -117,7 +119,7 @@ const sections: LegalSection[] = [
   },
 ];
 
-export default function TermsPage() {
+export const TermsPage = () => {
   usePageTitle("Terms of Service — Sangum");
 
   return (

@@ -1,3 +1,5 @@
+"use client";
+
 import { Moon, Sun } from 'lucide-react'
 import { useThemeStore } from '@/store/theme.store'
 

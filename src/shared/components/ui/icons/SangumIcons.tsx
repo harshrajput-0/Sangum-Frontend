@@ -598,7 +598,6 @@ export const ExternalLinkIcon: IconComponent = (props) => (
 // Collected map — the primary import surface for every component
 // =============================================================================
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const Icons = {
   // Navigation
   home: HomeIcon,

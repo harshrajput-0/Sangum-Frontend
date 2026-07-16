@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import type { ReactNode, ChangeEvent, FormEvent } from "react";
 import { usePageTitle } from "@/shared/hooks/usePageTitle";
@@ -130,7 +132,7 @@ function FaqAccordionItem({ faq, isOpen, onToggle }: { faq: Faq; isOpen: boolean
   );
 }
 
-export default function ContactPage({ onSubmit }: ContactPageProps) {
+export function ContactPage({ onSubmit }: ContactPageProps) {
 
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [submitting, setSubmitting] = useState(false);
@@ -177,10 +179,10 @@ export default function ContactPage({ onSubmit }: ContactPageProps) {
           Get In Touch
         </span>
         <h1 className="mb-3.5 text-[28px] font-bold leading-tight tracking-[-0.02em] text-text md:text-[36px]">
-          We'd love to hear from you
+          We&apos;d love to hear from you
         </h1>
         <p className="max-w-[480px] text-(length:--fs-base) text-text-secondary">
-          Have questions, suggestions, or just want to say hello? We're here to help!
+          Have questions, suggestions, or just want to say hello? We&apos;re here to help!
         </p>
       </section>
 

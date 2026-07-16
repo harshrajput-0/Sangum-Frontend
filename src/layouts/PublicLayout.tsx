@@ -1,17 +1,19 @@
-import { Outlet } from "react-router-dom";
-import { PublicHeader } from '@/shared/components/navigation/PublicHeader'
+import { ReactNode } from "react";
+import { PublicHeader } from "@/shared/components/navigation/PublicHeader";
 import { PublicFooter } from "@/shared/components/navigation/PublicFooter";
 
-export const PublicLayout = () => {
-    return (
-  <div>
-            <PublicHeader />
-            
-            <main>
-                <Outlet />
-            </main>
-            
-            <PublicFooter />
-        </div>
-    )
+interface PublicLayoutProps {
+  children: ReactNode;
+}
+
+export function PublicLayout({ children }: PublicLayoutProps) {
+  return (
+    <div>
+      <PublicHeader />
+
+      <main>{children}</main>
+
+      <PublicFooter />
+    </div>
+  );
 }

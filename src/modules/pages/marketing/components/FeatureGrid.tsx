@@ -66,7 +66,7 @@ export const FeatureGrid: React.FC = () => {
         {/* Section header */}
         <div className="text-center mb-14">
           <p className="text-xs text-brand-purple uppercase tracking-[0.15em] font-medium mb-3">
-            What we're building
+            {"What we're building"}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-text tracking-tight">
             Everything your community needs

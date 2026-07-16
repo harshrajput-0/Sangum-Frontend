@@ -24,7 +24,6 @@ const STATUS_COLOR: Record<UserStatus, string> = {
 };
 
 // User Status
-// eslint-disable-next-line react-refresh/only-export-components
 export const STATUS_LABEL: Record<UserStatus, string> = {
   online: "Online",
   away: "Away",

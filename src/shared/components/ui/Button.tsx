@@ -1,4 +1,5 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cn } from "@/shared/utils/cn";
 
 export type ButtonVariant =
@@ -20,6 +21,12 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
+
+  /**
+  * Render the child element instead of a native <button>,
+  * allowing components like Link to inherit button behavior and styling.
+  */
+  asChild?: boolean;
 }
 
 const base =
@@ -32,7 +39,7 @@ const variants: Record<ButtonVariant, string> = {
     "border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)] hover:bg-[var(--primary-hover)]",
   outline:
     "border-border bg-transparent text-current hover:bg-[var(--primary-hover)] hover:text-white hover:border-[var(--primary-hover)]",
-    doutline:
+  doutline:
     "border-[var(--dborder-strong)] bg-transparent text-[var(--dtext)] hover:bg-[var(--dsurface-hover)]",
   ghost: "border-transparent bg-transparent text-[var(--text-secondary)] hover:bg-[var(--primary-hover)] hover:text-[var(--text)]",
   danger: "border-transparent bg-[var(--danger)] text-white hover:opacity-90",
@@ -56,6 +63,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth = false,
       iconLeft,
       iconRight,
+      asChild = false,
       disabled,
       className,
       children,
@@ -64,11 +72,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
+    // Prevent invalid nested interactive elements (e.g. <button><a/></button>)
+    // by rendering the child element directly when `asChild` is enabled.
+    const Comp = asChild ? Slot : "button";
     return (
-      <button
+      <Comp
         ref={ref}
-        type={type}
-        disabled={disabled || loading}
+        // Button-only attributes should not be forwarded when rendering a child element.
+        {...(!asChild && {
+          type,
+          disabled: disabled || loading,
+        })}
         className={cn(base, variants[variant], sizes[size], fullWidth && "w-full", className)}
         {...rest}
       >
@@ -80,9 +94,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ) : (
           iconLeft
         )}
-        {children}
+        <Slottable>{children}</Slottable>
         {!loading && iconRight}
-      </button>
+      </Comp>
     );
   },
 );

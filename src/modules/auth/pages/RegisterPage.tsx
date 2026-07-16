@@ -1,7 +1,9 @@
+"use client";
+
 import AuthFormHeader from "@/modules/auth/components/AuthFormHeader";
 import RegisterForm from "@/modules/auth/components/RegisterForm";
 import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export interface AuthLayoutProps {
   eyebrow: string;
@@ -17,7 +19,7 @@ export interface AuthLayoutProps {
 
 
 
-const RegisterPage = () => {
+export const RegisterPage = () => {
   return (
     <main className='w-full h-full  p-8 flex items-center justify-center'>
       <div className=" items-center justify-center max-w-[480px] h-full my-auto">
@@ -31,10 +33,10 @@ const RegisterPage = () => {
         <RegisterForm onSubmit={(values) => { console.log(values) }} />
         <OAuthButtonGroup />
 
-              <p className="text-center text-[length:var(--fs-sm)] text-[var(--text-secondary)] mt-[18px]">
+              <p className="text-center text-(length:--fs-sm) text-text-secondary mt-[18px]">
         Already have an account?{" "}
       
-          <Link to="/Login" className="text-[var(--primary-light)] hover:underline">
+          <Link href="/login" className="text-primary-light hover:underline">
           Log in
           </Link>
       </p>
@@ -43,5 +45,3 @@ const RegisterPage = () => {
     </main>
   )
 }
-
-export default RegisterPage

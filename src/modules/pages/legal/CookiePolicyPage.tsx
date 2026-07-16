@@ -1,3 +1,5 @@
+"use client";
+
 import LegalArticleLayout from "@/layouts/LegalArticleLayout";
 import { usePageTitle } from "@/shared/hooks/usePageTitle";
 
@@ -82,7 +84,7 @@ const sections: LegalSection[] = [
   },
 ];
 
-export default function CookiePolicyPage() {
+export const CookiePolicyPage = () => {
   usePageTitle("Cookie Policy — Sangum");
 
   return (

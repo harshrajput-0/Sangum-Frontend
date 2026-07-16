@@ -11,6 +11,9 @@ interface ThemeState {
 const STORAGE_KEY = 'theme'
 
 function getInitialTheme(): Theme {
+    if (typeof window === "undefined") {
+    return "dark";
+  }
   const stored = localStorage.getItem(STORAGE_KEY) as Theme | null
   if (stored === 'dark' || stored === 'light') return stored
 

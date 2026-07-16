@@ -1,7 +1,9 @@
+"use client";
+
 import AuthFormHeader from "@/modules/auth/components/AuthFormHeader";
 import LoginForm from "@/modules/auth/components/LoginForm";
 import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
-// import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export interface AuthLayoutProps {
   eyebrow: string;
@@ -17,7 +19,7 @@ export interface AuthLayoutProps {
 
 
 
-const LoginPage = () => {
+export const LoginPage = () => {
   return (
     <main className='w-full h-full  p-8 flex items-center justify-center'>
       <div className="mx-auto br-red p-4 justify-center max-w-[480px] h-full my-auto">
@@ -34,16 +36,14 @@ const LoginPage = () => {
 
 
 
-              {/* <p className="text-center text-[length:var(--fs-sm)] text-[var(--text-secondary)] mt-5">
-        Don't have an account?{" "}
+              <p className="text-center text-(length:--fs-sm) text-text-secondary mt-5">
+        Don&apos;t have an account?{" "}
       
-          <Link to="/register" className="text-[var(--primary-light)] hover:underline">
+          <Link href="/register" className="text-primary-light hover:underline">
           Register
           </Link>
-      </p> */}
+      </p>
       </div>
     </main>
   )
 }
-
-export default LoginPage;

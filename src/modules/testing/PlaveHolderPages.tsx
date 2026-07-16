@@ -8,6 +8,7 @@ import {
   IconBookmark,
   IconBook,
   IconCalendar,
+//   IconSettings,
 } from "@/shared/components/ui/icons/SidebarIcons"; // adjust to wherever these icons actually live in your project
 
 
@@ -61,6 +62,9 @@ export function EventsPage() {
   return <RouteCheck icon={<IconCalendar />} pageKey="events" />;
 }
 
+export function SettingsPage() {
+  return <RouteCheck icon={<IconUsers />} pageKey="home" />;
+}
 
 export function MernPage() {
   return <RouteCheck icon={<IconUsers />} pageKey="Mern Community" />;

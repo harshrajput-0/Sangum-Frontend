@@ -1,5 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface LegalDoc {
   title: string;
@@ -60,7 +62,7 @@ const legalDocs: LegalDoc[] = [
   },
 ];
 
-export default function LegalHubPage() {
+export function LegalHubPage() {
   return (
     <div className="w-full">
       {/* Hero */}
@@ -108,7 +110,7 @@ export default function LegalHubPage() {
                 {doc.description}
               </p>
               <Link
-                to={doc.to}
+                href={doc.to}
                 className="text-(length:--fs-xs) font-medium text-brand-purple hover:underline"
               >
                 Read {doc.title} →
