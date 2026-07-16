@@ -1,3 +1,5 @@
+"use client";
+
 import { ErrorState } from "@/modules/pages/system/components/ErrorState"
 import { usePageTitle } from "@/shared/hooks/usePageTitle";
 

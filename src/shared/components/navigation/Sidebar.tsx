@@ -1,3 +1,8 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import { useState, type MouseEvent, type ReactNode } from "react";
 import {
   IconBell,
@@ -13,7 +18,6 @@ import {
 } from "@/shared/components/ui/icons/SidebarIcons";
 import { SangumIcon, SangumLogoHorizontal } from "@/shared/components/ui/icons/SangumLogo";
 import { cn } from "@/shared/utils/cn";
-import { NavLink } from "react-router-dom";
 
 
 
@@ -123,7 +127,7 @@ function NavIcon({
   icon: ReactNode;
   badge?: SidebarBadge;
   collapsed: boolean;
-}) {
+}) {  
   return (
     <span className="relative flex h-[18px] w-[18px] shrink-0 [&>svg]:h-full [&>svg]:w-full">
       {icon}
@@ -141,7 +145,7 @@ function NavIcon({
   );
 }
 
-export default function Sidebar({
+export function Sidebar({
   items = defaultNavItems,
   communities = defaultCommunities,
   // activeKey: activeKeyProp,
@@ -156,6 +160,8 @@ export default function Sidebar({
   height = "100vh",
   className,
 }: SidebarProps) {
+  const pathname = usePathname();
+
   const [internalCollapsed, setInternalCollapsed] = useState(defaultCollapsed);
   const isCollapsedControlled = collapsedProp !== undefined;
   const collapsed = isCollapsedControlled ? collapsedProp : internalCollapsed;
@@ -210,8 +216,8 @@ export default function Sidebar({
       )}
     >
       <div className={cn("mb-3 flex items-center", collapsed ? "justify-center" : "justify-between gap-2")}>
-        <NavLink
-          to={logoHref}
+        <Link
+          href={logoHref}
           onClick={handleLogoClick}
           title={collapsed ? "Expand sidebar" : undefined}
           aria-label={collapsed ? "Expand sidebar" : "Go to home"}
@@ -227,7 +233,7 @@ export default function Sidebar({
           ) : (
             <SangumLogoHorizontal className="h-6 w-auto text-text" />
           )}
-        </NavLink>
+        </Link>
 
         {!collapsed && (
           <button
@@ -286,27 +292,27 @@ export default function Sidebar({
           }
 
           return (
-            <NavLink
+            <Link
               key={item.key}
-              to={item.href ?? "#"}
+              href={item.href ?? "#"}
               title={collapsed ? item.label : undefined}
               onClick={(e) => {
                 e.stopPropagation();
                 if (!item.href) e.preventDefault();
                 handleItemClick(item.key);
               }}
-              className={({ isActive }) => cn(
+              className={cn(
                 itemBaseClasses,
                 focusRing,
                 "cursor-pointer",
-                isActive
+                pathname === item.href
                   ? "bg-(--nav-active-bg,rgba(109,93,254,0.14)) text-(--nav-active-text,var(--brand-purple-light,#a996ff))"
                   : "text-(--text-secondary,#b8b8c4) hover:bg-(--surface-hover,rgba(255,255,255,0.06)) hover:text-(--text,#f4f4f6)"
               )}
             >
               {iconEl}
               {label}
-            </NavLink>
+            </Link>
           );
         })}
       </nav>
@@ -315,25 +321,27 @@ export default function Sidebar({
       <hr className="my-2.5 border-t border-(--border,#242432)" />
 
       {/* Setting Button */}
-      <a
+      <Link
         href="/settings"
         title={collapsed ? "Settings" : undefined}
         onClick={(e) => {
           e.stopPropagation();
-          e.preventDefault();
+          // e.preventDefault();
           handleItemClick("settings");
         }}
-        className={cn(
-          itemBaseClasses,
-          focusRing,
-          "cursor-pointer text-(--text-secondary,#b8b8c4) hover:bg-(--surface-hover,rgba(255,255,255,0.06)) hover:text-(--text,#f4f4f6)",
-        )}
+className={cn(
+  itemBaseClasses,
+  focusRing,
+  pathname === "/settings"
+    ? "bg-(--nav-active-bg,rgba(109,93,254,0.14)) text-(--nav-active-text,var(--brand-purple-light,#a996ff))"
+    : "text-(--text-secondary,#b8b8c4) hover:bg-(--surface-hover,rgba(255,255,255,0.06)) hover:text-(--text,#f4f4f6)"
+)}
       >
         <IconSettings className="h-[18px] w-[18px] shrink-0" />
         <CollapsingLabel collapsed={collapsed}>
           <span className="truncate">Settings</span>
         </CollapsingLabel>
-      </a>
+      </Link>
 
       {/* Communities Section  */}
       <div
@@ -349,9 +357,9 @@ export default function Sidebar({
             <span className="mb-2 block px-1 text-[12px] text-(--text-muted,#7a7a8c)">Your communities</span>
             <div className="flex flex-col gap-1">
               {communities.map((c) => (
-                <NavLink
+                <Link
                   key={c.key}
-                  to={c.href ?? "#"}
+                  href={c.href ?? "#"}
                   onClick={(e) => e.stopPropagation()}
                   className={cn(
                     "flex items-center gap-3 rounded-(--radius-md,10px) px-3 py-1.5 text-[13px] font-medium",
@@ -366,7 +374,7 @@ export default function Sidebar({
                     {c.initials}
                   </span>
                   <span className="truncate">{c.name}</span>
-                </NavLink>
+                </Link>
               ))}
             </div>
           </>

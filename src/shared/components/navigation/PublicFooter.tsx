@@ -1,5 +1,5 @@
 // src/shared/components/navigation/PublicFooter.tsx
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { GithubIcon, LinkIcon, TwitterIcon } from "@/styles/icons"
 import { SangumLogoFull } from "@/shared/components/ui/icons/SangumLogo"
 
@@ -31,7 +31,7 @@ export const PublicFooter = () => {
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10">
           {/* Logo + tagline */}
           <div>
-            <Link to="/" className="flex items-center gap-2.5 mb-4">
+            <Link href="/" className="flex items-center gap-2.5 mb-4">
               {/* reuse your Sangam logo svg here */}
               <span className="text-xl font-bold text-(--dtext) tracking-tight">
                 <SangumLogoFull width={120}/>
@@ -53,7 +53,7 @@ export const PublicFooter = () => {
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
-                      to={link.to}
+                      href={link.to}
                       className="text-sm text-(--dtext-secondary)  hover:text-(--dtext) transition-colors"
                     >
                       {link.label}

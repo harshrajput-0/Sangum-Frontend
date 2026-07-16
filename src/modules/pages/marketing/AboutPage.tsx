@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReactNode } from "react";
 import { usePageTitle } from "@/shared/hooks/usePageTitle";
 
@@ -5,7 +7,7 @@ import { usePageTitle } from "@/shared/hooks/usePageTitle";
 interface MissionItem {
   title: string;
   description: string;
-  iconBg: string; 
+  iconBg: string;
   iconColor: string;
   icon: ReactNode;
 }
@@ -43,7 +45,7 @@ const stats: { value: string; label: string }[] = [
   { value: "98.7%", label: "Happy Members" },
 ];
 
-export default function AboutPage() {
+export const AboutPage = () => {
   usePageTitle("About Us — Sangum");
   return (
     <div className="w-full">
@@ -116,9 +118,9 @@ export default function AboutPage() {
               that truly focus on developer communities and real knowledge sharing without the
               noise.
             </p>
-            <p className="text-(length:--fs-base)] text-text-secondary">
+            <p className="text-(length:--fs-base) text-text-secondary">
               So we built Sangum — a place where developers can connect, learn, and grow
-              together. From a small idea to a growing global community, we're just getting
+              together. From a small idea to a growing global community, we&apos;re just getting
               started.
             </p>
           </div>

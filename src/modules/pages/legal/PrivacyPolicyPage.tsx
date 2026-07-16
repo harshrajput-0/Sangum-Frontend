@@ -1,3 +1,5 @@
+"use client";
+
 import LegalArticleLayout from "@/layouts/LegalArticleLayout";
 import { usePageTitle } from "@/shared/hooks/usePageTitle";
 
@@ -104,7 +106,7 @@ const sections: LegalSection[] = [
   },
 ];
 
-export default function PrivacyPage() {
+export const PrivacyPage = () => {
   usePageTitle("Privacy Policy — Sangum");
 
   return (

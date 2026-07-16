@@ -1,3 +1,5 @@
+"use client";
+
 import LegalArticleLayout from "@/layouts/LegalArticleLayout";
 import { usePageTitle } from "@/shared/hooks/usePageTitle";
 
@@ -78,7 +80,7 @@ const sections: LegalSection[] = [
   },
 ];
 
-export default function DisclaimerPage() {
+export const DisclaimerPage = () => {
   usePageTitle("Disclaimer — Sangum");
 
   return (

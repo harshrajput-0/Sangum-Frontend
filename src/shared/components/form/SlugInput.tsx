@@ -40,7 +40,6 @@ function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function slugify(input: string): string {
   return input
     .toLowerCase()

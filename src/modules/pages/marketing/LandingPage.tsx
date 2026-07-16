@@ -1,3 +1,5 @@
+"use client";
+
 // LandingPage.tsx 
 import React from "react";
 import { Hero } from "@/modules/pages/marketing/components/Hero";
