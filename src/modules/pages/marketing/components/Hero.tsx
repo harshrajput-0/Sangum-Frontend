@@ -38,18 +38,19 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-(--dtext) leading-[1.08] tracking-tight mb-8">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-[var(--dtext)] leading-[1.08] tracking-tight mb-8">
           Where Communities{" "}
           <span
             className="relative inline-block pb-2"
-            style={{
-              background: "linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-cyan) 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
+  style={{
+    background: "linear-gradient(135deg, var(--primary), var(--brand-cyan))",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    color: "transparent",
+  }}
           >
-            Come Together
+            Come Together.
           </span>
         </h1>
 

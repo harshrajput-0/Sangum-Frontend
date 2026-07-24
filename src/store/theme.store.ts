@@ -10,19 +10,18 @@ interface ThemeState {
 
 const STORAGE_KEY = 'theme'
 
-function getInitialTheme(): Theme {
-    if (typeof window === "undefined") {
-    return "dark";
-  }
-  const stored = localStorage.getItem(STORAGE_KEY) as Theme | null
-  if (stored === 'dark' || stored === 'light') return stored
-
-  // Default theme dark
-  return 'dark'
-}
 
 export const useThemeStore = create<ThemeState>((set) => ({
-  theme: getInitialTheme(),
+  theme: "dark",   // Same initial value on server and client
+
+    hydrateTheme: () => {
+    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    const theme = stored === "light" || stored === "dark" ? stored : "dark";
+
+    document.documentElement.setAttribute("data-theme", theme);
+    set({ theme });
+  },
+
   setTheme: (theme) => {
     document.documentElement.setAttribute('data-theme', theme)
     localStorage.setItem(STORAGE_KEY, theme)
