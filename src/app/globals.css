@@ -1,157 +1,161 @@
-/* global.css  */
 @import "tailwindcss";
 
-
+/* ============================================================
+   1. SCALE TOKENS — static, theme-invariant, drive utilities
+   ============================================================ */
 @theme {
+  /* Breakpoints */
   --breakpoint-phone: 480px;
   --breakpoint-tablet: 640px;
-}
 
-@theme inline {
-  --color-bg: var(--bg);
-  --color-bg-elevated: var(--bg-elevated);
-  --color-surface: var(--surface);
-  /* --color-surface-2: var(--surface-2); */
-  --color-surface-hover: var(--surface-hover);
-  --color-border: var(--border);
-  --color-border-strong: var(--border-strong);
-  --color-text: var(--text);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
+  /* Typography */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-heading: "Plus Jakarta Sans", var(--font-sans);
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
-  --color-brand-purple: var(--brand-purple);
-  --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
-  --color-primary-active: var(--primary-active);
-  --color-primary-light: var(--primary-light);
-  --color-brand-cyan: var(--brand-cyan);
-  --color-success: var(--success);
-  --color-warning: var(--warning);
-  --color-danger: var(--danger);
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-md: 15px;
+  --text-lg: 17px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 38px;
 
-  --dbg: #0b0f14;
-  --dbg-elevated: #11161d;
-  --dsurface: #171d25;
-  --dsurface-2: #202833;
-  --dsurface-hover: #26303d;
-  --dsurface-active: #2d3947;
-  --dborder: #313d4d;
-  --dborder-strong: #445266;
-  --dtext: #f8fafc;
-  --dtext-secondary: #cbd5e1;
-  --dtext-muted: #94a3b8;
-  --dtext-disabled: #64748b;
-  --dtext-on-primary: #ffffff;
-
-    --sidebar-w: 264px;
-  --sidebar-w-collapsed: 76px;
-}
-
-/* ============================================================
-   DESIGN TOKENS — actual values
-   ============================================================ */
-:root {
-  --brand-purple: var(--primary);
-  --brand-purple-light: var(--primary-light);
-  --brand-cyan: #39bfbf;
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  /* ...rest of the theme-invariant tokens */
-  --dbg: #0b0f14;
-  --dbg-elevated: #11161d;
-  --dsurface: #171d25;
-  --dsurface-2: #202833;
-  --dsurface-hover: #26303d;
-  --dsurface-active: #2d3947;
-  --dborder: #313d4d;
-  --dborder-strong: #445266;
-  --dtext: #f8fafc;
-  --dtext-secondary: #cbd5e1;
-  --dtext-muted: #94a3b8;
-  --dtext-disabled: #64748b;
-  --dtext-on-primary: #ffffff;
-
-  /* Primary */
-  --primary: #6d5dfe;
-  --primary-hover: #5b4be8;
-  --primary-active: #493bc9;
-  --primary-light: #8b7dff;
-
-  /* Secondary Accent */
-  --accent: #2263ee;
-  --accent-hover: #1e56cd;
-
-  /* Brand Text */
-  --brand-text: var(--primary-light);
-
-  /* Gradients */
-  --brand-gradient: linear-gradient(
-    135deg,
-    var(--primary) 0%,
-    #4f8cff 50%,
-    var(--accent) 100%
-  );
-
-  --brand-gradient-soft: linear-gradient(
-    135deg,
-    var(--primary-light) 0%,
-    #6ea8ff 100%
-  );
-
-  --brand-gradient-cover: linear-gradient(
-    135deg,
-    var(--primary) 0%,
-    #3b82f6 100%
-  );
-
-  /* ============================================================
-   Semantic Colors (Theme Invariant)
-   ============================================================ */
-  /* Success */
-  --success: #22c55e;
-  --success-hover: #16a34a;
-  --success-active: #15803d;
-
-  /* Warning */
-  --warning: #f59e0b;
-  --warning-hover: #d97706;
-  --warning-active: #b45309;
-
-  /* Danger */
-  --danger: #ef4444;
-  --danger-hover: #dc2626;
-  --danger-active: #b91c1c;
-
-  /* Info */
-  --info: #3b82f6;
-  --info-hover: #2563eb;
-  --info-active: #1d4ed8;
-
-  /* Neutral */
-  --neutral: #6b7280;
-  --neutral-hover: #4b5563;
-  --neutral-active: #374151;
-
-  /* Dark */
-  --dark: #0b0f14;
-  --dark-hover: #11161d;
-  --dark-active: #11161d;
-
-  /* ---- Role / badge colors (theme-invariant) ---- */
-  --role-admin: #6d5dfe;
-  --role-moderator: #22c55e;
-  --role-verified: #3b82f6;
-  --role-user: #9aa3af;
-
-  /* ---- Radius scale ---- */
+  /* Radius — overrides Tailwind's default scale with the design's own */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 20px;
   --radius-full: 9999px;
 
-  /* ---- Spacing scale ---- */
+  /* Motion */
+  --ease-brand: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   2. SEMANTIC TOKENS — runtime-swappable, mapped to plain vars
+   ============================================================ */
+@theme inline {
+  /* Surfaces */
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  /* Typography */
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-on-primary: var(--text-on-primary);
+
+  /* Brand (theme-invariant, but kept here so brand-* stays
+     alongside every other color utility) */
+  --color-brand-purple: var(--primary);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+
+  /* Semantic status (colors are invariant; -bg tint varies by theme) */
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-neutral: var(--neutral);
+  --color-neutral-bg: var(--neutral-bg);
+
+  /* Role / badge colors */
+  --color-role-admin: var(--role-admin);
+  --color-role-moderator: var(--role-moderator);
+  --color-role-verified: var(--role-verified);
+  --color-role-user: var(--role-user);
+
+  /* Static dark palette — fixed values for components that must
+     stay dark regardless of the active theme (e.g. code blocks,
+     always-dark panels). NOT theme-swappable by design, but mapped
+     here too so bg-dbg / text-dtext utilities are also available
+     alongside the plain var(--dbg) usage already in components. */
+  --color-dbg: var(--dbg);
+  --color-dbg-elevated: var(--dbg-elevated);
+  --color-dsurface: var(--dsurface);
+  --color-dsurface-hover: var(--dsurface-hover);
+  --color-dsurface-active: var(--dsurface-active);
+  --color-dborder: var(--dborder);
+  --color-dborder-strong: var(--dborder-strong);
+  --color-dtext: var(--dtext);
+  --color-dtext-secondary: var(--dtext-secondary);
+  --color-dtext-muted: var(--dtext-muted);
+  --color-dtext-disabled: var(--dtext-disabled);
+  --color-dtext-on-primary: var(--dtext-on-primary);
+
+  /* Shadows — values differ per theme, so they're mapped here too */
+  --shadow-xs: var(--elevation-xs);
+  --shadow-sm: var(--elevation-sm);
+  --shadow-md: var(--elevation-md);
+  --shadow-lg: var(--elevation-lg);
+  --shadow-xl: var(--elevation-xl);
+}
+
+/* ============================================================
+   3a. BASE VALUES — defaults + truly theme-invariant tokens
+   ============================================================ */
+:root {
+  /* Brand */
+  --primary: #6d5dfe;
+  --primary-hover: #5b4be8;
+  --primary-active: #493bc9;
+  --primary-light: #8b7dff;
+  --brand-cyan: #39bfbf;
+
+  --accent: #2263ee;
+  --accent-hover: #1e56cd;
+
+  --brand-gradient: linear-gradient(135deg, var(--primary) 0%, #4f8cff 50%, var(--accent) 100%);
+  --brand-gradient-soft: linear-gradient(135deg, var(--primary-light) 0%, #6ea8ff 100%);
+  --brand-gradient-cover: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+
+  /* Semantic status — base hue is invariant; hover/active for
+     interactive elements (buttons etc.), -bg tint set per theme */
+  --success: #22c55e;
+  --success-hover: #16a34a;
+  --success-active: #15803d;
+
+  --warning: #f59e0b;
+  --warning-hover: #d97706;
+  --warning-active: #b45309;
+
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --danger-active: #b91c1c;
+
+  --info: #3b82f6;
+  --info-hover: #2563eb;
+  --info-active: #1d4ed8;
+
+  --neutral: #6b7280;
+  --neutral-hover: #4b5563;
+  --neutral-active: #374151;
+
+  /* Role / badge colors */
+  --role-admin: #6d5dfe;
+  --role-moderator: #22c55e;
+  --role-verified: #3b82f6;
+  --role-user: #9aa3af;
+
+  /* Spacing scale (referenced directly via var(), e.g. gap: var(--sp-4)) */
   --sp-1: 4px;
   --sp-2: 8px;
   --sp-3: 12px;
@@ -163,27 +167,7 @@
   --sp-12: 48px;
   --sp-16: 64px;
 
-  /* ---- Typography ---- */
-  --font-sans:
-    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
-  --fs-xs: 12px;
-  --fs-sm: 13px;
-  --fs-base: 14px;
-  --fs-md: 15px;
-  --fs-lg: 17px;
-  --fs-xl: 20px;
-  --fs-2xl: 24px;
-  --fs-3xl: 30px;
-  --fs-4xl: 38px;
-
-  /* ---- Shadows (dark-theme defaults; redefined under [data-theme="light"]) ---- */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
-  --shadow-glow-purple: 0 0 0 3px rgba(109, 93, 254, 0.25);
-
-  /* ---- Layout constants ---- */
+  /* Layout constants */
   --sidebar-w: 264px;
   --sidebar-w-collapsed: 76px;
   --topbar-h: 64px;
@@ -191,104 +175,107 @@
   --right-panel-w: 320px;
   --container-max: 1280px;
 
-  /* ---- Transition ---- */
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --t-fast: 120ms var(--ease);
-  --t-base: 200ms var(--ease);
+  /* Transitions */
+  --t-fast: 120ms var(--ease-brand);
+  --t-base: 200ms var(--ease-brand);
+
+  /* Focus ring, independent of theme */
+  --shadow-glow-purple: 0 0 0 3px rgba(109, 93, 254, 0.25);
+
+  /* Static dark palette — always these values, never swapped by
+     [data-theme]. Used by components that must stay dark in both
+     modes (see @theme inline mapping above for the matching
+     bg-dbg / text-dtext utilities). */
+  --dbg: #0b0f14;
+  --dbg-elevated: #11161d;
+  --dsurface: #171d25;
+  --dsurface-hover: #26303d;
+  --dsurface-active: #2d3947;
+  --dborder: #313d4d;
+  --dborder-strong: #445266;
+  --dtext: #f8fafc;
+  --dtext-secondary: #cbd5e1;
+  --dtext-muted: #94a3b8;
+  --dtext-disabled: #64748b;
+  --dtext-on-primary: #ffffff;
 }
 
 body {
   background-color: var(--bg);
 }
 
+/* ============================================================
+   3b. THEME OVERRIDES — only what actually differs
+   ============================================================ */
 :root,
 [data-theme="dark"] {
   --bg: #0b0f14;
   --bg-elevated: #11161d;
 
-  /* Surfaces */
   --surface: #171d25;
-  /* --surface-2: #202833; */
   --surface-hover: #26303d;
   --surface-active: #2d3947;
 
-  /* Borders */
   --border: #313d4d;
   --border-strong: #445266;
 
-  /* Typography */
   --text: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
   --text-disabled: #64748b;
   --text-on-primary: #ffffff;
 
-  /* UI */
   --input-bg: #131922;
   --overlay: rgba(8, 12, 18, 0.72);
   --scrollbar: #313d4d;
   --focus-outline: rgba(109, 93, 254, 0.35);
+  --footer-bg: #171d25;
 
-  /* Semantic Backgrounds */
   --success-bg: rgba(34, 197, 94, 0.12);
   --warning-bg: rgba(245, 158, 11, 0.12);
   --danger-bg: rgba(239, 68, 68, 0.12);
   --info-bg: rgba(59, 130, 246, 0.12);
   --neutral-bg: rgba(107, 114, 128, 0.12);
 
-  /* Shadows */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
-  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.65);
-
-  /* Footer  */
-  --footer-bg: #171d25;
+  --elevation-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --elevation-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --elevation-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --elevation-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --elevation-xl: 0 24px 64px rgba(0, 0, 0, 0.65);
 }
 
 [data-theme="light"] {
-  /* Backgrounds */
   --bg: #eef0f6;
   --bg-elevated: #eef0f6;
 
-  /* Surfaces */
   --surface: #ffffff;
-  /* --surface-2: #f8fafc; */
   --surface-hover: #e0e3ee;
   --surface-active: #e8edf3;
 
-  /* Borders */
   --border: #e0e3ee;
   --border-strong: #cbd5e1;
 
-  /* Typography */
   --text: #171a26;
   --text-secondary: #475569;
   --text-muted: #64748b;
   --text-disabled: #94a3b8;
   --text-on-primary: #ffffff;
 
-  /* UI */
   --input-bg: #ffffff;
   --overlay: rgba(15, 23, 42, 0.45);
   --scrollbar: #cbd5e1;
   --focus-outline: rgba(109, 93, 254, 0.25);
+  --footer-bg: #202833;
 
-  /* Semantic Backgrounds */
   --success-bg: rgba(34, 197, 94, 0.08);
   --warning-bg: rgba(245, 158, 11, 0.08);
   --danger-bg: rgba(239, 68, 68, 0.08);
   --info-bg: rgba(59, 130, 246, 0.08);
   --neutral-bg: rgba(107, 114, 128, 0.08);
 
-  /* Shadows */
-  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.1);
-  --shadow-xl: 0 24px 64px rgba(15, 23, 42, 0.14);
-
-  /* Footer  */
-  --footer-bg: #202833;
+  --elevation-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --elevation-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --elevation-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --elevation-lg: 0 16px 40px rgba(15, 23, 42, 0.1);
+  --elevation-xl: 0 24px 64px rgba(15, 23, 42, 0.14);
 }

@@ -22,19 +22,19 @@ export interface ProfileCommentCardProps {
 /** One row in the profile's Comments tab — which post it was on, the comment text, and a timestamp. */
 export function ProfileCommentCard({ comment, className }: ProfileCommentCardProps) {
   return (
-    <div className={cn("rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4", className)}>
-      <p className="text-[length:var(--fs-xs)] text-[var(--text-muted)] mb-1.5">
+    <div className={cn("rounded-lg border border-border bg-surface p-4", className)}>
+      <p className="text-(length:--fs-xs) text-text-muted mb-1.5">
         Commented on{" "}
         {comment.postHref ? (
-          <a href={comment.postHref} className="text-[var(--text-secondary)] hover:text-[var(--brand-purple-light)] transition-colors duration-150">
+          <a href={comment.postHref} className="text-text-secondary hover:text-(--brand-purple-light) transition-colors duration-150">
             {comment.postTitle}
           </a>
         ) : (
-          <span className="text-[var(--text-secondary)]">{comment.postTitle}</span>
+          <span className="text-text-secondary">{comment.postTitle}</span>
         )}
       </p>
-      <p className="text-[length:var(--fs-sm)] text-[var(--text)] mb-2">{comment.text}</p>
-      <div className="flex items-center gap-4 text-[length:var(--fs-xs)] text-[var(--text-muted)]">
+      <p className="text-(length:--fs-sm) text-text mb-2">{comment.text}</p>
+      <div className="flex items-center gap-4 text-(length:--fs-xs) text-text-muted">
         <span>{comment.createdAtLabel}</span>
         {comment.likeCount !== undefined && (
           <span className="inline-flex items-center gap-1">

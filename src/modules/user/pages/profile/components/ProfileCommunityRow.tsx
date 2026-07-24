@@ -30,23 +30,23 @@ export function ProfileCommunityRow({ community, onClick, className }: ProfileCo
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
       className={cn(
-        "flex items-center gap-3 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-3.5",
-        onClick && "cursor-pointer hover:bg-[var(--surface-hover)] transition-colors duration-150",
+        "flex items-center gap-3 rounded-lg border border-border bg-surface p-3.5",
+        onClick && "cursor-pointer hover:bg-surface-hover transition-colors duration-150",
         className
       )}
     >
       <div
-        className="flex items-center justify-center w-10 h-10 rounded-[var(--radius-md)] text-[13px] font-semibold text-[var(--text-on-brand)] flex-shrink-0"
+        className="flex items-center justify-center w-10 h-10 rounded-md text-[13px] font-semibold text-(--text-on-brand) shrink-0"
         style={{ backgroundColor: community.color ?? "var(--brand-purple)" }}
       >
         {community.initials}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="text-[length:var(--fs-sm)] font-semibold text-[var(--text)] truncate">{community.name}</p>
-        <p className="text-[length:var(--fs-xs)] text-[var(--text-muted)] truncate">{community.memberCountLabel} members</p>
+        <p className="text-(length:--fs-sm) font-semibold text-text truncate">{community.name}</p>
+        <p className="text-(length:--fs-xs) text-text-muted truncate">{community.memberCountLabel} members</p>
       </div>
       {community.role && (
-        <span className="flex-shrink-0 rounded-full bg-[var(--surface-2)] border border-[var(--border)] px-2.5 py-1 text-[length:var(--fs-xs)] font-medium text-[var(--text-secondary)]">
+        <span className="shrink-0 rounded-full bg-(--surface-2) border border-border px-2.5 py-1 text-(length:--fs-xs) font-medium text-text-secondary">
           {ROLE_LABEL[community.role]}
         </span>
       )}

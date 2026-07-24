@@ -47,7 +47,7 @@ export function ProfileHeader({
   ];
 
   return (
-    <div className={cn("rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] overflow-hidden", className)}>
+    <div className={cn("rounded-lg border border-border bg-surface overflow-hidden", className)}>
       <div
         className="h-[160px]"
         style={{ background: profile.coverUrl ? undefined : "var(--brand-gradient-cover)" }}
@@ -59,7 +59,7 @@ export function ProfileHeader({
 
       <div className="px-6 pb-5">
         <div className="flex justify-between items-end mb-3.5">
-          <div className="rounded-full border-4 border-[var(--surface)] -mt-11">
+          <div className="rounded-full border-4 border-surface -mt-11">
             <UserAvatar displayName={profile.displayName} username={profile.username} avatarUrl={profile.avatarUrl} size="2xl" href={null} />
           </div>
 
@@ -68,7 +68,7 @@ export function ProfileHeader({
               <button
                 type="button"
                 onClick={onEditProfile}
-                className="inline-flex items-center justify-center rounded-[var(--radius-md)] border border-[var(--border-strong)] px-3.5 py-[7px] text-[length:var(--fs-xs)] font-semibold text-[var(--text)] hover:bg-[var(--surface-hover)] transition-colors duration-150"
+                className="inline-flex items-center justify-center rounded-md border border-border-strong px-3.5 py-[7px] text-(length:--fs-xs) font-semibold text-text hover:bg-surface-hover transition-colors duration-150"
               >
                 Edit profile
               </button>
@@ -79,7 +79,7 @@ export function ProfileHeader({
                 <button
                   type="button"
                   onClick={onMessage}
-                  className="inline-flex items-center justify-center rounded-[var(--radius-md)] border border-[var(--border-strong)] px-3.5 py-[7px] text-[length:var(--fs-xs)] font-semibold text-[var(--text)] hover:bg-[var(--surface-hover)] transition-colors duration-150"
+                  className="inline-flex items-center justify-center rounded-md border border-border-strong px-3.5 py-[7px] text-(length:--fs-xs) font-semibold text-text hover:bg-surface-hover transition-colors duration-150"
                 >
                   Message
                 </button>
@@ -90,18 +90,18 @@ export function ProfileHeader({
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-[length:var(--fs-2xl)] font-bold text-[var(--text)]">{profile.displayName}</span>
-          {profile.verified && <VerifiedIcon className="w-[18px] h-[18px] text-[var(--info)]" />}
+          <span className="text-(length:--fs-2xl) font-bold text-text">{profile.displayName}</span>
+          {profile.verified && <VerifiedIcon className="w-[18px] h-[18px] text-(--info)" />}
         </div>
 
-        <p className="text-[length:var(--fs-sm)] text-[var(--text-muted)] flex items-center gap-1.5 mb-1.5">
+        <p className="text-(length:--fs-sm) text-text-muted flex items-center gap-1.5 mb-1.5">
           @{profile.username}
           {profile.roleLabel && <UserBadge label={profile.roleLabel} tone="subtle" color="purple" size="xs" />}
         </p>
 
-        {profile.bio && <p className="text-[length:var(--fs-base)] text-[var(--text)] max-w-[560px] mb-2.5">{profile.bio}</p>}
+        {profile.bio && <p className="text-(length:--fs-base) text-text max-w-[560px] mb-2.5">{profile.bio}</p>}
 
-        <div className="flex flex-wrap gap-4 text-[length:var(--fs-xs)] text-[var(--text-muted)] mb-4">
+        <div className="flex flex-wrap gap-4 text-(length:--fs-xs) text-text-muted mb-4">
           {profile.location && (
             <span className="inline-flex items-center gap-1">
               <LocationIcon className="w-[13px] h-[13px]" />
@@ -109,7 +109,7 @@ export function ProfileHeader({
             </span>
           )}
           {profile.website && (
-            <a href={profile.website.url} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text)] transition-colors duration-150">
+            <a href={profile.website.url} target="_blank" rel="noopener noreferrer" className="hover:text-text transition-colors duration-150">
               🔗 {profile.website.label}
             </a>
           )}
@@ -118,7 +118,7 @@ export function ProfileHeader({
 
         <UserStats stats={stats} className="mb-4" />
 
-        <div className="flex gap-5 border-b border-[var(--border)]" role="tablist">
+        <div className="flex gap-5 border-b border-border" role="tablist">
           {TABS.map((tab) => {
             const active = tab.id === activeTab;
             return (
@@ -129,10 +129,10 @@ export function ProfileHeader({
                 aria-selected={active}
                 onClick={() => onTabChange(tab.id)}
                 className={cn(
-                  "-mb-px pb-3 pt-1 text-[length:var(--fs-sm)] border-b-2 transition-colors duration-150",
+                  "-mb-px pb-3 pt-1 text-(length:--fs-sm) border-b-2 transition-colors duration-150",
                   active
-                    ? "font-semibold text-[var(--text)] border-[var(--brand-purple)]"
-                    : "font-medium text-[var(--text-muted)] border-transparent hover:text-[var(--text-secondary)]"
+                    ? "font-semibold text-text border-brand-purple"
+                    : "font-medium text-text-muted border-transparent hover:text-text-secondary"
                 )}
               >
                 {tab.label}
