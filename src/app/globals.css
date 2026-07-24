@@ -107,6 +107,19 @@
   --shadow-md: var(--elevation-md);
   --shadow-lg: var(--elevation-lg);
   --shadow-xl: var(--elevation-xl);
+
+   --dbg: #0b0f14;
+  --dbg-elevated: #11161d;
+  --dsurface: #171d25;
+  --dsurface-hover: #26303d;
+  --dsurface-active: #2d3947;
+  --dborder: #313d4d;
+  --dborder-strong: #445266;
+  --dtext: #f8fafc;
+  --dtext-secondary: #cbd5e1;
+  --dtext-muted: #94a3b8;
+  --dtext-disabled: #64748b;
+  --dtext-on-primary: #ffffff;
 }
 
 /* ============================================================
@@ -186,18 +199,7 @@
      [data-theme]. Used by components that must stay dark in both
      modes (see @theme inline mapping above for the matching
      bg-dbg / text-dtext utilities). */
-  --dbg: #0b0f14;
-  --dbg-elevated: #11161d;
-  --dsurface: #171d25;
-  --dsurface-hover: #26303d;
-  --dsurface-active: #2d3947;
-  --dborder: #313d4d;
-  --dborder-strong: #445266;
-  --dtext: #f8fafc;
-  --dtext-secondary: #cbd5e1;
-  --dtext-muted: #94a3b8;
-  --dtext-disabled: #64748b;
-  --dtext-on-primary: #ffffff;
+ 
 }
 
 body {
