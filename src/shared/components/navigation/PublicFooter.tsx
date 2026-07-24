@@ -26,7 +26,7 @@ export const PublicFooter = () => {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-(--dborder) bg-(--dsurface) w-full">
+    <footer className="border-t border-[#313d4d] bg-(--dsurface) w-full">
       <div className="mx-auto p-8">
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10">
           {/* Logo + tagline */}
@@ -66,7 +66,7 @@ export const PublicFooter = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-(--dborder) flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-[#313d4d] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-(--dtext-muted) ">
             © {year} Sangum. All rights reserved.
           </p>
@@ -77,7 +77,7 @@ export const PublicFooter = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Twitter"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
             >
               <TwitterIcon size={16} />
             </a>
@@ -86,7 +86,7 @@ export const PublicFooter = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
             >
               <GithubIcon size={16} />
             </a>
@@ -95,7 +95,7 @@ export const PublicFooter = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
             >
               <LinkIcon size={16} />
             </a>
