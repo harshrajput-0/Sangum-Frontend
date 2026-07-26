@@ -83,8 +83,8 @@ const STYLES = `
     color: var(--text);
   }
   .legal-nav-item[aria-current="true"] {
-    background: rgba(109, 93, 254, 0.14);
-    color: var(--brand-purple-light);
+    background: rgba(109, 93, 254, 0.2);
+    color: var(--text);
   }
   .legal-main {
     min-width: 0;
