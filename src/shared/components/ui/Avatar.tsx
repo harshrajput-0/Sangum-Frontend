@@ -56,7 +56,7 @@ export function Avatar({
   initials,
   size = "md",
   shape = "circle",
-  color = "var(--brand-purple)",
+  color = "var(--primary)",
   status,
   className,
 }: AvatarProps) {

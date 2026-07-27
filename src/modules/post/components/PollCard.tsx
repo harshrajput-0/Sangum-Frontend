@@ -57,7 +57,7 @@ export function PollCard({ poll, onVote, className }: PollCardProps) {
                 key={option.id}
                 type="button"
                 onClick={(e) => handleVote(e, option.id)}
-                className="text-left h-[38px] px-3.5 rounded-[var(--radius-md)] border border-[var(--border-strong)] text-[length:var(--fs-sm)] text-[var(--text)] hover:border-[var(--brand-purple)] hover:bg-[rgba(109,93,254,0.08)] transition-colors duration-150"
+                className="text-left h-[38px] px-3.5 rounded-[var(--radius-md)] border border-[var(--border-strong)] text-[length:var(--fs-sm)] text-[var(--text)] hover:border-[var(--primary)] hover:bg-[rgba(109,93,254,0.08)] transition-colors duration-150"
               >
                 {option.label}
               </button>
@@ -69,7 +69,7 @@ export function PollCard({ poll, onVote, className }: PollCardProps) {
               <div
                 className={cn(
                   "absolute inset-y-0 left-0 bg-[rgba(109,93,254,0.25)]",
-                  isVoted && "border-r-2 border-[var(--brand-purple)]"
+                  isVoted && "border-r-2 border-[var(--primary)]"
                 )}
                 style={{ width: `${pct}%` }}
               />

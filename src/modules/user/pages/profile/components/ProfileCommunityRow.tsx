@@ -37,7 +37,7 @@ export function ProfileCommunityRow({ community, onClick, className }: ProfileCo
     >
       <div
         className="flex items-center justify-center w-10 h-10 rounded-md text-[13px] font-semibold text-(--text-on-brand) shrink-0"
-        style={{ backgroundColor: community.color ?? "var(--brand-purple)" }}
+        style={{ backgroundColor: community.color ?? "var(--primary)" }}
       >
         {community.initials}
       </div>

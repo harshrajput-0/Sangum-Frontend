@@ -35,7 +35,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         className={cn(
           "inline-flex shrink-0 items-center justify-center rounded-md border [transition:background_var(--t-fast),border-color_var(--t-fast),color_var(--t-fast)] focus-visible:outline-none focus-visible:[box-shadow:var(--shadow-glow-purple)] disabled:cursor-not-allowed disabled:opacity-45",
           outlined
-            ? "border-border-strong bg-surface text-text hover:border-brand-purple hover:bg-surface-hover hover:text-text"
+            ? "border-border-strong bg-surface text-text hover:border-primary hover:bg-surface-hover hover:text-text"
             : "border-transparent bg-transparent text-text hover:bg-surface-hover hover:text-text",
           sizes[size],
           className,

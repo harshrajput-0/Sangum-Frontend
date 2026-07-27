@@ -21,10 +21,10 @@ export interface BadgeProps {
 
 const colorMap: Record<BadgeColor, { solid: string; text: string; subtleBg: string; border: string }> = {
   purple: {
-    solid: "var(--brand-purple)",
-    text: "var(--brand-purple-light)",
+    solid: "var(--primary)",
+    text: "var(--primary-light)",
     subtleBg: "rgba(109,93,254,0.15)",
-    border: "var(--brand-purple-light)",
+    border: "var(--primary-light)",
   },
   green: { solid: "var(--success)", text: "var(--success)", subtleBg: "var(--success-bg-dark)", border: "var(--success)" },
   blue: { solid: "var(--info)", text: "var(--info)", subtleBg: "var(--info-bg-dark)", border: "var(--info)" },

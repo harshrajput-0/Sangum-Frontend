@@ -60,7 +60,7 @@ export function UserMenu({ displayName, username, avatarUrl, status, items = DEF
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
+        className="inline-flex rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-haspopup="menu"
         aria-expanded={open}
       >

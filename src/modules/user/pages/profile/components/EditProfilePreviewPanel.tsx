@@ -35,7 +35,7 @@ export function EditProfilePreviewPanel({
 }: EditProfilePreviewPanelProps) {
   return (
     <div className={className}>
-      <span className="block text-(length:--fs-xs) font-semibold tracking-widest uppercase text-(--brand-purple-light) mb-2.5">
+      <span className="block text-(length:--fs-xs) font-semibold tracking-widest uppercase text-(--primary-light) mb-2.5">
         Profile Preview
       </span>
 
@@ -48,7 +48,7 @@ export function EditProfilePreviewPanel({
         <div className="p-3.5">
           <div
             className="w-12 h-12 rounded-full border-[3px] border-surface -mt-8 mb-2 flex items-center justify-center text-[15px] font-semibold text-(--text-on-brand) overflow-hidden"
-            style={{ backgroundColor: avatarUrl ? undefined : "var(--brand-purple)" }}
+            style={{ backgroundColor: avatarUrl ? undefined : "var(--primary)" }}
           >
             {avatarUrl ? (
               <Image src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />

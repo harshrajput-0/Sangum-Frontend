@@ -15,7 +15,7 @@ export const Card: React.FC<CardProps> = ({
     <div
       className={`
         bg-surface border border-border rounded-xl p-6
-        ${hover ? "hover:border-brand-purple/40 hover:bg-surface-hover transition-all duration-300" : ""}
+        ${hover ? "hover:border-primary/40 hover:bg-surface-hover transition-all duration-300" : ""}
         ${className}
       `}
     >

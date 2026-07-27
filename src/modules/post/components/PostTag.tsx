@@ -14,7 +14,7 @@ export function PostTag({ label, onClick, className }: PostTagProps) {
   const text = label.startsWith("#") ? label : `#${label}`;
   const classes = cn(
     "inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-2.5 py-1 text-[length:var(--fs-xs)] font-medium text-[var(--text-secondary)] transition-colors duration-150",
-    onClick && "cursor-pointer hover:border-[var(--brand-purple)] hover:text-[var(--brand-purple-light)]",
+    onClick && "cursor-pointer hover:border-[var(--primary)] hover:text-[var(--primary-light)]",
     className
   );
 

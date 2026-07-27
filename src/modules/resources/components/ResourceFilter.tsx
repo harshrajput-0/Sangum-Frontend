@@ -26,7 +26,7 @@ const SORT_LABEL: Record<ResourceSort, string> = {
 };
 
 const selectClasses =
-  "w-auto bg-[var(--input-bg)] border border-[var(--border)] text-[var(--text)] rounded-[var(--radius-md)] px-3.5 py-2.5 text-[length:var(--fs-sm)] transition-colors duration-150 focus:outline-none focus:border-[var(--brand-purple)] focus:shadow-[var(--shadow-glow-purple)]";
+  "w-auto bg-[var(--input-bg)] border border-[var(--border)] text-[var(--text)] rounded-[var(--radius-md)] px-3.5 py-2.5 text-[length:var(--fs-sm)] transition-colors duration-150 focus:outline-none focus:border-[var(--primary)] focus:shadow-[var(--shadow-glow-purple)]";
 
 /** Search box + type selector + sort — the standard filter bar above a ResourceList. */
 export function ResourceFilter({ value, onChange, className }: ResourceFilterProps) {
@@ -39,7 +39,7 @@ export function ResourceFilter({ value, onChange, className }: ResourceFilterPro
           value={value.search}
           onChange={(e) => onChange({ ...value, search: e.target.value })}
           placeholder="Search resources…"
-          className="w-full bg-[var(--input-bg)] border border-[var(--border)] text-[var(--text)] placeholder:text-[var(--text-muted)] rounded-[var(--radius-md)] pl-[38px] pr-3.5 py-2.5 text-[length:var(--fs-sm)] transition-colors duration-150 focus:outline-none focus:border-[var(--brand-purple)] focus:shadow-[var(--shadow-glow-purple)]"
+          className="w-full bg-[var(--input-bg)] border border-[var(--border)] text-[var(--text)] placeholder:text-[var(--text-muted)] rounded-[var(--radius-md)] pl-[38px] pr-3.5 py-2.5 text-[length:var(--fs-sm)] transition-colors duration-150 focus:outline-none focus:border-[var(--primary)] focus:shadow-[var(--shadow-glow-purple)]"
         />
       </div>
 

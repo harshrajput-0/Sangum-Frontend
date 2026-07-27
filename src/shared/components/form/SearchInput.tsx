@@ -103,7 +103,7 @@ export function SearchInput({
           "w-full rounded-md border border-border bg-(--input-bg) py-[10px] pl-[38px]",
           current ? "pr-[38px]" : "pr-[14px]",
           "text-(length:--fs-sm) text-text placeholder:text-text-muted",
-          "transition-colors duration-150 focus:outline-none focus:border-brand-purple focus:[box-shadow:var(--shadow-glow-purple)]",
+          "transition-colors duration-150 focus:outline-none focus:border-primary focus:[box-shadow:var(--shadow-glow-purple)]",
           "disabled:cursor-not-allowed disabled:opacity-50"
         )}
       />

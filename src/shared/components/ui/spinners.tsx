@@ -4,7 +4,7 @@ export type SpinnerSize = "xs" | "sm" | "md" | "lg";
 
 export interface SpinnerProps {
   size?: SpinnerSize;
-  /** Any CSS color value, e.g. "var(--brand-purple)". Defaults to currentColor. */
+  /** Any CSS color value, e.g. "var(--primary)". Defaults to currentColor. */
   color?: string;
   className?: string;
 }

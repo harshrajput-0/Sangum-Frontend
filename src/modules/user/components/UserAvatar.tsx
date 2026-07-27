@@ -41,12 +41,12 @@ const DOT_SIZE: Record<AvatarSize, number> = {
 // Fallback background is derived from the username so a given person always
 // gets the same color, rather than assigning it randomly on every render.
 const PALETTE = [
-  "var(--brand-purple)",
+  "var(--primary)",
   "var(--info)",
   "var(--success)",
   "var(--warning)",
   "var(--danger)",
-  "var(--brand-cyan)",
+  "var(--accent)",
   "var(--neutral)",
 ];
 
@@ -106,7 +106,7 @@ export function UserAvatar({
   );
 
   const focusRing =
-    "rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-purple)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]";
+    "rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]";
 
   if (linkHref) {
     return (

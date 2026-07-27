@@ -80,7 +80,7 @@ export function PostActions({
         aria-label={isBookmarked ? "Remove bookmark" : "Bookmark post"}
         className={cn(
           "transition-colors duration-150",
-          isBookmarked ? "text-[var(--brand-purple-light)]" : "text-[var(--text-secondary)] hover:text-[var(--text)]"
+          isBookmarked ? "text-[var(--primary-light)]" : "text-[var(--text-secondary)] hover:text-[var(--text)]"
         )}
       >
         <BookmarkIcon filled={isBookmarked} className="w-[15px] h-[15px]" />

@@ -67,7 +67,7 @@ export function FeedPostCard({
   href,
   authorName,
   avatarInitials,
-  avatarColor = "var(--brand-purple)",
+  avatarColor = "var(--primary)",
   roleBadgeLabel,
   roleBadgeColor = "purple",
   subtitle,
@@ -161,7 +161,7 @@ export function FeedPostCard({
             type="button"
             onClick={onToggleSave}
             aria-pressed={saved}
-            className={cn(actionLinkClasses, saved && "text-(--brand-purple-light)!")}
+            className={cn(actionLinkClasses, saved && "text-(--primary-light)!")}
           >
             {bookmarkIcon}
             {saved ? "Saved" : "Save"}

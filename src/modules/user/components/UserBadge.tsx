@@ -24,7 +24,7 @@ const SIZE_CLASSES: Record<BadgeSize, string> = {
 
 // Background for Solid Badge Tone 
 const SOLID_BG: Record<BadgeColor, string> = {
-  purple: "var(--brand-purple)",
+  purple: "var(--primary)",
   green: "var(--success)",
   blue: "var(--info)",
   amber: "var(--warning)",

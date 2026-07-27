@@ -160,7 +160,7 @@ export function MultiImageUpload({
             aria-label="Add images"
             className={cx(
               "flex h-16 w-16 shrink-0 items-center justify-center rounded-[var(--radius-md)] border-[1.5px] border-dashed text-[color:var(--text-muted)] transition-colors duration-150",
-              dragging ? "border-[color:var(--brand-purple)]" : "border-[color:var(--border-strong)]"
+              dragging ? "border-[color:var(--primary)]" : "border-[color:var(--border-strong)]"
             )}
           >
             <span className="h-5 w-5">

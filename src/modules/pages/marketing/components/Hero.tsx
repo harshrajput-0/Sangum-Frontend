@@ -16,8 +16,8 @@ export const Hero: React.FC = () => {
     <section className="relative min-h-screen flex items-center bg-(--dbg) justify-center overflow-hidden">
       {/* Background glow blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-150 h-120 bg-brand-purple/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-75 h-75 bg-brand-cyan/8 rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-150 h-120 bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-75 h-75 bg-accent/8 rounded-full blur-[100px]" />
       </div>
 
       {/* Subtle grid overlay */}
@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
       <div className="relative max-w-4xl mx-auto px-6 py-24 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 mb-8 px-3.5 py-1.5 rounded-full border border-(--dborder) bg-(--dsurface) text-sm text-(--dtext-secondary)">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           <span>Active development · Join the waitlist</span>
         </div>
 
@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
           <span
             className="relative inline-block pb-2"
   style={{
-    background: "linear-gradient(135deg, var(--primary), var(--brand-cyan))",
+    background: "linear-gradient(135deg, var(--primary), var(--accent))",
     WebkitBackgroundClip: "text",
     backgroundClip: "text",
     WebkitTextFillColor: "transparent",
@@ -103,7 +103,7 @@ export const Hero: React.FC = () => {
                 px-4 py-2.5 rounded-lg text-sm
                 bg-(--dsurface) border border-(--dborder)
                 text-(--dtext) placeholder:text-(--dtext-muted)
-                focus:outline-none focus:border-brand-purple
+                focus:outline-none focus:border-primary
                 transition-colors
               "
             />
@@ -112,7 +112,7 @@ export const Hero: React.FC = () => {
             </Button>
           </form>
         ) : (
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--dsurface) border border-brand-cyan/40 text-brand-cyan text-sm">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--dsurface) border border-accent/40 text-accent text-sm">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
@@ -152,7 +152,7 @@ export const Hero: React.FC = () => {
                 key={label}
                 href="#"
                 aria-label={label}
-                className="w-8 h-8 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-all"
+                className="w-8 h-8 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-primary/50 transition-all"
               >
                 <svg
                   className="w-4 h-4"

@@ -31,7 +31,7 @@ export const RESOURCE_TYPE_PRESET: Record<
 > = {
   article: { label: "Article", bg: "var(--info-bg-dark)", text: "var(--info)", Icon: ArticleIcon },
   video: { label: "Video", bg: "var(--danger-bg-dark)", text: "var(--danger)", Icon: VideoIcon },
-  course: { label: "Course", bg: "rgba(109, 93, 254, 0.15)", text: "var(--brand-purple-light)", Icon: CourseIcon },
+  course: { label: "Course", bg: "rgba(109, 93, 254, 0.15)", text: "var(--primary-light)", Icon: CourseIcon },
   book: { label: "Book", bg: "var(--success-bg-dark)", text: "var(--success)", Icon: BookIcon },
   tool: { label: "Tool", bg: "var(--warning-bg-dark)", text: "var(--warning)", Icon: ToolIcon },
   paper: { label: "Paper", bg: "var(--surface-2)", text: "var(--text-muted)", border: "var(--border)", Icon: PaperIcon },

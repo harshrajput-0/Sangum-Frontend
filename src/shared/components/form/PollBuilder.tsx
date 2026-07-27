@@ -49,7 +49,7 @@ function cx(...classes: Array<string | false | null | undefined>) {
 }
 
 const inputClass =
-  "w-full rounded-[var(--radius-md)] border border-[color:var(--border)] bg-[color:var(--input-bg)] px-[14px] py-[10px] text-[length:var(--fs-sm)] text-[color:var(--text)] placeholder:text-[color:var(--text-muted)] transition-colors duration-150 focus:outline-none focus:border-[color:var(--brand-purple)] focus:[box-shadow:var(--shadow-glow-purple)]";
+  "w-full rounded-[var(--radius-md)] border border-[color:var(--border)] bg-[color:var(--input-bg)] px-[14px] py-[10px] text-[length:var(--fs-sm)] text-[color:var(--text)] placeholder:text-[color:var(--text-muted)] transition-colors duration-150 focus:outline-none focus:border-[color:var(--primary)] focus:[box-shadow:var(--shadow-glow-purple)]";
 
 /** icon: replace with real "x" icon */
 function XIcon() {
@@ -155,7 +155,7 @@ export function PollBuilder({
               id={autoId}
               value={expiresIn}
               onChange={(e) => onExpiresChange(e.target.value)}
-              className="rounded-[var(--radius-md)] border border-[color:var(--border)] bg-[color:var(--input-bg)] px-[10px] py-[6px] text-[length:var(--fs-xs)] text-[color:var(--text)] focus:outline-none focus:border-[color:var(--brand-purple)]"
+              className="rounded-[var(--radius-md)] border border-[color:var(--border)] bg-[color:var(--input-bg)] px-[10px] py-[6px] text-[length:var(--fs-xs)] text-[color:var(--text)] focus:outline-none focus:border-[color:var(--primary)]"
             >
               {expiryOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>

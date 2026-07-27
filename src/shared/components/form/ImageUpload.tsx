@@ -152,7 +152,7 @@ export function ImageUpload({
             "flex cursor-pointer flex-col items-center justify-center rounded-[var(--radius-lg)] border-[1.5px] border-dashed px-[var(--sp-4)] py-[var(--sp-8)] text-center transition-colors duration-150",
             disabled && "cursor-not-allowed opacity-50",
             dragging
-              ? "border-[color:var(--brand-purple)] bg-[rgba(109,93,254,0.06)]"
+              ? "border-[color:var(--primary)] bg-[rgba(109,93,254,0.06)]"
               : "border-[color:var(--border-strong)]"
           )}
         >
@@ -161,7 +161,7 @@ export function ImageUpload({
           </span>
           <p className="text-[length:var(--fs-sm)] text-[color:var(--text-muted)]">
             Drag &amp; drop an image, or{" "}
-            <span className="font-medium text-[color:var(--brand-purple-light)]">browse</span>
+            <span className="font-medium text-[color:var(--primary-light)]">browse</span>
           </p>
           <p className="mt-[2px] text-[length:var(--fs-xs)] text-[color:var(--text-muted)]">
             {acceptLabel} up to {maxSizeMB}MB

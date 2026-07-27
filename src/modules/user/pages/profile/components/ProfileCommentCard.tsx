@@ -26,7 +26,7 @@ export function ProfileCommentCard({ comment, className }: ProfileCommentCardPro
       <p className="text-(length:--fs-xs) text-text-muted mb-1.5">
         Commented on{" "}
         {comment.postHref ? (
-          <a href={comment.postHref} className="text-text-secondary hover:text-(--brand-purple-light) transition-colors duration-150">
+          <a href={comment.postHref} className="text-text-secondary hover:text-(--primary-light) transition-colors duration-150">
             {comment.postTitle}
           </a>
         ) : (

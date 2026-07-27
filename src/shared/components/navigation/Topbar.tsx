@@ -46,7 +46,7 @@
 // };
 
 // const iconButton =
-//   "flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] outline-none transition-colors hover:bg-[var(--surface-hover)] hover:text-[var(--text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-purple)]";
+//   "flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-md)] text-[var(--text-secondary)] outline-none transition-colors hover:bg-[var(--surface-hover)] hover:text-[var(--text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]";
 
 // export default function Topbar({
 //   onMenuClick,
@@ -107,7 +107,7 @@
 //             type="text"
 //             placeholder={searchPlaceholder}
 //             onChange={(e) => onSearch?.(e.target.value)}
-//             className="w-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--input-bg)] py-2.5 pl-9 pr-3.5 text-[13px] text-[var(--text)] outline-none transition-[border-color,box-shadow] duration-[120ms] placeholder:text-[var(--text-muted)] focus:border-[var(--brand-purple)] focus:shadow-[var(--shadow-glow-purple)]"
+//             className="w-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--input-bg)] py-2.5 pl-9 pr-3.5 text-[13px] text-[var(--text)] outline-none transition-[border-color,box-shadow] duration-[120ms] placeholder:text-[var(--text-muted)] focus:border-[var(--primary)] focus:shadow-[var(--shadow-glow-purple)]"
 //           />
 //         </div>
 //       </div>
@@ -116,7 +116,7 @@
 //         <button
 //           type="button"
 //           onClick={onCreateClick}
-//           className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--brand-purple)] px-3 py-[7px] text-[12px] font-semibold text-white shadow-[var(--shadow-sm)] outline-none transition-colors hover:bg-[var(--brand-purple-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-purple-light)]"
+//           className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] bg-[var(--primary)] px-3 py-[7px] text-[12px] font-semibold text-white shadow-[var(--shadow-sm)] outline-none transition-colors hover:bg-[var(--primary-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-light)]"
 //         >
 //           <IconPlus className="h-3.5 w-3.5" />
 //           {createLabel}
@@ -141,14 +141,14 @@
 //           type="button"
 //           onClick={onAvatarClick}
 //           aria-label="Open account menu"
-//           className="relative inline-flex shrink-0 rounded-full outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-purple)]"
+//           className="relative inline-flex shrink-0 rounded-full outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
 //         >
 //           {user.avatarUrl ? (
 //             <img src={user.avatarUrl} alt={user.name} className="h-9 w-9 rounded-full object-cover" />
 //           ) : (
 //             <span
 //               className="flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold text-white"
-//               style={{ background: "var(--brand-purple)" }}
+//               style={{ background: "var(--primary)" }}
 //             >
 //               {user.initials}
 //             </span>

@@ -109,7 +109,7 @@ export function TagInput({
         onClick={() => inputRef.current?.focus()}
         className={cx(
           "flex min-h-[42px] w-full flex-wrap items-center gap-[6px] rounded-md border bg-(--input-bg) px-[10px] py-[8px]",
-          "transition-colors duration-150 focus-within:border-brand-purple focus-within:[box-shadow:var(--shadow-glow-purple)]",
+          "transition-colors duration-150 focus-within:border-primary focus-within:[box-shadow:var(--shadow-glow-purple)]",
           disabled && "cursor-not-allowed opacity-50",
           error ? "border-danger" : "border-border"
         )}
@@ -117,7 +117,7 @@ export function TagInput({
         {value.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center gap-[6px] rounded-(--radius-full) bg-[rgba(109,93,254,0.15)] px-[10px] py-[4px] text-(length:--fs-xs) font-medium text-(--brand-purple-light)"
+            className="inline-flex items-center gap-[6px] rounded-(--radius-full) bg-[rgba(109,93,254,0.15)] px-[10px] py-[4px] text-(length:--fs-xs) font-medium text-(--primary-light)"
           >
             {tag}
             {!disabled && (

@@ -68,7 +68,7 @@ export function FollowButton({
           ? willUnfollow
             ? "bg-transparent border-danger text-danger"
             : "bg-(--surface-2) border-border text-text hover:bg-surface-hover"
-          : "bg-brand-purple border-transparent text-white shadow-(--shadow-sm) hover:bg-(--brand-purple-dark)",
+          : "bg-primary border-transparent text-white shadow-(--shadow-sm) hover:bg-(--primary-dark)",
         className
       )}
     >

@@ -71,7 +71,7 @@ export function ResourceCard({ resource, onView, onBookmarkToggle, onTagClick, c
                 }}
                 className={cn(
                   "inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-2.5 py-1 text-[length:var(--fs-xs)] font-medium text-[var(--text-secondary)] transition-colors duration-150",
-                  onTagClick && "cursor-pointer hover:border-[var(--brand-purple)] hover:text-[var(--brand-purple-light)]"
+                  onTagClick && "cursor-pointer hover:border-[var(--primary)] hover:text-[var(--primary-light)]"
                 )}
               >
                 {tag}
@@ -92,7 +92,7 @@ export function ResourceCard({ resource, onView, onBookmarkToggle, onTagClick, c
               aria-label={resource.isBookmarked ? "Remove bookmark" : "Bookmark resource"}
               className={cn(
                 "flex items-center gap-1.5 text-[length:var(--fs-xs)] font-medium transition-colors duration-150",
-                resource.isBookmarked ? "text-[var(--brand-purple-light)]" : "text-[var(--text-muted)] hover:text-[var(--text)]"
+                resource.isBookmarked ? "text-[var(--primary-light)]" : "text-[var(--text-muted)] hover:text-[var(--text)]"
               )}
             >
               <BookmarkIcon filled={resource.isBookmarked} className="w-[13px] h-[13px]" />
@@ -111,7 +111,7 @@ export function ResourceCard({ resource, onView, onBookmarkToggle, onTagClick, c
               e.stopPropagation();
               navigate();
             }}
-            className="inline-flex items-center justify-center rounded-[var(--radius-sm)] bg-[var(--brand-purple)] px-3 py-[7px] text-[length:var(--fs-xs)] font-semibold text-[var(--text-on-brand)] shadow-[var(--shadow-sm)] hover:bg-[var(--brand-purple-dark)] transition-colors duration-150"
+            className="inline-flex items-center justify-center rounded-[var(--radius-sm)] bg-[var(--primary)] px-3 py-[7px] text-[length:var(--fs-xs)] font-semibold text-[var(--text-on-brand)] shadow-[var(--shadow-sm)] hover:bg-[var(--primary-dark)] transition-colors duration-150"
           >
             View Resource
           </button>

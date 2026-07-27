@@ -76,7 +76,7 @@ export function PostHeader({
             <span className="text-(length:--fs-sm) font-semibold text-text truncate">{author.displayName}</span>
             {author.role && <RoleBadge role={author.role} size="xs" />}
             {pinned && (
-              <span className="inline-flex items-center gap-1 text-(length:--fs-xs) font-medium text-(--brand-purple-light) shrink-0">
+              <span className="inline-flex items-center gap-1 text-(length:--fs-xs) font-medium text-(--primary-light) shrink-0">
                 <PinIcon className="w-3 h-3" />
                 Pinned
               </span>

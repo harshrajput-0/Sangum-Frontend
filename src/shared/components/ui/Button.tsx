@@ -45,7 +45,7 @@ const variants: Record<ButtonVariant, string> = {
   danger: "border-transparent bg-[var(--danger)] text-white hover:opacity-90",
   "danger-outline":
     "border-[var(--danger)] bg-transparent text-[var(--danger)] hover:bg-[var(--danger-bg-dark)]",
-  accent: "border-transparent bg-[var(--brand-cyan)] text-[#04201d] hover:opacity-90",
+  accent: "border-transparent bg-[var(--accent)] text-[#04201d] hover:opacity-90",
 };
 
 const sizes: Record<ButtonSize, string> = {

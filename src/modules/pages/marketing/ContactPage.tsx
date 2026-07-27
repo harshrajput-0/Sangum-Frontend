@@ -36,7 +36,7 @@ const reachItems: ReachItem[] = [
     title: "Email",
     description: "support@sangum.dev",
     iconBg: "rgba(109,93,254,0.15)",
-    iconColor: "var(--brand-purple-light)",
+    iconColor: "var(--primary-light)",
     icon: (
       <>
         <rect x="2" y="4" width="20" height="14" rx="2" />
@@ -48,7 +48,7 @@ const reachItems: ReachItem[] = [
     title: "Live Chat",
     description: "Available Mon–Fri, 9am–6pm UTC",
     iconBg: "rgba(20,216,196,0.15)",
-    iconColor: "var(--brand-cyan)",
+    iconColor: "var(--accent)",
     icon: <path d="M21 11.5a8.38 8.38 0 01-7.6 8.5" />,
   },
   {
@@ -88,7 +88,7 @@ const faqs: Faq[] = [
 ];
 
 const inputClasses =
-  "w-full rounded-sm border border-border bg-[var(--input-bg)] px-3.5 py-2.5 text-(length:--fs-sm) text-text placeholder:text-text-muted transition-colors focus:outline-none focus:border-[var(--brand-purple)] focus:[box-shadow:var(--shadow-glow-purple)]";
+  "w-full rounded-sm border border-border bg-[var(--input-bg)] px-3.5 py-2.5 text-(length:--fs-sm) text-text placeholder:text-text-muted transition-colors focus:outline-none focus:border-[var(--primary)] focus:[box-shadow:var(--shadow-glow-purple)]";
 
 function FaqAccordionItem({ faq, isOpen, onToggle }: { faq: Faq; isOpen: boolean; onToggle: () => void }) {
 
@@ -175,7 +175,7 @@ export function ContactPage({ onSubmit }: ContactPageProps) {
     <div className="w-full">
       {/* Hero */}
       <section className="mx-auto max-w-[1280px] px-4 pt-[60px] pb-10 md:px-6">
-        <span className="mb-2.5 block text-(length:--fs-xs) font-bold uppercase tracking-[0.08em] text-(--brand-purple-light)">
+        <span className="mb-2.5 block text-(length:--fs-xs) font-bold uppercase tracking-[0.08em] text-(--primary-light)">
           Get In Touch
         </span>
         <h1 className="mb-3.5 text-[28px] font-bold leading-tight tracking-[-0.02em] text-text md:text-[36px]">
@@ -264,7 +264,7 @@ export function ContactPage({ onSubmit }: ContactPageProps) {
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex items-center justify-center gap-2 rounded-sm bg-brand-purple px-4 py-2.5 text-(length:--fs-sm) font-semibold text-white [box-shadow:var(--shadow-sm)] transition-colors hover:bg-(--brand-purple-dark) disabled:cursor-not-allowed disabled:opacity-45"
+                className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-(length:--fs-sm) font-semibold text-white [box-shadow:var(--shadow-sm)] transition-colors hover:bg-(--primary-dark) disabled:cursor-not-allowed disabled:opacity-45"
               >
                 {submitting ? "Sending…" : "Send Message →"}
               </button>

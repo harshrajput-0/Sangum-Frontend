@@ -20,8 +20,8 @@ export function Checkbox({ checked, onChange, label, required, className }: Chec
       <span
         aria-hidden="true"
         className={cn(
-          "flex items-center justify-center w-[18px] h-[18px] rounded-[5px] border transition-colors duration-150 shrink-0 peer-focus-visible:ring-2 peer-focus-visible:ring-(--brand-purple-light)",
-          checked ? "bg-brand-purple border-brand-purple" : "bg-(--input-bg) border-border-strong"
+          "flex items-center justify-center w-[18px] h-[18px] rounded-[5px] border transition-colors duration-150 shrink-0 peer-focus-visible:ring-2 peer-focus-visible:ring-(--primary-light)",
+          checked ? "bg-primary border-primary" : "bg-(--input-bg) border-border-strong"
         )}
       >
         {checked && <CheckIcon className="w-3 h-3 text-(--text-on-brand)" />}

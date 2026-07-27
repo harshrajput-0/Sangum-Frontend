@@ -156,7 +156,7 @@ export function SlugInput({
           className={cx(
             "w-full rounded-[var(--radius-md)] border bg-[color:var(--input-bg)] py-[10px] pl-[14px] pr-[38px]",
             "text-[length:var(--fs-sm)] text-text placeholder:text-text-muted",
-            "transition-colors duration-150 focus:outline-none focus:border-[color:var(--brand-purple)] focus:[box-shadow:var(--shadow-glow-purple)]",
+            "transition-colors duration-150 focus:outline-none focus:border-[color:var(--primary)] focus:[box-shadow:var(--shadow-glow-purple)]",
             "disabled:cursor-not-allowed disabled:opacity-50",
             error ? "border-[color:var(--danger)]" : "border-[color:var(--border)]"
           )}

@@ -105,7 +105,7 @@ export const fieldControlClass = (hasError?: boolean) =>
   cn(
     "w-full rounded-[var(--radius-md)] border bg-[color:var(--input-bg)] px-[14px] py-[10px]",
     "text-[length:var(--fs-sm)] text-[color:var(--text)] placeholder:text-[color:var(--text-muted)]",
-    "transition-colors duration-150 focus:outline-none focus:border-[color:var(--brand-purple)] focus:[box-shadow:var(--shadow-glow-purple)]",
+    "transition-colors duration-150 focus:outline-none focus:border-[color:var(--primary)] focus:[box-shadow:var(--shadow-glow-purple)]",
     "disabled:cursor-not-allowed disabled:opacity-50",
     hasError
       ? "border-[color:var(--danger)]"

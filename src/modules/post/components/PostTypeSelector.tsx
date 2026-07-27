@@ -35,11 +35,11 @@ export function PostTypeSelector({ value, onChange, className }: PostTypeSelecto
             className={cn(
               "flex-1 flex flex-col items-center gap-1 rounded-[var(--radius-lg)] border px-4 py-2.5 transition-colors duration-150",
               active
-                ? "border-[var(--brand-purple)] bg-[rgba(109,93,254,0.1)]"
+                ? "border-[var(--primary)] bg-[rgba(109,93,254,0.1)]"
                 : "border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-hover)]"
             )}
           >
-            <Icon className={cn("w-[18px] h-[18px]", active ? "text-[var(--brand-purple-light)]" : "text-[var(--text-muted)]")} />
+            <Icon className={cn("w-[18px] h-[18px]", active ? "text-[var(--primary-light)]" : "text-[var(--text-muted)]")} />
             <span className={cn("text-[length:var(--fs-xs)]", active ? "text-[var(--text)]" : "text-[var(--text-muted)]")}>{label}</span>
           </button>
         );

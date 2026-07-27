@@ -32,7 +32,7 @@ export function UserStats({ stats, onStatClick, className }: UserStatsProps) {
           className={cn(
             "flex flex-col items-start",
             onStatClick &&
-              "cursor-pointer rounded-sm hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
+              "cursor-pointer rounded-sm hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           )}
         >
           <span className="text-(length:--fs-lg) font-semibold text-text leading-tight">

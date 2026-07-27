@@ -131,7 +131,7 @@ export function ProfileHeader({
                 className={cn(
                   "-mb-px pb-3 pt-1 text-(length:--fs-sm) border-b-2 transition-colors duration-150",
                   active
-                    ? "font-semibold text-text border-brand-purple"
+                    ? "font-semibold text-text border-primary"
                     : "font-medium text-text-muted border-transparent hover:text-text-secondary"
                 )}
               >

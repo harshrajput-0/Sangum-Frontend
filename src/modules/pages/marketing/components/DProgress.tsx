@@ -39,7 +39,7 @@ const steps: Step[] = [
 const StepIcon: React.FC<{ status: StepStatus; index: number }> = ({ status, index }) => {
   if (status === "done") {
     return (
-      <div className="w-9 h-9 rounded-full flex items-center justify-center bg-brand-purple border-2 border-brand-purple shrink-0">
+      <div className="w-9 h-9 rounded-full flex items-center justify-center bg-primary border-2 border-primary shrink-0">
         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
         </svg>
@@ -48,8 +48,8 @@ const StepIcon: React.FC<{ status: StepStatus; index: number }> = ({ status, ind
   }
   if (status === "active") {
     return (
-      <div className="w-9 h-9 rounded-full flex items-center justify-center border-2 border-brand-purple bg-surface shrink-0 relative">
-        <div className="w-3 h-3 rounded-full bg-brand-purple animate-pulse" />
+      <div className="w-9 h-9 rounded-full flex items-center justify-center border-2 border-primary bg-surface shrink-0 relative">
+        <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
       </div>
     );
   }
@@ -66,7 +66,7 @@ export const Progress: React.FC = () => {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
-          <p className="text-xs text-brand-purple uppercase tracking-[0.15em] font-medium mb-3">
+          <p className="text-xs text-primary uppercase tracking-[0.15em] font-medium mb-3">
             Where we are
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-text tracking-tight mb-3">
@@ -88,7 +88,7 @@ export const Progress: React.FC = () => {
                   <div
                     className={`w-px flex-1 my-1 ${
                       step.status === "done"
-                        ? "bg-brand-purple/50"
+                        ? "bg-primary/50"
                         : "bg-border"
                     }`}
                     style={{ minHeight: "2rem" }}
@@ -109,12 +109,12 @@ export const Progress: React.FC = () => {
                     {step.label}
                   </span>
                   {step.status === "done" && (
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-brand-cyan/10 border border-brand-cyan/25 text-brand-cyan font-medium">
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-accent/10 border border-accent/25 text-accent font-medium">
                       Completed
                     </span>
                   )}
                   {step.status === "active" && (
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-brand-purple/15 border border-brand-purple/30 text-brand-purple font-medium">
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-primary/15 border border-primary/30 text-primary font-medium">
                       In Progress
                     </span>
                   )}

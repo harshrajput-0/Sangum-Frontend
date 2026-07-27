@@ -17,7 +17,7 @@ const legalDocs: LegalDoc[] = [
     title: "Terms of Service",
     description: "The rules and guidelines for using Sangum and our platform.",
     to: "/legal/terms",
-    iconColor: "var(--brand-purple-light)",
+    iconColor: "var(--primary-light)",
     iconBg: "rgba(109,93,254,0.15)",
     icon: (
       <>
@@ -67,7 +67,7 @@ export function LegalHubPage() {
     <div className="w-full">
       {/* Hero */}
       <section className="mx-auto max-w-[1280px] px-4 pt-[60px] pb-10 text-center md:px-6">
-        <span className="mb-2.5 block text-(length:--fs-xs) font-bold uppercase tracking-[0.08em] text-brand-purple">
+        <span className="mb-2.5 block text-(length:--fs-xs) font-bold uppercase tracking-[0.08em] text-primary">
           Legal
         </span>
         <h1 className="mb-3.5 text-[28px] font-bold leading-tight tracking-[-0.02em] text-text md:text-[36px]">
@@ -111,7 +111,7 @@ export function LegalHubPage() {
               </p>
               <Link
                 href={doc.to}
-                className="text-(length:--fs-xs) font-medium text-brand-purple hover:underline"
+                className="text-(length:--fs-xs) font-medium text-primary hover:underline"
               >
                 Read {doc.title} →
               </Link>

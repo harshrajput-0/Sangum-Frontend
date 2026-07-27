@@ -56,8 +56,6 @@
 
   /* Brand (theme-invariant, but kept here so brand-* stays
      alongside every other color utility) */
-  --color-brand-purple: var(--primary);
-  --color-brand-cyan: var(--brand-cyan);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-active: var(--primary-active);
@@ -131,11 +129,9 @@
   --primary-hover: #5b4be8;
   --primary-active: #493bc9;
   --primary-light: #8b7dff;
-  --brand-cyan: #39bfbf;
-  --brand-purple: #6d5dfe;
 
-  --accent: #2263ee;
-  --accent-hover: #1e56cd;
+  --accent: #39BFBF;
+  --accent-hover: #2FA6A6;
 
   --brand-gradient: linear-gradient(135deg, var(--primary) 0%, #4f8cff 50%, var(--accent) 100%);
   --brand-gradient-soft: linear-gradient(135deg, var(--primary-light) 0%, #6ea8ff 100%);

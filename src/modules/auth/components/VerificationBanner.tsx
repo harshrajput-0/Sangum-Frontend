@@ -51,7 +51,7 @@ export function VerificationBanner({
           <button
             type="button"
             onClick={onResend}
-            className="text-[length:var(--fs-xs)] font-medium text-[var(--brand-purple-light)] hover:underline"
+            className="text-[length:var(--fs-xs)] font-medium text-[var(--primary-light)] hover:underline"
           >
             {resendLabel}
           </button>

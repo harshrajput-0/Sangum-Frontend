@@ -50,7 +50,7 @@ const seedPosts: SeedPost[] = [
     href: "/c/mern-developers/posts/1",
     authorName: "Aaryan Verma",
     avatarInitials: "AV",
-    avatarColor: "var(--brand-purple)",
+    avatarColor: "var(--primary)",
     roleBadgeLabel: "Admin",
     subtitle: "in MERN Developers · 2h ago",
     body: "Just shipped a new feature for resource collections. Would love your feedback! 🚀",
@@ -85,7 +85,7 @@ export interface FeedPageProps {
 
 export function FeedPage({
   currentUserInitials,
-  currentUserAvatarColor = "var(--brand-purple)",
+  currentUserAvatarColor = "var(--primary)",
   onComposeClick,
   onAttachPhoto,
   onCreatePoll,
@@ -125,7 +125,7 @@ export function FeedPage({
             onClick={() => setActiveTab(tab.id)}
             className={
               activeTab === tab.id
-                ? "rounded-md bg-[rgba(109,93,254,0.14)] px-3.5 py-2 text-(length:--fs-sm) font-medium text-(--brand-purple-light)"
+                ? "rounded-md bg-[rgba(109,93,254,0.14)] px-3.5 py-2 text-(length:--fs-sm) font-medium text-(--primary-light)"
                 : "rounded-md px-3.5 py-2 text-(length:--fs-sm) font-medium text-text-secondary hover:bg-surface-hover hover:text-text"
             }
           >

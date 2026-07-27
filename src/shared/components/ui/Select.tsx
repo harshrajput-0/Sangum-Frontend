@@ -49,7 +49,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             "w-full rounded-[var(--radius-md)] border bg-[var(--input-bg)] px-3.5 py-2.5 text-[length:var(--fs-sm)] text-[var(--text)] [transition:border-color_var(--t-fast),box-shadow_var(--t-fast)] focus:outline-none",
             hasError
               ? "border-[var(--danger)] focus:[box-shadow:0_0_0_3px_var(--danger-bg-dark)]"
-              : "border-[var(--border)] focus:border-[var(--brand-purple)] focus:[box-shadow:var(--shadow-glow-purple)]",
+              : "border-[var(--border)] focus:border-[var(--primary)] focus:[box-shadow:var(--shadow-glow-purple)]",
             className,
           )}
           {...rest}

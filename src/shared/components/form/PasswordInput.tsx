@@ -64,7 +64,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             className={cx(
               "w-full rounded-md border bg-(--input-bg) py-[10px] pl-[14px] pr-[38px]",
               "text-(length:--fs-sm) text-text placeholder:text-text-muted",
-              "transition-colors duration-150 focus:outline-none focus:border-brand-purple focus:[box-shadow:var(--shadow-glow-purple)]",
+              "transition-colors duration-150 focus:outline-none focus:border-primary focus:[box-shadow:var(--shadow-glow-purple)]",
               "disabled:cursor-not-allowed disabled:opacity-50",
               error ? "border-danger" : "border-border",
               className

@@ -10,7 +10,7 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    accent: "var(--brand-purple)",
+    accent: "var(--primary)",
     title: "Communities",
     description: "Create and join interest-based communities around topics you care about.",
     icon: (
@@ -22,7 +22,7 @@ const features: Feature[] = [
     ),
   },
   {
-    accent: "var(--brand-cyan)",
+    accent: "var(--accent)",
     title: "Discussions",
     description: "Share ideas and participate in meaningful conversations with your community.",
     icon: (
@@ -34,7 +34,7 @@ const features: Feature[] = [
     ),
   },
   {
-    accent: "var(--brand-purple)",
+    accent: "var(--primary)",
     title: "Real-Time Chat",
     description: "Stay connected with live messaging that keeps your community in sync.",
     icon: (
@@ -46,7 +46,7 @@ const features: Feature[] = [
     ),
   },
   {
-    accent: "var(--brand-cyan)",
+    accent: "var(--accent)",
     title: "Knowledge Hub",
     description: "Discover, save, and share resources that help your community grow and learn.",
     icon: (
@@ -65,7 +65,7 @@ export const FeatureGrid: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-14">
-          <p className="text-xs text-brand-purple uppercase tracking-[0.15em] font-medium mb-3">
+          <p className="text-xs text-primary uppercase tracking-[0.15em] font-medium mb-3">
             {"What we're building"}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-text tracking-tight">

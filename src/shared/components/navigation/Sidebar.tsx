@@ -72,7 +72,7 @@ const toCssLength = (value: number | string) => (typeof value === "number" ? `${
 
 // Badge Color
 const badgeColors: Record<SidebarBadgeVariant, string> = {
-  purple: "var(--brand-purple,#6D5DFE)",
+  purple: "var(--primary,#6D5DFE)",
   danger: "var(--danger,#ef4444)",
   info: "var(--info,#3b82f6)",
   success: "var(--success,#22c55e)",
@@ -97,7 +97,7 @@ const defaultCommunities: SidebarCommunity[] = [
 ];
 
 const focusRing =
-  "outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-purple,#6D5DFE)]";
+  "outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary,#6D5DFE)]";
 
 const ease = "ease-[var(--ease,cubic-bezier(0.4,0,0.2,1))]";
 
@@ -306,7 +306,7 @@ export function Sidebar({
                 focusRing,
                 "cursor-pointer",
                 pathname === item.href
-                  ? "bg-(--nav-active-bg,rgba(109,93,254,0.14)) text-(--nav-active-text,var(--brand-purple-light,#a996ff))"
+                  ? "bg-(--nav-active-bg,rgba(109,93,254,0.14)) text-(--nav-active-text,var(--primary-light,#a996ff))"
                   : "text-(--text-secondary,#b8b8c4) hover:bg-(--surface-hover,rgba(255,255,255,0.06)) hover:text-(--text,#f4f4f6)"
               )}
             >
@@ -333,7 +333,7 @@ className={cn(
   itemBaseClasses,
   focusRing,
   pathname === "/settings"
-    ? "bg-(--nav-active-bg,rgba(109,93,254,0.14)) text-(--nav-active-text,var(--brand-purple-light,#a996ff))"
+    ? "bg-(--nav-active-bg,rgba(109,93,254,0.14)) text-(--nav-active-text,var(--primary-light,#a996ff))"
     : "text-(--text-secondary,#b8b8c4) hover:bg-(--surface-hover,rgba(255,255,255,0.06)) hover:text-(--text,#f4f4f6)"
 )}
       >
@@ -369,7 +369,7 @@ className={cn(
                 >
                   <span
                     className="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-(--radius-md,10px) text-[10px] font-semibold text-white"
-                    style={{ background: c.color ?? "var(--brand-purple,#6D5DFE)" }}
+                    style={{ background: c.color ?? "var(--primary,#6D5DFE)" }}
                   >
                     {c.initials}
                   </span>

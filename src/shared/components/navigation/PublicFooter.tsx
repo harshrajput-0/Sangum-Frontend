@@ -77,7 +77,7 @@ export const PublicFooter = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Twitter"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-primary/50 transition-colors"
             >
               <TwitterIcon size={16} />
             </a>
@@ -86,7 +86,7 @@ export const PublicFooter = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-primary/50 transition-colors"
             >
               <GithubIcon size={16} />
             </a>
@@ -95,7 +95,7 @@ export const PublicFooter = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-brand-purple/50 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#313d4d] text-(--dtext-muted) hover:text-(--dtext) hover:border-primary/50 transition-colors"
             >
               <LinkIcon size={16} />
             </a>

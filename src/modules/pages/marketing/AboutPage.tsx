@@ -18,7 +18,7 @@ const missionItems: MissionItem[] = [
     description:
       "We believe in the power of community and collaboration to solve meaningful problems.",
     iconBg: "rgba(109,93,254,0.15)",
-    iconColor: "var(--brand-purple-light)",
+    iconColor: "var(--primary-light)",
     icon: <path d="M17 20h5v-2a4 4 0 00-3-3.87" />,
   },
   {
@@ -26,7 +26,7 @@ const missionItems: MissionItem[] = [
     description:
       "We make knowledge accessible so everyone can learn, grow, and share their skills.",
     iconBg: "rgba(20,216,196,0.15)",
-    iconColor: "var(--brand-cyan)",
+    iconColor: "var(--accent)",
     icon: <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />,
   },
   {
@@ -51,7 +51,7 @@ export const AboutPage = () => {
     <div className="w-full">
       {/* Hero */}
       <section className="mx-auto max-w-[1280px] px-4 pt-[70px] pb-[50px] text-text bg-bg text-center md:px-6">
-        <span className="mb-3 block text-(length:--fs-xs) font-bold uppercase tracking-[0.08em] text-brand-purple">
+        <span className="mb-3 block text-(length:--fs-xs) font-bold uppercase tracking-[0.08em] text-primary">
           About Sangum
         </span>
         <h1 className="mx-auto mb-4 max-w-[600px] text-[28px] font-bold leading-tight tracking-[-0.02em] md:text-[38px]">
