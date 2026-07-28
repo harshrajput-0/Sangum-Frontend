@@ -66,12 +66,12 @@ const actionLinkClasses =
   "inline-flex items-center gap-1.5 text-[length:var(--fs-xs)] text-[var(--text-secondary)] [&_svg]:h-4 [&_svg]:w-4 hover:text-[var(--text)]";
 
 export function FeedPostCard({
-  href,
+  // href,
   authorName,
-  avatarInitials,
+  // avatarInitials,
   avatarColor = "var(--primary)",
   roleBadgeLabel,
-  roleBadgeColor = "purple",
+  // roleBadgeColor = "purple",
   subtitle,
   body,
   imageGradient,
@@ -96,12 +96,12 @@ export function FeedPostCard({
     >
       <div className="mb-2.5 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Avatar size="md" initials={avatarInitials} color={avatarColor} />
+          <Avatar size="md" name="Harst Rajput" color={avatarColor} />
           <div>
             <div className="flex items-center gap-2">
               <span className="text-(length:--fs-sm) font-semibold text-text">{authorName}</span>
               {roleBadgeLabel && (
-                <Badge variant="solid" color={roleBadgeColor} className="px-1.5! py-px!">
+                <Badge variant="solid"  className="px-1.5! py-px!">
                   {roleBadgeLabel}
                 </Badge>
               )}
