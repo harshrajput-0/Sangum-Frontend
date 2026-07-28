@@ -278,3 +278,19 @@ body {
   --elevation-lg: 0 16px 40px rgba(15, 23, 42, 0.1);
   --elevation-xl: 0 24px 64px rgba(15, 23, 42, 0.14);
 }
+
+
+
+
+/* ============================================================
+   Scrollbar Utilities
+   ============================================================ */
+
+@utility no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+}

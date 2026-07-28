@@ -15,7 +15,7 @@ export function AppLayout({children}: AppLayoutProps) {
   <div className="flex flex-1 flex-col">
     <AppHeader />
 
-    <main className="flex-1 overflow-y-auto pb-16 phone:pb-0">
+    <main className="flex-1 overflow-y-auto pb-16 phone:pb-0 no-scrollbar p-6">
       {children}
     </main>
 

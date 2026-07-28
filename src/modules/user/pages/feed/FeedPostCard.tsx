@@ -8,6 +8,8 @@
  * Path (as documented): modules/feed/components/
  */
 
+"use client"
+
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { Avatar, Badge, type BadgeColor } from "@/shared/components/ui";
@@ -119,7 +121,7 @@ export function FeedPostCard({
         )}
       </div>
 
-      <Link href={href} className="mb-2.5 block text-(length:--fs-base) text-text hover:underline">
+      <Link href={"href"} className="mb-2.5 block text-(length:--fs-base) text-text hover:underline">
         {body}
       </Link>
 

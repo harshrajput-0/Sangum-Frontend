@@ -1,94 +1,70 @@
-/**
- * Avatar.tsx
- * xs · sm · md · lg · xl · 2xl, circle (user) or rounded (community) shape.
- * Falls back to initials on a colored background if no image / on load error.
- */
-
-import { useState } from "react";
-import { cn } from "@/shared/utils/cn";
-
 export type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-export type AvatarShape = "circle" | "rounded";
 export type AvatarStatus = "online" | "away" | "busy" | "offline";
 
-export interface AvatarProps {
+interface AvatarProps {
+  /** Full name — used for the fallback initials and alt text. */
+  name: string;
+  /** Optional image URL. Falls back to initials when omitted. */
   src?: string;
-  alt?: string;
-  initials?: string;
   size?: AvatarSize;
-  shape?: AvatarShape;
-  color?: string;  // Background color behind initials. Defaults to the brand purple
+  shape?: "circle" | "rounded";
+  /** Tailwind background class for the initials fallback, e.g. "bg-primary". */
+  color?: string;
   status?: AvatarStatus;
   className?: string;
 }
 
-// Size 
-const sizes: Record<AvatarSize, string> = {
-  xs: "h-6 w-6 text-[10px]",
-  sm: "h-8 w-8 text-[length:var(--fs-xs)]",
-  md: "h-10 w-10 text-[length:var(--fs-sm)]",
-  lg: "h-12 w-12 text-[length:var(--fs-md)]",
-  xl: "h-16 w-16 text-[length:var(--fs-xl)]",
-  "2xl": "h-20 w-20 text-[length:var(--fs-2xl)]",
+const SIZE_CLASSES: Record<AvatarSize, string> = {
+  xs: "w-5 h-5 text-[8px]",
+  sm: "w-7 h-7 text-[10px]",
+  md: "w-9 h-9 text-xs",
+  lg: "w-12 h-12 text-md",
+  xl: "w-16 h-16 text-xl",
+  "2xl": "w-[88px] h-[88px] text-2xl",
 };
 
-// Status Size 
-const statusSize: Record<AvatarSize, string> = {
-  xs: "h-1.5 w-1.5",
-  sm: "h-2 w-2",
-  md: "h-2.5 w-2.5",
-  lg: "h-3 w-3",
-  xl: "h-3.5 w-3.5",
-  "2xl": "h-4 w-4",
+const STATUS_CLASSES: Record<AvatarStatus, string> = {
+  online: "bg-success",
+  away: "bg-warning",
+  busy: "bg-danger",
+  offline: "bg-neutral",
 };
 
-// Status Color 
-const statusColor: Record<AvatarStatus, string> = {
-  online: "var(--success)",
-  away: "var(--warning)",
-  busy: "var(--danger)",
-  offline: "var(--neutral)",
-};
+function getInitials(name: string) {
+  if (!name) return "";
+  return name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]?.toUpperCase() ?? "").join("");
+}
 
 export function Avatar({
+  name,
   src,
-  alt = "",
-  initials,
   size = "md",
   shape = "circle",
-  color = "var(--primary)",
+  color = "bg-primary",
   status,
-  className,
+  className = "",
 }: AvatarProps) {
-  const [imgError, setImgError] = useState(false);
-  const showImage = Boolean(src) && !imgError;
-  const shapeClass = shape === "circle" ? "rounded-full" : "rounded-[var(--radius-md)]";
+  const shapeClass = shape === "circle" ? "rounded-full" : "rounded-md";
 
   return (
-    <span className={cn("relative inline-flex shrink-0", sizes[size], className)}>
-      {showImage ? (
+    <span className={`relative inline-flex shrink-0 ${className} border border-border ${shapeClass} bg-primary`}>
+      {src ? (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}
-          alt={alt}
-          onError={() => setImgError(true)}
-          className={cn("h-full w-full object-cover", shapeClass)}
+          alt={name}
+          className={`${SIZE_CLASSES[size]} ${shapeClass} object-cover`}
         />
       ) : (
         <span
-          style={{ background: color }}
-          className={cn("flex h-full w-full items-center justify-center font-semibold uppercase text-white", shapeClass)}
+          className={`${SIZE_CLASSES[size]}  ${color} flex items-center justify-center font-semibold text-text-on-primary`}
         >
-          {initials}
+          {getInitials(name)}
         </span>
       )}
       {status && (
         <span
-          aria-hidden="true"
-          style={{ background: statusColor[status] }}
-          className={cn(
-            "absolute bottom-0 right-0 rounded-full [box-shadow:0_0_0_2px_var(--surface)]",
-            statusSize[size],
-          )}
+          className={`absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-surface ${STATUS_CLASSES[status]}`}
         />
       )}
     </span>

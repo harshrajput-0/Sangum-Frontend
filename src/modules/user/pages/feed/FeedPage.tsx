@@ -5,6 +5,7 @@
  *
  * Path (as documented): modules/feed/pages/
  */
+"use client"
 
 import { useState } from "react";
 import { Avatar, Button, Select, Spinner } from "@/shared/components/ui";
@@ -84,7 +85,7 @@ export interface FeedPageProps {
 }
 
 export function FeedPage({
-  currentUserInitials,
+  // currentUserInitials,
   currentUserAvatarColor = "var(--primary)",
   onComposeClick,
   onAttachPhoto,
@@ -106,8 +107,8 @@ export function FeedPage({
   };
 
   return (
-    <div>
-      <div className="mb-[18px] flex flex-wrap items-center justify-between gap-3">
+    <div className="max-w-4xl mx-auto">
+      <div className="mb-4.5 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-(length:--fs-2xl) font-bold text-text">Home Feed</h1>
           <p className="mt-1 text-(length:--fs-xs) text-text-muted">
@@ -125,7 +126,7 @@ export function FeedPage({
             onClick={() => setActiveTab(tab.id)}
             className={
               activeTab === tab.id
-                ? "rounded-md bg-[rgba(109,93,254,0.14)] px-3.5 py-2 text-(length:--fs-sm) font-medium text-(--primary-light)"
+                ? "rounded-md bg-[rgba(109,93,254,0.14)] px-3.5 py-2 text-(length:--fs-sm) font-medium text-primary-light"
                 : "rounded-md px-3.5 py-2 text-(length:--fs-sm) font-medium text-text-secondary hover:bg-surface-hover hover:text-text"
             }
           >
@@ -136,7 +137,7 @@ export function FeedPage({
 
       <div className="mb-4 rounded-lg border border-border bg-surface p-5">
         <button type="button" onClick={onComposeClick} className="flex w-full items-center gap-3 text-left">
-          <Avatar size="md" initials={currentUserInitials} color={currentUserAvatarColor} />
+          <Avatar size="md" name="User" color={currentUserAvatarColor} />
           <span className="flex-1 rounded-md border border-border bg-(--input-bg) px-3.5 py-2.5 text-(length:--fs-sm) text-text-muted">
             {"What's on your mind?"}
           </span>
