@@ -11,7 +11,7 @@
  */
 
 import type { ReactNode } from "react";
-import { Spinner } from "@/shared/components/ui/spinners";
+import { Spinner } from "@/shared/components/ui/Spinners";
 import { cn } from "@/shared/utils/cn";
 
 export interface OAuthButtonProps {

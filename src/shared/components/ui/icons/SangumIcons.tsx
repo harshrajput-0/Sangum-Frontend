@@ -30,7 +30,7 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
 export type IconComponent = (props: IconProps) => React.JSX.Element;
 
 /** Shared defaults for outline/line-style icons (the vast majority of the set). */
-function LineIcon({ size = 24, children, ...props }: IconProps & { children: ReactNode }) {
+function LineIcon({ size = 20, children, ...props }: IconProps & { children: ReactNode }) {
   return (
     <svg
       width={size}

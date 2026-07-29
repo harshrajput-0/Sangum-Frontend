@@ -24,12 +24,13 @@ export const AppHeader: React.FC = () => {
 <DummySearch />
 
         <div className="hidden tablet:flex items-center gap-2 justify-end">
-            <Button size="sm" iconLeft={<CreateIcon />}>
+            <Button size="sm">
+              <CreateIcon />
               Create
             </Button>
             <ThemeToggle />
             
-            <IconButton icon={<NotificationsIcon/>} aria-label="Notification"></IconButton>
+            <IconButton aria-label="Notification"><NotificationsIcon/></IconButton>
             {/* // href recieve endpoints */}
             <UserAvatar displayName="Avatar" username="avatar" size="sm" href="userss"/>
             

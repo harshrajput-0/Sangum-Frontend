@@ -12,7 +12,7 @@ import { cn } from "@/shared/utils/cn";
 export type IconButtonSize = "sm" | "md" | "lg";
 
 export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  icon: ReactNode;
+  children: ReactNode;
   size?: IconButtonSize;
   outlined?: boolean;
   /** Required for accessibility since there's no visible text label. */
@@ -20,13 +20,13 @@ export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
 }
 
 const sizes: Record<IconButtonSize, string> = {
-  sm: "h-8 w-8 [&_svg]:h-3.5 [&_svg]:w-3.5",
-  md: "h-10 w-10 [&_svg]:h-4 [&_svg]:w-4",
+  sm: "h-7 w-7 [&_svg]:h-3.5 [&_svg]:w-3.5",
+  md: "h-9 w-9 [&_svg]:h-4 [&_svg]:w-4",
   lg: "h-12 w-12 [&_svg]:h-[18px] [&_svg]:w-[18px]",
 };
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ icon, size = "md", outlined = false, disabled, className, type = "button", ...rest }, ref) => {
+  ({ children, size = "md", outlined = false, disabled, className, type = "button", ...rest }, ref) => {
     return (
       <button
         ref={ref}
@@ -42,7 +42,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         {...rest}
       >
-        {icon}
+        {children}
       </button>
     );
   },
