@@ -24,8 +24,8 @@ export const AppHeader: React.FC = () => {
 <DummySearch />
 
         <div className="hidden tablet:flex items-center gap-2 justify-end">
-            <Button size="sm">
-              <CreateIcon />
+            <Button size="sm" iconLeft={ <CreateIcon/>}>
+              
               Create
             </Button>
             <ThemeToggle />

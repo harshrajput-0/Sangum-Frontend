@@ -48,6 +48,9 @@ interface ButtonOwnProps {
   asChild?: boolean;
   className?: string;
   children?: ReactNode;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+
 }
 
 type ButtonProps = ButtonOwnProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children">;
@@ -59,6 +62,8 @@ export function Button({
   iconOnly = false,
   asChild = false,
   disabled,
+  iconLeft,
+  iconRight,
   className = "",
   children,
   ...props
@@ -96,7 +101,9 @@ export function Button({
   return (
     <button type="button" disabled={isDisabled} className={classes} {...props}>
       {loading && <Spinner size="xs" color="current" />}
+      {iconLeft}
       {children}
+      {iconRight}
     </button>
   );
 }

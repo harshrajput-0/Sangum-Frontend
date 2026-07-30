@@ -80,7 +80,7 @@ const badgeColors: Record<SidebarBadgeVariant, string> = {
 
 // Default Sidebar Items 
 const defaultNavItems: SidebarNavItem[] = [
-  { key: "home", label: "Home", icon: <IconHome />, href: "/home" },
+  { key: "home", label: "Home", icon: <IconHome />, href: "/feed" },
   { key: "communities", label: "Communities", icon: <IconUsers />, href: "/communities" },
   { key: "explore", label: "Explore", icon: <IconCompass />, href: "explore" },
   { key: "messages", label: "Messages", icon: <IconMail />, badge: { label: 3, variant: "purple" }, href: "messages" },

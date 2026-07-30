@@ -126,7 +126,7 @@ export function FeedPostCard({
       </Link>
 
       {imageGradient && (
-        <div className="mb-3 h-[180px] rounded-md" style={{ background: imageGradient }} />
+        <div className="mb-3 h-45 rounded-md" style={{ background: imageGradient }} />
       )}
 
       {tags && tags.length > 0 && (
@@ -163,7 +163,7 @@ export function FeedPostCard({
             type="button"
             onClick={onToggleSave}
             aria-pressed={saved}
-            className={cn(actionLinkClasses, saved && "text-(--primary-light)!")}
+            className={cn(actionLinkClasses, saved && "text-primary-light!")}
           >
             {bookmarkIcon}
             {saved ? "Saved" : "Save"}

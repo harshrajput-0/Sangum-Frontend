@@ -1,5 +1,5 @@
 // import { PreviewTestingPage } from "@/modules/testing/PreviewTestingPage";
-import { FeedPage } from "@/modules/user/pages/feed/FeedPage";
+import { FeedPage } from "@/modules/post/page/FeedPage";
 // import { ProfilePage } from "@/modules/user/pages/feed/FeedPostCard";
 
 

@@ -7,7 +7,10 @@
  */
 "use client"
 
+import { CreatePost } from "@/modules/post/components/CreatePost"
+
 import { useState } from "react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Avatar, Button, Select, Spinner } from "@/shared/components/ui";
 import { FeedPostCard, type FeedPostCardProps } from "./FeedPostCard";
 
@@ -31,6 +34,7 @@ const linkIcon = (
 
 export type FeedTab = "for-you" | "following" | "communities" | "latest";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const feedTabs: { id: FeedTab; label: string }[] = [
   { id: "for-you", label: "For You" },
   { id: "following", label: "Following" },
@@ -38,6 +42,7 @@ const feedTabs: { id: FeedTab; label: string }[] = [
   { id: "latest", label: "Latest" },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const sortOptions = [
   { value: "latest", label: "Latest" },
   { value: "top", label: "Top" },
@@ -94,8 +99,7 @@ export function FeedPage({
   posts = seedPosts,
   loadingMore = true,
 }: FeedPageProps) {
-  const [activeTab, setActiveTab] = useState<FeedTab>("for-you");
-  const [sort, setSort] = useState("latest");
+
   const [likedIds, setLikedIds] = useState<Set<number>>(new Set());
   const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
 
@@ -108,7 +112,8 @@ export function FeedPage({
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-4.5 flex flex-wrap items-center justify-between gap-3">
+      <CreatePost />
+      {/* <div className="mb-4.5 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-(length:--fs-2xl) font-bold text-text">Home Feed</h1>
           <p className="mt-1 text-(length:--fs-xs) text-text-muted">
@@ -116,9 +121,9 @@ export function FeedPage({
           </p>
         </div>
         <Select options={sortOptions} value={sort} onChange={(e) => setSort(e.target.value)} className="w-auto" />
-      </div>
+      </div> */}
 
-      <div className="mb-5 flex flex-wrap gap-1.5">
+      {/* <div className="mb-5 flex flex-wrap gap-1.5">
         {feedTabs.map((tab) => (
           <button
             key={tab.id}
@@ -133,7 +138,7 @@ export function FeedPage({
             {tab.label}
           </button>
         ))}
-      </div>
+      </div> */}
 
       <div className="mb-4 rounded-lg border border-border bg-surface p-5">
         <button type="button" onClick={onComposeClick} className="flex w-full items-center gap-3 text-left">
