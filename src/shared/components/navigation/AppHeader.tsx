@@ -5,7 +5,7 @@ import { ThemeToggle } from "../ui/ThemeToggle";
 import DummySearch from "../ui/DummySearch";
 import { CreateIcon, NotificationsIcon } from "../ui/icons/SangumIcons";
 import { IconButton } from "../ui/IconButton";
-import { UserAvatar } from "@/modules/user/components/UserAvatar";
+// import { Avatar } from "@/modules/user/components/Avatar";
 
 
 export const AppHeader: React.FC = () => {
@@ -32,7 +32,7 @@ export const AppHeader: React.FC = () => {
             
             <IconButton aria-label="Notification"><NotificationsIcon/></IconButton>
             {/* // href recieve endpoints */}
-            <UserAvatar displayName="Avatar" username="avatar" size="sm" href="userss"/>
+            {/* <Avatar displayName="Avatar" username="avatar" size="sm" href="userss"/> */}
             
 
 
