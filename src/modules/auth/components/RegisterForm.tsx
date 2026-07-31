@@ -225,7 +225,7 @@ export function RegisterForm({
         type="submit"
         disabled={isLoading}
         className={cn(
-          "w-full rounded-[var(--radius-md)] bg-(--primary) py-[10px]",
+          "w-full rounded-md bg-primary py-2.5",
           "text-(length:--fs-sm) font-medium text-white",
           "transition-opacity duration-150 hover:opacity-90",
           "disabled:cursor-not-allowed disabled:opacity-60"

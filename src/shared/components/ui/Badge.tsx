@@ -8,12 +8,14 @@ export type BadgeColor =
   | "info"
   | "neutral";
 export type BadgeVariant = "solid" | "subtle" | "outline";
+export type BadgeSize = "xs" | "sm" | "md" | "lg";
 
 interface BadgeProps {
   children: ReactNode;
   color?: BadgeColor;
   variant?: BadgeVariant;
   className?: string;
+  size?: BadgeSize;
 }
 
 const SOLID: Record<BadgeColor, string> = {
@@ -34,12 +36,24 @@ const SUBTLE: Record<BadgeColor, string> = {
   neutral: "border border-border bg-surface-hover text-text-muted",
 };
 
+const SIZE: Record<BadgeSize, string> = {
+  xs: "px-1.5 py-0.5 text-[10px]",
+  sm: "px-2 py-0.5 text-xs",
+  md: "px-2.5 py-1 text-sm",
+  lg: "px-3 py-1.5 text-base",
+};
+
+
 export function Badge({
   children,
   color = "primary",
   variant = "solid",
+   size = "sm",
   className = "",
 }: BadgeProps) {
+
+  const sizeStyles = SIZE[size];
+
   const styles =
     variant === "solid"
       ? SOLID[color]
@@ -49,7 +63,7 @@ export function Badge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-semibold leading-none ${styles} ${className}`}
+      className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full text-xs font-semibold leading-none ${sizeStyles} ${styles} ${className}`}
     >
       {children}
     </span>

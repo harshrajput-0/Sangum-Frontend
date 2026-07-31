@@ -1,5 +1,5 @@
 import React, { useId, useRef, useState } from "react";
-
+import Image from "next/image";
 /**
  * ImageUpload
  * -----------
@@ -102,7 +102,7 @@ export function ImageUpload({
       {label && (
         <label
           htmlFor={autoId}
-          className="mb-(--sp-2) block text-[length:var(--fs-sm)] font-medium text-[color:var(--text-secondary)]"
+          className="mb-(--sp-2) block text-(length:--fs-sm) font-medium text-text-secondary"
         >
           {label}
         </label>
@@ -120,17 +120,17 @@ export function ImageUpload({
 
       {value ? (
         <div className="relative inline-block">
-          <img
+          <Image
             src={value}
             alt="Uploaded preview"
-            className="h-[140px] w-[140px] rounded-[var(--radius-lg)] border border-[color:var(--border)] object-cover"
+            className="h-35 w-35 rounded-lg border border-border object-cover"
           />
           {!disabled && (
             <button
               type="button"
               onClick={() => onChange(null)}
               aria-label="Remove image"
-              className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] text-[color:var(--text-muted)] [box-shadow:var(--shadow-sm)] hover:text-[color:var(--text)]"
+              className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full border border-border bg-(--surface-2) text-text-muted [box-shadow:var(--shadow-sm)] hover:text-text"
             >
               <XIcon />
             </button>
@@ -149,32 +149,32 @@ export function ImageUpload({
           onDragLeave={() => setDragging(false)}
           onDrop={handleDrop}
           className={cx(
-            "flex cursor-pointer flex-col items-center justify-center rounded-[var(--radius-lg)] border-[1.5px] border-dashed px-[var(--sp-4)] py-[var(--sp-8)] text-center transition-colors duration-150",
+            "flex cursor-pointer flex-col items-center justify-center rounded-lg border-[1.5px] border-dashed px-(--sp-4) py-(--sp-8) text-center transition-colors duration-150",
             disabled && "cursor-not-allowed opacity-50",
             dragging
-              ? "border-[color:var(--primary)] bg-[rgba(109,93,254,0.06)]"
-              : "border-[color:var(--border-strong)]"
+              ? "border-primary bg-[rgba(109,93,254,0.06)]"
+              : "border-border-strong"
           )}
         >
-          <span className="mx-auto mb-[8px] block h-7 w-7 text-[color:var(--text-muted)]">
+          <span className="mx-auto mb-2 block h-7 w-7 text-text-muted">
             <UploadIcon />
           </span>
-          <p className="text-[length:var(--fs-sm)] text-[color:var(--text-muted)]">
+          <p className="text-(length:--fs-sm) text-text-muted">
             Drag &amp; drop an image, or{" "}
-            <span className="font-medium text-[color:var(--primary-light)]">browse</span>
+            <span className="font-medium text-primary-light">browse</span>
           </p>
-          <p className="mt-[2px] text-[length:var(--fs-xs)] text-[color:var(--text-muted)]">
+          <p className="mt-0.5 text-(length:--fs-xs) text-text-muted">
             {acceptLabel} up to {maxSizeMB}MB
           </p>
         </div>
       )}
 
       {displayError ? (
-        <p role="alert" className="mt-[var(--sp-1)] text-[length:var(--fs-xs)] text-[color:var(--danger)]">
+        <p role="alert" className="mt-(--sp-1) text-(length:--fs-xs) text-danger">
           {displayError}
         </p>
       ) : helperText ? (
-        <p className="mt-[var(--sp-1)] text-[length:var(--fs-xs)] text-[color:var(--text-muted)]">
+        <p className="mt-(--sp-1) text-(length:--fs-xs) text-text-muted">
           {helperText}
         </p>
       ) : null}
