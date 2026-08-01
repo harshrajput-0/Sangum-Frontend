@@ -1,5 +1,5 @@
-import { MessagesPage } from "@/modules/testing/PlaveHolderPages";
+import { MessagesShell } from "@/modules/messages";
 
 export default function Page() {
-  return <MessagesPage />;
+  return <MessagesShell />;
 }
