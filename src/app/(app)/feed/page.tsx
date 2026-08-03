@@ -1,5 +1,5 @@
-import { FeedPage } from "@/modules/post/page/FeedPage";
+// import { FeedPage } from "@/features/post/page/FeedPage";
 
-export default function Page() {
-  return <FeedPage />;
-}
+// export default function Page() {
+//   return <FeedPage />;
+// }

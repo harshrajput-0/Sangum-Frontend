@@ -29,14 +29,12 @@ export interface SendMessagePayload {
 }
 
 export async function sendMessage(payload: SendMessagePayload): Promise<Message> {
-  const message: Message = {
+  return {
     id: `local-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     conversationId: payload.conversationId,
     sender: "me",
-    variant: "text",
     text: payload.text,
     createdAt: new Date().toISOString(),
     status: "sent",
   };
-  return message;
 }

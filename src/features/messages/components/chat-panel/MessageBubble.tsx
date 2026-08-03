@@ -20,32 +20,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
             : "rounded-bl-[4px] bg-surface text-text",
         )}
       >
-        {message.variant === "code" && message.code ? (
-          <div className="overflow-hidden rounded-lg border border-white/10">
-            <div
-              className={cn(
-                "border-b px-3 py-1.5 font-mono text-[11px]",
-                isMine
-                  ? "border-white/10 bg-black/10 text-text-on-primary/80"
-                  : "border-border bg-bg-elevated text-text-muted",
-              )}
-            >
-              {message.code.fileName}
-            </div>
-            <pre
-              className={cn(
-                "overflow-x-auto px-3 py-2.5 font-mono text-xs leading-relaxed",
-                isMine ? "bg-black/10 text-text-on-primary" : "bg-bg-elevated text-text",
-              )}
-            >
-              <code>{message.code.content}</code>
-            </pre>
-          </div>
-        ) : (
-          <p className="whitespace-pre-wrap break-words text-sm leading-relaxed">
-            {message.text}
-          </p>
-        )}
+        <p className="whitespace-pre-wrap break-words text-sm leading-relaxed">{message.text}</p>
 
         <div
           className={cn(

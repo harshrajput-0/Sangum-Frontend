@@ -59,10 +59,7 @@ export const useMessagesStore = create<MessagesState>((set) => ({
           ? {
               ...c,
               lastMessageAt: message.createdAt,
-              lastMessagePreview:
-                message.variant === "code"
-                  ? message.code?.fileName ?? "Code snippet"
-                  : message.text ?? "",
+              lastMessagePreview: message.text,
               lastMessagePreviewIcon: null,
             }
           : c,

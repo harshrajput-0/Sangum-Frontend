@@ -50,7 +50,7 @@ export function MessageComposer({
 
   return (
     <div className="flex-shrink-0 border-t border-border bg-bg-elevated px-4 py-3 lg:px-8">
-      <div className="mx-auto flex max-w-4xl items-center gap-1.5">
+      <div className="mx-auto flex max-w-[1600px] items-center gap-1.5">
         <AttachmentButton onFilesSelected={onFilesSelected} />
 
         <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-border bg-[var(--input-bg)] px-4 py-2">
@@ -65,7 +65,7 @@ export function MessageComposer({
         <SendButton disabled={isSendDisabled} onClick={onSend} />
       </div>
 
-      {error && <p className="mx-auto mt-1.5 max-w-4xl text-xs text-danger">{error}</p>}
+      {error && <p className="mx-auto mt-1.5 max-w-[1600px] text-xs text-danger">{error}</p>}
     </div>
   );
 }

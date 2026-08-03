@@ -55,10 +55,10 @@ export function MessagesShell() {
   }
 
   return (
-    <div className="mx-auto flex h-dvh w-full max-w-[1600px] flex-col bg-bg lg:flex-row lg:overflow-hidden lg:shadow-xl">
+    <div className="flex h-dvh w-full flex-col bg-bg lg:flex-row lg:overflow-hidden">
       <aside
         className={cn(
-          "w-full flex-col lg:w-[400px] lg:flex-shrink-0 lg:border-r lg:border-border",
+          "w-full flex-col lg:w-[clamp(320px,26vw,440px)] lg:flex-shrink-0 lg:border-r lg:border-border",
           activeConversationId ? "hidden lg:flex" : "flex",
         )}
       >

@@ -23,7 +23,7 @@ export function MessageThread({ conversation, messages }: MessageThreadProps) {
 
   return (
     <div className="min-h-0 flex-1 overflow-y-auto bg-bg px-4 py-5 lg:px-8">
-      <div className="mx-auto flex max-w-4xl flex-col gap-4">
+      <div className="mx-auto flex max-w-[1600px] flex-col gap-4">
         {dayGroups.map((group) => (
           <div key={group.dayKey} className="flex flex-col gap-4">
             <DateDivider label={formatDateDividerLabel(group.items[0].createdAt)} />
