@@ -2,10 +2,12 @@ import { PostCardHeader } from './PostCardHeader';
 import { PostCardBody } from './PostCardBody';
 import { PostActionsBar } from './PostActionsBar';
 import { CommentsPanel } from '@/modules/comments';
+import type { Comment } from '@/modules/comments';
 import type { PostSummary } from '../../types';
 
 interface PostCardProps {
   post: PostSummary;
+  comments: Comment[];
   isExpanded: boolean;
   onToggleExpand: () => void;
   isLiked?: boolean;
@@ -18,6 +20,7 @@ interface PostCardProps {
 
 export function PostCard({
   post,
+  comments,
   isExpanded,
   onToggleExpand,
   isLiked,
@@ -35,8 +38,7 @@ export function PostCard({
       <PostCardBody title={post.title} tags={post.tags} excerpt={post.excerpt} expandedContent={post.expandedContent} isExpanded={isExpanded} />
       <PostActionsBar likes={post.stats.likes} commentCount={post.stats.commentCount} isExpanded={isExpanded} isLiked={isLiked} onToggleLike={onToggleLike} onSave={onSave} onShare={onShare} />
       <div onClick={(e) => e.stopPropagation()} className="mt-4 border-t border-border pt-4">
-        {/* TODO: initialComments currently empty — still waiting on where Post comment mock data should live */}
-        <CommentsPanel entityType="post" entityId={post.id} initialComments={[]} initialVisibleCount={commentsPreviewCount} />
+        <CommentsPanel entityType="post" entityId={post.id} initialComments={comments} initialVisibleCount={commentsPreviewCount} />
       </div>
     </div>
   );

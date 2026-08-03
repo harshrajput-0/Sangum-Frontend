@@ -1,15 +1,15 @@
-// src/features/posts/components/post-detail/PostDetailShell.tsx
 import { PostBreadcrumb } from './PostBreadcrumb';
 import { PostCard } from './PostCard';
 import { AuthorSidebarCard } from './AuthorSidebarCard';
 import { usePostCard } from '../../hooks/usePostCard';
 import { useAuthorFollow } from '../../hooks/useAuthorFollow';
-import type { PostSummary, PostComment } from '../../types';
+import type { Comment } from '@/modules/comments';
+import type { PostSummary } from '../../types';
 
 interface PostDetailShellProps {
   groupName: string;
   post: PostSummary;
-  comments: PostComment[];
+  comments: Comment[];
   currentUserAvatarLabel: string;
   postCount: number;
   followerCount: string;
@@ -35,17 +35,7 @@ export function PostDetailShell({
   followerCount,
   relatedTopics,
 }: PostDetailShellProps) {
-  const {
-    isExpanded,
-    toggleExpand,
-    isLiked,
-    toggleLike,
-    draftComment,
-    setDraftComment,
-    handleSave,
-    handleShare,
-    handleReply,
-  } = usePostCard(post.id);
+  const { isExpanded, toggleExpand, isLiked, toggleLike, handleSave, handleShare } = usePostCard(post.id);
 
   const { isFollowing, toggleFollow } = useAuthorFollow(post.author.id);
 
@@ -63,10 +53,6 @@ export function PostDetailShell({
           onToggleLike={toggleLike}
           onSave={handleSave}
           onShare={handleShare}
-          currentUserAvatarLabel={currentUserAvatarLabel}
-          draftComment={draftComment}
-          onDraftChange={setDraftComment}
-          onReply={handleReply}
         />
         <AuthorSidebarCard
           author={post.author}

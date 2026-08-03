@@ -1,6 +1,6 @@
 import type { AccentToken } from '../types';
 
-const ACCENT_CYCLE: AccentToken[] = ['primary', 'warning', 'info', 'danger'];
+const ACCENT_CYCLE: AccentToken[] = ['primary', 'warning', 'info', 'danger', 'success'];
 
 export function getAccentFromId(id: string): AccentToken {
   const hash = Array.from(id).reduce((sum, char) => sum + char.charCodeAt(0), 0);
@@ -13,4 +13,8 @@ export function getInitials(name: string): string {
 
 export function getBannerLabel(title: string): string {
   return (title.split(' ')[0] ?? '').slice(0, 6).toUpperCase();
+}
+
+export function formatViewCount(count: number): string {
+  return count >= 1000 ? `${(count / 1000).toFixed(1)}K` : String(count);
 }

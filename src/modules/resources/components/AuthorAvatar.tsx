@@ -5,6 +5,7 @@ const ACCENT_SOFT: Record<AccentToken, string> = {
   warning: 'bg-warning/15 text-warning',
   info: 'bg-info/15 text-info',
   danger: 'bg-danger/15 text-danger',
+  success: 'bg-success/15 text-success',
 };
 
 const ACCENT_SOLID: Record<AccentToken, string> = {
@@ -12,6 +13,7 @@ const ACCENT_SOLID: Record<AccentToken, string> = {
   warning: 'bg-warning text-text-on-primary',
   info: 'bg-info text-text-on-primary',
   danger: 'bg-danger text-text-on-primary',
+  success: 'bg-success text-text-on-primary',
 };
 
 const SIZE_CLASSES = {
@@ -28,20 +30,12 @@ interface AuthorAvatarProps {
   shape?: 'circle' | 'square';
 }
 
-export function AuthorAvatar({
-  initials,
-  accent,
-  size = 'sm',
-  variant = 'soft',
-  shape = 'circle',
-}: AuthorAvatarProps) {
+export function AuthorAvatar({ initials, accent, size = 'sm', variant = 'soft', shape = 'circle' }: AuthorAvatarProps) {
   const colorClasses = variant === 'solid' ? ACCENT_SOLID[accent] : ACCENT_SOFT[accent];
   const shapeClass = shape === 'circle' ? 'rounded-full' : 'rounded-lg';
 
   return (
-    <span
-      className={`flex shrink-0 items-center justify-center font-semibold ${SIZE_CLASSES[size]} ${shapeClass} ${colorClasses}`}
-    >
+    <span className={`flex shrink-0 items-center justify-center font-semibold ${SIZE_CLASSES[size]} ${shapeClass} ${colorClasses}`}>
       {initials}
     </span>
   );

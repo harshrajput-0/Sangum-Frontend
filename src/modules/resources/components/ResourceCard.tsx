@@ -3,18 +3,15 @@ import { Eye } from 'lucide-react';
 import type { Resource } from '../types';
 import { ResourceTypeBadge } from './ResourceTypeBadge';
 import { AuthorAvatar } from './AuthorAvatar';
-import { getAccentFromId, getInitials, getBannerLabel } from '../lib/deriveResourceDisplay';
+import { getAccentFromId, getInitials, getBannerLabel, formatViewCount } from '../lib/deriveResourceDisplay';
 
 const GRADIENT_CLASSES: Record<string, string> = {
   primary: 'from-primary to-primary-active',
   warning: 'from-warning to-orange-700',
   info: 'from-info to-cyan-800',
   danger: 'from-danger to-rose-900',
+  success: 'from-success to-green-800',
 };
-
-function formatViewCount(count: number): string {
-  return count >= 1000 ? `${(count / 1000).toFixed(1)}K` : String(count);
-}
 
 interface ResourceCardProps {
   resource: Resource;

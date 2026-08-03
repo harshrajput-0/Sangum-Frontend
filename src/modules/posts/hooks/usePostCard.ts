@@ -1,10 +1,9 @@
-// src/features/posts/hooks/usePostCard.ts
 import { useState } from 'react';
-import { postsService } from '../services/postsService';
 
 /**
- * Owns interaction state for a single PostCard: expand/collapse,
- * like toggle, and the in-progress comment draft.
+ * Owns interaction state for a single PostCard: expand/collapse and
+ * like toggle. Comment state (draft, submit, reply) now lives inside
+ * CommentsPanel — this hook no longer owns any of it.
  *
  * PLACEHOLDER: swap local state for data from a query hook (e.g.
  * React Query) once the service layer talks to a real API, and
@@ -13,7 +12,6 @@ import { postsService } from '../services/postsService';
 export function usePostCard(postId: string) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [draftComment, setDraftComment] = useState('');
 
   const toggleExpand = () => setIsExpanded((prev) => !prev);
 
@@ -30,26 +28,5 @@ export function usePostCard(postId: string) {
     // TODO: open native share sheet / copy link
   };
 
-  const handleReply = (commentId: string) => {
-    // TODO: focus composer, prefill "@author " mention for commentId
-  };
-
-  const submitComment = async () => {
-    if (!draftComment.trim()) return;
-    await postsService.addComment(postId, draftComment);
-    setDraftComment('');
-  };
-
-  return {
-    isExpanded,
-    toggleExpand,
-    isLiked,
-    toggleLike,
-    draftComment,
-    setDraftComment,
-    handleSave,
-    handleShare,
-    handleReply,
-    submitComment,
-  };
+  return { isExpanded, toggleExpand, isLiked, toggleLike, handleSave, handleShare };
 }
