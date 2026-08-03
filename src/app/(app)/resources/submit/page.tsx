@@ -1,4 +1,4 @@
-import { SubmitResourceShell } from '@/modules/resources';
+import { SubmitResourceShell } from '@/features/resources';
 
 export default function SubmitResourcePage() {
   return (

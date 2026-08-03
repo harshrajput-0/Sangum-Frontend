@@ -4,7 +4,7 @@ import {
   mockRules,
   mockTopTopics,
   mockAdmins,
-} from "@/modules/communities/community-about"
+} from "@/features/communities/community-about"
 
 export default function CommunityAboutPage() {
   // TODO: Replace with Express API integration — GET /api/communities/:slug/about

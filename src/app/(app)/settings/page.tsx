@@ -1,4 +1,4 @@
-import { SettingsPage } from "@/modules/testing/PlaveHolderPages";
+import { SettingsPage } from "@/features/testing/PlaveHolderPages";
 
 export default function Page() {
   return <SettingsPage />;

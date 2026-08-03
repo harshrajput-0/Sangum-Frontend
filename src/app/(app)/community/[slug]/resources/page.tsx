@@ -2,7 +2,7 @@ import {
   CommunityResourcesShell,
   resourceTypeOptions,
   mockResources,
-} from "@/modules/communities/community-resources";
+} from "@/features/communities/community-resources";
 
 export default function CommunityResourcesPage() {
   // TODO: Replace with Express API integration — GET /api/communities/:slug/resources

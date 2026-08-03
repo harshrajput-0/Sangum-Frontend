@@ -3,7 +3,7 @@ import {
   settingsSections,
   mockGeneralInfo,
   visibilityOptions,
-} from "@/modules/communities/community-settings";
+} from "@/features/communities/community-settings";
 
 export default function CommunitySettingsPage() {
   // TODO: Replace with Express API integration — GET /api/communities/:slug/settings

@@ -6,7 +6,7 @@ import {
   categoryOptions,
   whoCanJoinOptions,
   whoCanPostOptions,
-} from "@/modules/communities/community-create";
+} from "@/features/communities/community-create";
 
 export default function CreateCommunityPage() {
   const router = useRouter();

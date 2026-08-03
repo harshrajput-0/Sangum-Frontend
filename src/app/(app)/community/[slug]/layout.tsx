@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useParams } from "next/navigation";
-import { CommunityLayoutShell, mockCommunity, communityTabs } from "@/modules/communities/community";
+import { CommunityLayoutShell, mockCommunity, communityTabs } from "@/features/communities/community";
 
 export default function CommunityLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

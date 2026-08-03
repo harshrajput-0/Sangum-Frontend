@@ -1,4 +1,4 @@
-import { AboutPage } from "@/modules/pages/marketing/AboutPage";
+import { AboutPage } from "@/features/pages/marketing/AboutPage";
 
 export default function Page() {
   return <AboutPage />;

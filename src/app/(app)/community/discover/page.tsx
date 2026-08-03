@@ -6,7 +6,7 @@ import {
   categoryOptions,
   mockFeaturedCommunities,
   mockAllCommunities,
-} from "@/modules/communities/discover";
+} from "@/features/communities/discover";
 
 export default function DiscoverPage() {
   const router = useRouter();

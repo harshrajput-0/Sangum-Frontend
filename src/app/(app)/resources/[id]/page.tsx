@@ -1,4 +1,4 @@
-import { ResourceDetailShell } from '@/modules/resources';
+import { ResourceDetailShell } from '@/features/resources';
 
 interface ResourceDetailPageProps {
   params: { id: string };

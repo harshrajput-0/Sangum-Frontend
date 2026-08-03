@@ -1,4 +1,4 @@
-import { ResourceLibraryShell } from '@/modules/resources';
+import { ResourceLibraryShell } from '@/features/resources';
 
 export default function ResourcesPage() {
   return (

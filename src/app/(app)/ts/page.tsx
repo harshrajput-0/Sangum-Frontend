@@ -1,4 +1,4 @@
-import { TsPage } from "@/modules/testing/PlaveHolderPages";
+import { TsPage } from "@/features/testing/PlaveHolderPages";
 
 export default function Page() {
   return <TsPage />;

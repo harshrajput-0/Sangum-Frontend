@@ -1,4 +1,4 @@
-import { MessagesShell } from "@/modules/messages";
+import { MessagesShell } from "@/features/messages";
 
 export default function Page() {
   return <MessagesShell />;

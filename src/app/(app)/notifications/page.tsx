@@ -1,4 +1,4 @@
-import { NotificationsPage } from "@/modules/testing/PlaveHolderPages";
+import { NotificationsPage } from "@/features/testing/PlaveHolderPages";
 
 export default function Page() {
   return <NotificationsPage />;
