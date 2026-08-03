@@ -25,7 +25,7 @@ export function AuthorMetaRow({ resource }: AuthorMetaRowProps) {
       </div>
       <div className="flex gap-2">
         <SaveButton />
-        
+        <a
           href={resource.externalUrl}
           target="_blank"
           rel="noopener noreferrer"
