@@ -1,6 +1,6 @@
 export { TabNav } from './TabNav';
 export type { TabNavItem } from './TabNav';
-export { EmptyState } from './ui/EmptyState';
+export { EmptyState } from './EmptyState';
 
 
 

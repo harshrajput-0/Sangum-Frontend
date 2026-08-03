@@ -2,8 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
-import { TabNav } from '../shared/components/ui/TabNav';
-import { EmptyState } from '../shared/components/ui/EmptyState'
+import { TabNav, EmptyState } from '../shared/components/ui';
 import { SearchInput } from './components/SearchInput';
 import { SearchResultsHeading } from './components/SearchResultsHeading';
 import { SearchResultsSection } from './components/SearchResultsSection';

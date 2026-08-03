@@ -1,5 +1,5 @@
-import { NotificationsPage } from "@/features/testing/PlaveHolderPages";
+import { NotificationsShell } from '@/features/three-features/notifications';
 
-export default function Page() {
-  return <NotificationsPage />;
+export default function NotificationsPage() {
+  return <NotificationsShell />;
 }
