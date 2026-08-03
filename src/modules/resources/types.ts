@@ -8,8 +8,8 @@ export type AccentToken = 'primary' | 'warning' | 'info' | 'danger';
 
 export interface ResourceAuthor {
   name: string;
-  initials: string;
-  accent: AccentToken;
+  initials?: string; // derive via getInitials(name) if the backend doesn't send it
+  accent?: AccentToken; // derive via getAccentFromId(resource.id) if not sent
 }
 
 export interface Resource {
@@ -18,8 +18,8 @@ export interface Resource {
   type: ResourceType;
   author: ResourceAuthor;
   viewCount: number;
-  bannerLabel: string;
-  accent: AccentToken;
+  bannerLabel?: string; // derive via getBannerLabel(title) if not sent
+  accent?: AccentToken; // derive via getAccentFromId(id) if not sent
 }
 
 export const RESOURCE_TYPES: ResourceType[] = ['Article', 'Video', 'Course', 'Book', 'Tool', 'Paper'];

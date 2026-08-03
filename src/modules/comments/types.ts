@@ -7,8 +7,8 @@ export interface CommentBadge {
 
 export interface CommentAuthor {
   name: string;
-  initials: string;
-  accent: CommentAccent;
+  initials?: string; // derive via getInitials(name) if not sent
+  accent?: CommentAccent; // derive via getCommentAccent(name) if not sent
   isOwn: boolean;
   badge?: CommentBadge;
 }

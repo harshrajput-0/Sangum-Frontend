@@ -1,5 +1,6 @@
 'use client';
 
+import { getCommentAccent, getInitials } from '../lib/deriveCommentDisplay';
 import { useState } from 'react';
 import { Heart, Reply as ReplyIcon, Minus, Plus } from 'lucide-react';
 import { CommentAvatar } from './CommentAvatar';
@@ -20,24 +21,15 @@ interface CommentCardProps {
   onReport: (id: string) => void;
 }
 
-export function CommentCard({
-  comment,
-  avatarSize,
-  hasReplies,
-  isCollapsed,
-  onToggleCollapse,
-  onLike,
-  onReply,
-  onEdit,
-  onDelete,
-  onReport,
-}: CommentCardProps) {
+export function CommentCard({ comment, avatarSize, hasReplies, isCollapsed, onToggleCollapse, onLike, onReply, onEdit, onDelete, onReport }: CommentCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
+  const authorInitials = comment.author.initials ?? getInitials(comment.author.name);
+  const authorAccent = comment.author.accent ?? getCommentAccent(comment.author.name);
 
   return (
     <div className="flex gap-3">
-      <CommentAvatar initials={comment.author.initials} accent={comment.author.accent} size={avatarSize} />
+      <CommentAvatar initials={authorInitials} accent={authorAccent} size={avatarSize} />
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
@@ -63,8 +55,8 @@ export function CommentCard({
         {isEditing ? (
           <div className="mt-1.5">
             <CommentComposer
-              avatarInitials={comment.author.initials}
-              avatarAccent={comment.author.accent}
+              avatarInitials={authorInitials}
+              avatarAccent={authorAccent}
               placeholder="Edit your comment…"
               submitLabel="Save"
               initialValue={comment.text}
