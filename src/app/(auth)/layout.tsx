@@ -1,10 +1,6 @@
-import { ReactNode } from "react";
-import { AppLayout } from "@/layouts/AppLayout";
+import type { ReactNode } from "react";
+import { AuthLayout } from "@/features/auth";
 
-export default function Layout({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  return <AppLayout>{children}</AppLayout>;
+export default function AuthRouteLayout({ children }: { children: ReactNode }) {
+  return <AuthLayout>{children}</AuthLayout>;
 }

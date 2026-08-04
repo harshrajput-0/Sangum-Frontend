@@ -1,5 +1,10 @@
-import { LoginPage } from "@/features/auth/pages/LoginPage";
+import type { Metadata } from "next";
+import { LoginShell } from "@/features/auth";
 
-export default function Page() {
-  return <LoginPage />;
+export const metadata: Metadata = {
+  title: "Log in | Sangum",
+};
+
+export default function LoginPage() {
+  return <LoginShell />;
 }

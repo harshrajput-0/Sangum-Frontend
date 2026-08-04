@@ -294,3 +294,32 @@ body {
     display: none; /* Chrome/Safari */
   }
 }
+
+/* 
+============================================================
+BACKGROUND GRADIENT
+============================================================
+*/
+
+@utility bg-glow {
+  background:
+    radial-gradient(620px 460px at 15% 10%, color-mix(in srgb, var(--primary) 14%, transparent), transparent 65%),
+    radial-gradient(560px 420px at 100% 90%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 65%),
+    radial-gradient(500px 500px at 85% 5%, color-mix(in srgb, var(--info) 8%, transparent), transparent 70%);
+}
+
+@utility pulse-ring {
+  animation: auth-pulse-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes auth-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  75%,
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}

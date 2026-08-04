@@ -1,5 +1,10 @@
-import { RegisterPage } from "@/features/auths/pages/RegisterPage";
+import type { Metadata } from "next";
+import { RegisterShell } from "@/features/auth";
 
-export default function Page() {
-  return <RegisterPage />;
+export const metadata: Metadata = {
+  title: "Create your account | Sangum",
+};
+
+export default function RegisterPage() {
+  return <RegisterShell />;
 }
