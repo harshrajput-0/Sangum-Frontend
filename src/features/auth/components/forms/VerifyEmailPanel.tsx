@@ -34,14 +34,14 @@ export function VerifyEmailPanel({
         Check your <span className="text-primary-light">inbox</span>
       </h1>
       <p className="mb-2 text-sm text-text">We sent a verification link to</p>
-      <p className="mb-3 inline-block rounded-full border border-border bg-surface px-4 py-1.5 font-[family-name:var(--font-mono)] text-xs text-text">
+      <p className="mb-3 inline-block rounded-full border border-border bg-surface px-4 py-1.5 font-[family-name:var(--font-mono)] text-sm text-text">
         {email ?? "your email address"}
       </p>
-      <p className="mb-4 text-xs leading-relaxed text-text-muted">
+      <p className="mb-4 text-sm leading-relaxed text-text-muted">
         Open the email we sent and click the verification link to activate your account.
       </p>
 
-      <div className="mb-2 flex items-center justify-center gap-1.5 text-xs">
+      <div className="mb-2 flex items-center justify-center gap-1.5 text-sm">
         <span className="text-text-muted">Didn&apos;t receive it?</span>
         <button
           type="button"
@@ -61,9 +61,9 @@ export function VerifyEmailPanel({
         </button>
       </div>
 
-      {resendError && <p className="mb-2 text-[11px] text-danger">{resendError}</p>}
+      {resendError && <p className="mb-2 text-[13px] text-danger">{resendError}</p>}
 
-      <p className="mb-5 text-[11px] text-text-muted">
+      <p className="mb-5 text-[13px] text-text-muted">
         Wrong email?{" "}
         <Link
           href={AUTH_ROUTES.register}
@@ -73,7 +73,7 @@ export function VerifyEmailPanel({
         </Link>
       </p>
 
-      <p className="text-[11px] text-text-disabled">
+      <p className="text-xs text-text-disabled">
         Can&apos;t find the email? Check your spam or promotions folder.
       </p>
     </div>

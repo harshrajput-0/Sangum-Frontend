@@ -1,3 +1,5 @@
+'use client';
+
 // src/features/posts/components/create-post/CreatePostShell.tsx
 import { PostToCard } from './PostToCard';
 import { PostTypeSelector } from './PostTypeSelector';

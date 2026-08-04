@@ -1,3 +1,7 @@
+'use client';
+
+// src/features/posts/components/post-detail/PostDetailShell.tsx
+
 import { PostBreadcrumb } from './PostBreadcrumb';
 import { PostCard } from './PostCard';
 import { AuthorSidebarCard } from './AuthorSidebarCard';
