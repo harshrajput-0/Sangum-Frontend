@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { FileText, MessageSquare, Users } from "lucide-react";
-import { SegmentedControl } from "../primitive/SegmentedControl";
+import { SegmentedControl } from "../primitives/SegmentedControl";
 import { CONTENT_TABS } from "../../constants/profile.constants";
 import type { ContentTab } from "../../types/profile.types";
 

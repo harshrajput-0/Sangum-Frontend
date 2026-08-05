@@ -1,5 +1,5 @@
 import { Card, Input, Select } from "@/shared/components/ui";
-import { SegmentedControl } from "../primitive/SegmentedControl";
+import { SegmentedControl } from "../primitives/SegmentedControl";
 import {
   AVAILABILITY_OPTIONS,
   EXPERIENCE_LEVELS,
