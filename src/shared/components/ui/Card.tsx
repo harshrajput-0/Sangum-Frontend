@@ -1,25 +1,25 @@
-import React from "react";
+import type { HTMLAttributes } from "react";
 
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  hover?: boolean;
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  padded?: boolean;
 }
 
-export const Card: React.FC<CardProps> = ({
-  children,
+export function Card({
+  padded = true,
   className = "",
-  hover = true,
-}) => {
+  children,
+  ...rest
+}: CardProps) {
   return (
     <div
-      className={`
-        bg-surface border border-border rounded-xl p-6
-        ${hover ? "hover:border-primary/40 hover:bg-surface-hover transition-all duration-300" : ""}
-        ${className}
-      `}
+      className={[
+        "rounded-lg border border-border bg-surface shadow-xs",
+        padded ? "p-5" : "",
+        className,
+      ].join(" ")}
+      {...rest}
     >
       {children}
     </div>
   );
-};
+}

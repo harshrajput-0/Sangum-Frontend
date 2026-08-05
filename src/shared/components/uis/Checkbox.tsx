@@ -1,0 +1,32 @@
+// modules/auth/components/Checkbox.tsx
+
+import React from "react";
+import { CheckIcon } from "./icons/SangumIcons";
+import { cn } from "@/shared/utils/cn";
+
+export interface CheckboxProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  label: React.ReactNode;
+  required?: boolean;
+  className?: string;
+}
+
+/** Square checkbox + label. A real (visually-hidden) checkbox input backs the custom box, so keyboard/screen-reader behavior stays native. Used for "Remember me" and "I agree to the Terms". */
+export function Checkbox({ checked, onChange, label, required, className }: CheckboxProps) {
+  return (
+    <label className={cn("flex items-center gap-2 cursor-pointer select-none", className)}>
+      <input type="checkbox" checked={checked} required={required} onChange={(e) => onChange(e.target.checked)} className="sr-only peer" />
+      <span
+        aria-hidden="true"
+        className={cn(
+          "flex items-center justify-center w-[18px] h-[18px] rounded-[5px] border transition-colors duration-150 shrink-0 peer-focus-visible:ring-2 peer-focus-visible:ring-(--primary-light)",
+          checked ? "bg-primary border-primary" : "bg-(--input-bg) border-border-strong"
+        )}
+      >
+        {checked && <CheckIcon className="w-3 h-3 text-(--text-on-brand)" />}
+      </span>
+      <span className="text-(length:--fs-sm) text-text-secondary leading-snug">{label}</span>
+    </label>
+  );
+}

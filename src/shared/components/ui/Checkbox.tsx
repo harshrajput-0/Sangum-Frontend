@@ -1,32 +1,61 @@
-// modules/auth/components/Checkbox.tsx
-
-import React from "react";
-import { CheckIcon } from "./icons/SangumIcons";
-import { cn } from "@/shared/utils/cn";
+import type { KeyboardEvent, ReactNode } from "react";
 
 export interface CheckboxProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
-  label: React.ReactNode;
-  required?: boolean;
+  label?: ReactNode;
   className?: string;
 }
 
-/** Square checkbox + label. A real (visually-hidden) checkbox input backs the custom box, so keyboard/screen-reader behavior stays native. Used for "Remember me" and "I agree to the Terms". */
-export function Checkbox({ checked, onChange, label, required, className }: CheckboxProps) {
+export function Checkbox({
+  checked,
+  onChange,
+  label,
+  className = "",
+}: CheckboxProps) {
+  const toggle = () => onChange(!checked);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLLabelElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggle();
+    }
+  };
+
   return (
-    <label className={cn("flex items-center gap-2 cursor-pointer select-none", className)}>
-      <input type="checkbox" checked={checked} required={required} onChange={(e) => onChange(e.target.checked)} className="sr-only peer" />
+    <label
+      role="checkbox"
+      aria-checked={checked}
+      tabIndex={0}
+      onClick={toggle}
+      onKeyDown={handleKeyDown}
+      className={[
+        "inline-flex cursor-pointer select-none items-center gap-2",
+        className,
+      ].join(" ")}
+    >
       <span
         aria-hidden="true"
-        className={cn(
-          "flex items-center justify-center w-[18px] h-[18px] rounded-[5px] border transition-colors duration-150 shrink-0 peer-focus-visible:ring-2 peer-focus-visible:ring-(--primary-light)",
-          checked ? "bg-primary border-primary" : "bg-(--input-bg) border-border-strong"
-        )}
+        className={[
+          "flex h-5 w-5 shrink-0 items-center justify-center rounded-sm border transition-colors duration-150",
+          checked ? "border-primary bg-primary" : "border-border bg-transparent",
+        ].join(" ")}
       >
-        {checked && <CheckIcon className="w-3 h-3 text-(--text-on-brand)" />}
+        {checked && (
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={3}
+            className="text-text-on-primary"
+          >
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        )}
       </span>
-      <span className="text-(length:--fs-sm) text-text-secondary leading-snug">{label}</span>
+      {label && <span className="text-sm text-text">{label}</span>}
     </label>
   );
 }

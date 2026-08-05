@@ -1,69 +1,40 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes } from "react";
 
-export type BadgeColor =
+export type BadgeTone =
   | "primary"
   | "success"
   | "warning"
   | "danger"
   | "info"
   | "neutral";
-export type BadgeVariant = "solid" | "subtle" | "outline";
-export type BadgeSize = "xs" | "sm" | "md" | "lg";
 
-interface BadgeProps {
-  children: ReactNode;
-  color?: BadgeColor;
-  variant?: BadgeVariant;
-  className?: string;
-  size?: BadgeSize;
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
+  tone?: BadgeTone;
 }
 
-const SOLID: Record<BadgeColor, string> = {
-  primary: "bg-primary text-text-on-primary",
-  success: "bg-success text-white",
-  warning: "bg-warning text-white",
-  danger: "bg-danger text-white",
-  info: "bg-info text-white",
-  neutral: "bg-neutral text-white",
-};
-
-const SUBTLE: Record<BadgeColor, string> = {
-  primary: "bg-primary/15 text-primary-light",
+const TONE_CLASSES: Record<BadgeTone, string> = {
+  primary: "bg-primary/10 text-primary",
   success: "bg-success-bg text-success",
   warning: "bg-warning-bg text-warning",
   danger: "bg-danger-bg text-danger",
   info: "bg-info-bg text-info",
-  neutral: "border border-border bg-surface-hover text-text-muted",
+  neutral: "bg-neutral-bg text-neutral",
 };
-
-const SIZE: Record<BadgeSize, string> = {
-  xs: "px-1.5 py-0.5 text-[10px]",
-  sm: "px-2 py-0.5 text-xs",
-  md: "px-2.5 py-1 text-sm",
-  lg: "px-3 py-1.5 text-base",
-};
-
 
 export function Badge({
-  children,
-  color = "primary",
-  variant = "solid",
-   size = "sm",
+  tone = "neutral",
   className = "",
+  children,
+  ...rest
 }: BadgeProps) {
-
-  const sizeStyles = SIZE[size];
-
-  const styles =
-    variant === "solid"
-      ? SOLID[color]
-      : variant === "subtle"
-        ? SUBTLE[color]
-        : "border border-border-strong bg-transparent text-text-secondary";
-
   return (
     <span
-      className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full text-xs font-semibold leading-none ${sizeStyles} ${styles} ${className}`}
+      className={[
+        "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium",
+        TONE_CLASSES[tone],
+        className,
+      ].join(" ")}
+      {...rest}
     >
       {children}
     </span>
