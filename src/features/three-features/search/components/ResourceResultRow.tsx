@@ -11,7 +11,7 @@ export function ResourceResultRow({ title, communityName, fileType, avatarColor 
   return (
     <div className="flex gap-4 rounded-lg border border-border bg-surface p-5">
       <div
-        className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-md text-on-primary"
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md text-on-primary"
         style={{ background: avatarColor }}
       >
         <FileText className="h-5 w-5" strokeWidth={2} />

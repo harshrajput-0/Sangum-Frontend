@@ -21,7 +21,7 @@ export function CommunityResultRow({
     <div className="flex items-center justify-between rounded-lg border border-border bg-surface p-5">
       <div className="flex items-center gap-3">
         <div
-          className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-md text-md font-semibold text-on-primary"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md text-md font-semibold text-on-primary"
           style={{ background: avatarColor }}
         >
           {avatarInitials}
@@ -36,7 +36,7 @@ export function CommunityResultRow({
       <button
         type="button"
         onClick={onJoinToggle}
-        className="rounded-sm bg-primary px-3 py-[7px] text-xs font-semibold text-on-primary shadow-sm transition-colors hover:bg-primary-hover"
+        className="rounded-sm bg-primary px-3 py-1.75 text-xs font-semibold text-on-primary shadow-sm transition-colors hover:bg-primary-hover"
       >
         {isMember ? 'Joined' : 'Join'}
       </button>

@@ -19,7 +19,7 @@ export function PersonResultCard({
     <div className="flex items-center justify-between rounded-lg border border-border bg-surface p-5">
       <div className="flex items-center gap-2">
         <div
-          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-semibold text-on-primary"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold text-on-primary"
           style={{ background: avatarColor }}
         >
           {avatarInitials}
@@ -32,7 +32,7 @@ export function PersonResultCard({
       <button
         type="button"
         onClick={onFollowToggle}
-        className="rounded-sm border border-border-strong px-3 py-[7px] text-xs font-semibold text-text transition-colors hover:bg-surface-hover"
+        className="rounded-sm border border-border-strong px-3 py-1.75 text-xs font-semibold text-text transition-colors hover:bg-surface-hover"
       >
         {isFollowing ? 'Following' : 'Follow'}
       </button>

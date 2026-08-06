@@ -22,7 +22,7 @@ export function PostResultRow({
   return (
     <div className="flex gap-4 rounded-lg border border-border bg-surface p-5">
       <div
-        className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-md text-sm font-semibold text-on-primary"
+        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md text-sm font-semibold text-on-primary"
         style={{ background: avatarColor }}
       >
         {avatarInitials}

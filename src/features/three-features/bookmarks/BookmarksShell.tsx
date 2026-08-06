@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Bookmark } from 'lucide-react';
-import { TabNav, EmptyState } from '../shared/components/ui';
+import { TabNav, EmptyState } from '@/shared/components/ui';
 import { BookmarksHeader } from './components/BookmarksHeader';
 import { PostBookmarkCard } from './components/PostBookmarkCard';
 import { ResourceBookmarkCard } from './components/ResourceBookmarkCard';

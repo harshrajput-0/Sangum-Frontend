@@ -19,7 +19,7 @@ export function NotificationTypeBadge({ type }: NotificationTypeBadgeProps) {
 
   return (
     <span
-      className="absolute -bottom-[3px] -right-[3px] flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 border-surface"
+      className="absolute -bottom-0.75 -right-0.75 flex h-4.5 w-4.5 items-center justify-center rounded-full border-2 border-surface"
       style={{ background: bg, color: iconColor ?? '#fff' }}
     >
       <Icon className="h-2.5 w-2.5" strokeWidth={2.5} fill={type === 'like' ? 'currentColor' : 'none'} />

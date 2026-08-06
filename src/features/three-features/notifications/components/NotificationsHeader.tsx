@@ -7,7 +7,7 @@ interface NotificationsHeaderProps {
 
 export function NotificationsHeader({ onMarkAllRead, onFilterClick }: NotificationsHeaderProps) {
   return (
-    <div className="mb-[18px] flex items-center justify-between">
+    <div className="mb-4.5 flex items-center justify-between">
       <h1 className="text-2xl font-bold tracking-tight text-text">Notifications</h1>
       <div className="flex items-center gap-3">
         <button
@@ -20,7 +20,7 @@ export function NotificationsHeader({ onMarkAllRead, onFilterClick }: Notificati
         <button
           type="button"
           onClick={onFilterClick}
-          className="inline-flex items-center gap-2 rounded-md border border-border-strong px-3 py-[7px] text-xs font-semibold text-text transition-colors hover:bg-surface-hover"
+          className="inline-flex items-center gap-2 rounded-md border border-border-strong px-3 py-1.75 text-xs font-semibold text-text transition-colors hover:bg-surface-hover"
         >
           <Filter className="h-4 w-4" />
           Filter
