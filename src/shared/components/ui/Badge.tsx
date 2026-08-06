@@ -6,7 +6,8 @@ export type BadgeTone =
   | "warning"
   | "danger"
   | "info"
-  | "neutral";
+  | "neutral"
+  | "outline";
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   tone?: BadgeTone;
@@ -19,6 +20,10 @@ const TONE_CLASSES: Record<BadgeTone, string> = {
   danger: "bg-danger-bg text-danger",
   info: "bg-info-bg text-info",
   neutral: "bg-neutral-bg text-neutral",
+  // Bordered/no-fill look — used for "Author"-style pills on posts
+  // and comments, as opposed to role pills like "Moderator" which
+  // use a filled tone (success) instead.
+  outline: "border border-border-strong text-text-muted bg-transparent",
 };
 
 export function Badge({
