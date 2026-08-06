@@ -70,7 +70,7 @@ export default function LegalHub({
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:py-20">
       <div className="mb-10">
-  text-md      <span className="mb-3 block text-xs uppercase tracking-wide font-bold text-primary">
+       <span className="mb-3 block text-xs uppercase tracking-wide font-bold text-primary">
           {eyebrow}
         </span>
         <h1 className="mb-3 font-heading text-3xl font-bold text-text sm:text-4xl">
