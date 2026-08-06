@@ -1,4 +1,4 @@
-import type { BadgeTone } from '../../components/ui';
+import type { BadgeTone } from '@/shared/components/ui';
 
 /**
  * Loosely typed on purpose — the backend is still in development.

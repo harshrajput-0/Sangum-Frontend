@@ -1,4 +1,3 @@
-import type { Comment } from '../types/comment.types';
 
 /**
  * Pure, immutable helpers for manipulating a nested comment tree.
@@ -6,6 +5,7 @@ import type { Comment } from '../types/comment.types';
  * updates predictable and testable in isolation.
  */
 
+import type { Comment } from '../types/comment.types';
 
 function repliesOf(node: Comment): Comment[] {
   return node.replies ?? [];
