@@ -1,5 +1,5 @@
 import { Plus, X } from 'lucide-react';
-import { Input, Select } from '../../../../../shared/components/ui';
+import { Button, Input, Select } from '../../../../../shared/components/ui';
 
 export interface PollPanelProps {
   question: string;
@@ -52,10 +52,9 @@ export function PollPanel({
           ))}
         </div>
         {options.length < 6 && (
-          <button type="button" onClick={onAddOption} className="mt-2 flex items-center gap-1.5 text-xs font-medium text-primary-light hover:text-primary">
-            <Plus size={14} />
+          <Button variant="ghost" size="sm" iconLeft={<Plus size={14} />} onClick={onAddOption} className="mt-2 !px-0 !text-primary-light hover:!text-primary hover:!bg-transparent">
             Add option
-          </button>
+          </Button>
         )}
       </div>
 

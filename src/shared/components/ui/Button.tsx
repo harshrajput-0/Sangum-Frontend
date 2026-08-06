@@ -1,54 +1,74 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import Link from 'next/link';
 
-export type ButtonVariant = "primary" | "outline" | "danger" | "ghost";
-export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonVariant = 'primary' | 'outline' | 'danger' | 'ghost';
+export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  icon?: ReactNode;
   fullWidth?: boolean;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+  /** If set, renders as a Next.js Link styled like a button instead of a <button>. Covers the "Button that navigates" case without pulling in Radix Slot for a one-off. */
+  href?: string;
 }
 
-// Only `primary` and `accent` have dedicated -hover/-active tokens mapped in
-// global.css's @theme inline block. Other tones (danger/success/etc.) use
-// hover:opacity-90 instead of a nonexistent bg-danger-hover utility.
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  primary:
-    "bg-primary text-text-on-primary hover:bg-primary-hover active:bg-primary-active",
-  outline: "bg-transparent text-text border border-border hover:bg-surface-hover",
-  danger: "bg-danger text-white hover:opacity-90",
-  ghost: "bg-transparent text-text-secondary hover:bg-surface-hover hover:text-text",
+  primary: 'border border-transparent bg-primary text-text-on-primary hover:bg-primary-hover active:bg-primary-active',
+  outline: 'border border-border-strong bg-surface text-text hover:bg-surface-hover',
+  danger: 'border border-transparent bg-danger text-white hover:bg-danger-hover',
+  ghost: 'border border-transparent bg-transparent text-text-secondary hover:bg-surface-hover hover:text-text',
 };
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
-  sm: "text-sm px-3 py-1.5 gap-1.5",
-  md: "text-base px-3.5 py-2 gap-2",
-  lg: "text-md px-4 py-2.5 gap-2.5"
+  sm: 'px-3 py-1.5 text-sm gap-1.5',
+  md: 'px-4 py-2 text-sm gap-2',
+  lg: 'px-5 py-2.5 text-base gap-2',
 };
 
+const BASE_CLASSNAME =
+  'inline-flex items-center justify-center rounded-md font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50';
+
 export function Button({
-  variant = "primary",
-  size = "sm",
-  icon,
-  fullWidth,
-  className = "",
+  variant = 'primary',
+  size = 'sm',
+  fullWidth = false,
+  iconLeft,
+  iconRight,
+  href,
+  type = 'button',
+  className = '',
   children,
   ...rest
 }: ButtonProps) {
-  return (
-    <button
-      className={[
-        "inline-flex items-center justify-center rounded-md font-medium transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed",
-        VARIANT_CLASSES[variant],
-        SIZE_CLASSES[size],
-        fullWidth ? "w-full" : "",
-        className,
-      ].join(" ")}
-      {...rest}
-    >
-      {icon}
+  const classes = [
+    BASE_CLASSNAME,
+    VARIANT_CLASSES[variant],
+    SIZE_CLASSES[size],
+    fullWidth ? 'w-full' : '',
+    className,
+  ].join(' ');
+
+  const content = (
+    <>
+      {iconLeft && <span className="shrink-0">{iconLeft}</span>}
       {children}
+      {iconRight && <span className="shrink-0">{iconRight}</span>}
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className={classes}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button type={type} className={classes} {...rest}>
+      {content}
     </button>
   );
 }

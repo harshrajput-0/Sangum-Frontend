@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { MoreVertical, Bookmark, Link2, Flag, Check, UserMinus, Plus } from 'lucide-react';
-import { IconButton } from '../../../../shared/components/ui';
+import { Button, IconButton } from '../../../../shared/components/ui';
 import { useTransientState } from '../../../../shared/hooks/useTransientState';
 import { ReportModalOverlay, type UseReportModalReturn } from '../../../../shared/report';
 
@@ -37,14 +37,15 @@ export function PostFollowControl({ isFollowed, isSaved, onToggleFollow, onToggl
   return (
     <div className="ml-auto flex shrink-0 items-center gap-2">
       {!isFollowed && (
-        <button
-          type="button"
+        <Button
+          variant="outline"
+          size="sm"
+          iconLeft={<Plus size={12} strokeWidth={2.5} />}
           onClick={onToggleFollow}
-          className="flex items-center gap-1 rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary-light hover:bg-primary/10"
+          className="rounded-full !border-primary !text-primary-light hover:!bg-primary/10"
         >
-          <Plus size={12} strokeWidth={2.5} />
           Follow
-        </button>
+        </Button>
       )}
 
       <div className="relative">
