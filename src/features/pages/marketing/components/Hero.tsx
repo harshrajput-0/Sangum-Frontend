@@ -124,7 +124,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center bg-(--dbg) justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center bg-dbg justify-center overflow-hidden">
       {/* Faint ambient glow — purple to cyan, left to right */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -150,13 +150,13 @@ export const Hero: React.FC = () => {
 
       <div className="relative max-w-4xl mx-auto px-6 py-24 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 mb-8 px-3.5 py-1.5 rounded-full border border-(--dborder) bg-(--dsurface) text-sm text-(--dtext-secondary)">
+        <div className="inline-flex items-center gap-2 mb-8 px-3.5 py-1.5 rounded-full border border-dborder bg-dsurface text-sm text-dtext-secondary">
           <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           <span>Active development · Join the waitlist</span>
         </div>
 
         {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-(--dtext) leading-[1.08] tracking-tight mb-8">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-dtext leading-[1.08] tracking-tight mb-8">
           Where Communities{" "}
           <span
             className="relative inline-block pb-2"
@@ -173,11 +173,11 @@ export const Hero: React.FC = () => {
         </h1>
 
         {/* Description */}
-        <p className="max-w-xl mx-auto text-lg text-(--dtext-secondary) leading-relaxed mb-10">
+        <p className="max-w-xl mx-auto text-lg text-dtext-secondary leading-relaxed mb-10">
           Sangam is a modern platform for communities, conversations,
           collaboration, and knowledge sharing.
           <br />
-          <span className="text-(--dtext-muted) text-base">
+          <span className="text-dtext-muted text-base">
             Currently in active development.
           </span>
         </p>
@@ -185,8 +185,8 @@ export const Hero: React.FC = () => {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
           <Button size="lg">Join Early Access</Button>
-          <Button variant="outline" size="lg" className="border-(--dborder)">
-            <span className="flex items-center gap-2 text-(--dtext)">
+          <Button variant="outline" size="lg" className="border-dborder">
+            <span className="flex items-center gap-2 text-dtext">
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -219,8 +219,8 @@ export const Hero: React.FC = () => {
               className="
                 flex-1 w-full sm:w-auto
                 px-4 py-2.5 rounded-lg text-sm
-                bg-(--dsurface) border border-(--dborder)
-                text-(--dtext) placeholder:text-(--dtext-muted)
+                bg-dsurface border border-dborder
+                text-dtext placeholder:text-dtext-muted
                 focus:outline-none focus:border-primary
                 transition-colors
               "
@@ -230,7 +230,7 @@ export const Hero: React.FC = () => {
             </Button>
           </form>
         ) : (
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-(--dsurface) border border-accent/40 text-accent text-sm">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-dsurface border border-accent/40 text-accent text-sm">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
@@ -238,13 +238,13 @@ export const Hero: React.FC = () => {
           </div>
         )}
 
-        <p className="mt-3 text-xs text-(--dtext-muted)">
+        <p className="mt-3 text-xs text-dtext-muted">
           No spam, we promise. Unsubscribe anytime.
         </p>
 
         {/* Social links */}
         <div className="mt-12 flex items-center justify-center gap-6">
-          <span className="text-xs text-(--dtext-muted) uppercase tracking-widest">Follow our progress</span>
+          <span className="text-xs text-dtext-muted uppercase tracking-widest">Follow our progress</span>
           <div className="flex items-center gap-3">
             {[
               {
@@ -270,7 +270,7 @@ export const Hero: React.FC = () => {
                 key={label}
                 href="#"
                 aria-label={label}
-                className="w-8 h-8 flex items-center justify-center rounded-lg border border-(--dborder) text-(--dtext-muted) hover:text-(--dtext) hover:border-primary/50 transition-all"
+                className="w-8 h-8 flex items-center justify-center rounded-lg border border-dborder text-dtext-muted hover:text-dtext hover:border-primary/50 transition-all"
               >
                 <svg
                   className="w-4 h-4"

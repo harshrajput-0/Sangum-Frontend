@@ -135,7 +135,7 @@ function Reveal({
     return (
         <div
             ref={ref}
-            className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[18px]'
+            className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4.5'
                 } ${className}`}
         >
             {children}
@@ -352,7 +352,7 @@ function NetworkCanvas() {
 function SiteBackdrop() {
     return (
         <div
-            className="fixed inset-0 z-0 overflow-hidden bg-[#0b0f14] pointer-events-none"
+            className="fixed inset-0 z-0 overflow-hidden bg-dbg pointer-events-none"
             aria-hidden="true"
         >
             <div
@@ -392,17 +392,17 @@ function FaqRow({
     onToggle: () => void;
 }) {
     return (
-        <div className="border-b border-[#313d4d] first:border-t first:border-t-[#313d4d]">
+        <div className="border-b border-dborder first:border-t first:border-t-dborder">
             <button
                 type="button"
                 onClick={onToggle}
                 aria-expanded={isOpen}
-                className="flex w-full cursor-pointer items-center justify-between gap-4 border-none bg-transparent px-[2px] py-[18px] text-left text-[15px] font-semibold text-[#f8fafc]"
+                className="flex w-full cursor-pointer items-center justify-between gap-4 border-none bg-transparent px-0.5 py-4.5 text-left text-md font-semibold text-dtext"
                 style={{ fontFamily: FONT_HEADING }}
             >
                 <span>{item.question}</span>
                 <ChevronDown
-                    className={`h-[18px] w-[18px] flex-none transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-180 text-[#39BFBF]' : 'text-[#94a3b8]'
+                    className={`h-4.5 w-4.5 flex-none transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-180 text-[#39BFBF]' : 'text-dtext-muted'
                         }`}
                 />
             </button>
@@ -411,7 +411,7 @@ function FaqRow({
                 style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
             >
                 <div className="overflow-hidden">
-                    <div className="px-[2px] pb-[18px] text-sm leading-[1.65] text-[#94a3b8]">
+                    <div className="px-0.5 pb-4.5 text-sm leading-[1.65] text-dtext-muted">
                         {item.answer}
                     </div>
                 </div>
@@ -431,14 +431,14 @@ export default function FaqPage() {
 
     return (
         <div
-            className="min-h-screen bg-[#0b0f14] text-[#f8fafc] antialiased"
+            className="min-h-screen bg-dbg text-dtext antialiased"
             style={{ fontFamily: FONT_SANS }}
         >
             <SiteBackdrop />
 
             <section className="relative z-10 py-16">
-                <div className="mx-auto max-w-[680px] px-6">
-                    <Reveal className="mx-auto mb-10 max-w-[620px] text-center">
+                <div className="mx-auto max-w-170 px-6">
+                    <Reveal className="mx-auto mb-10 max-w-155 text-center">
                         <div className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-[#39BFBF]">
                             Need to know
                         </div>
@@ -448,7 +448,7 @@ export default function FaqPage() {
                         >
                             Frequently asked questions
                         </h2>
-                        <p className="text-base leading-[1.6] text-[#94a3b8]">
+                        <p className="text-base leading-[1.6] text-dtext-muted">
                             Everything you might want to know before joining. Can&apos;t find your answer?{' '}
                             <a href="#" className="text-[#8b7dff] no-underline hover:text-[#39BFBF]">
                                 Reach out to us
