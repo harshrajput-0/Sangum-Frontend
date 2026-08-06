@@ -1,12 +1,5 @@
 import type { Comment } from '../types/comment.types';
 
-/**
- * Pure, immutable helpers for manipulating a nested comment tree.
- * No React, no side effects — used by useComments to keep state
- * updates predictable and testable in isolation.
- */
-
-
 function repliesOf(node: Comment): Comment[] {
   return node.replies ?? [];
 }

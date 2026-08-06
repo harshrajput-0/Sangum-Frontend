@@ -24,25 +24,35 @@ export interface CommentNodeProps {
 
 export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggleLike, onReport }: CommentNodeProps) {
   const currentUser = useCurrentUser();
-  const isOwn = comment.author.name === currentUser.name;
-  const hasReplies = comment.replies.length > 0;
+
+  // comment.author/replies/etc. are optional now (loose backend
+  // types) — resolve fallbacks once, up front, rather than repeating
+  // `?? ...` through the JSX below.
+  const author = comment.author ?? {};
+  const authorName = author.name ?? 'Unknown';
+  const authorInitials = author.initials ?? '?';
+  const authorColor = author.color ?? 'bg-neutral';
+  const replies = comment.replies ?? [];
+
+  const isOwn = authorName === currentUser.name;
+  const hasReplies = replies.length > 0;
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const reply = useCommentComposer({ composerId: `reply-${comment.id}`, onSubmit: (text) => onReply(comment.id, text) });
-  const edit = useInlineEditField(comment.text, (text) => onEdit(comment.id, text));
+  const edit = useInlineEditField(comment.text ?? '', (text) => onEdit(comment.id, text));
 
   return (
     <div className="comment-node">
       <div className="flex gap-3">
         <div className="flex shrink-0 flex-col items-center">
-          <Avatar initials={comment.author.initials} color={comment.author.color} size={depth > 0 ? 'sm' : 'md'} />
+          <Avatar initials={authorInitials} color={authorColor} size={depth > 0 ? 'sm' : 'md'} />
           {hasReplies && !isCollapsed && <div className="mt-1.5 w-[1.5px] flex-1 bg-border-strong opacity-60" />}
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-sm font-semibold text-text">{comment.author.name}</span>
-            {comment.author.badge && <Badge tone={comment.author.badge.tone}>{comment.author.badge.label}</Badge>}
-            <span className="text-xs text-text-muted">{comment.time}</span>
+            <span className="text-sm font-semibold text-text">{authorName}</span>
+            {author.badge && <Badge tone={author.badge.tone}>{author.badge.label}</Badge>}
+            <span className="text-xs text-text-muted">{comment.time ?? ''}</span>
             <CommentMenu
               isOwn={isOwn}
               onEdit={edit.startEditing}
@@ -54,11 +64,11 @@ export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggl
           {edit.isEditing ? (
             <CommentEditForm value={edit.value} onChange={edit.setValue} onSave={edit.save} onCancel={edit.cancel} />
           ) : (
-            <p className="mb-0 mt-1.5 text-sm text-text-secondary">{comment.text}</p>
+            <p className="mb-0 mt-1.5 text-sm text-text-secondary">{comment.text ?? ''}</p>
           )}
 
           <CommentActionsRow
-            likes={comment.likes}
+            likes={comment.likes ?? 0}
             likedByCurrentUser={!!comment.likedByCurrentUser}
             onToggleLike={() => onToggleLike(comment.id, !comment.likedByCurrentUser)}
             onToggleReply={reply.toggle}
@@ -67,7 +77,7 @@ export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggl
           {hasReplies && (
             <button type="button" onClick={() => setIsCollapsed((v) => !v)} className="mt-2 block text-xs text-text-muted hover:text-text hover:underline">
               {isCollapsed
-                ? `${comment.replies.length} repl${comment.replies.length === 1 ? 'y' : 'ies'} hidden — click to expand`
+                ? `${replies.length} repl${replies.length === 1 ? 'y' : 'ies'} hidden — click to expand`
                 : 'Hide replies'}
             </button>
           )}
@@ -93,7 +103,7 @@ export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggl
           {hasReplies && !isCollapsed && (
             <div className="mt-4 space-y-4">
               <CommentList
-                comments={comment.replies}
+                comments={replies}
                 depth={depth + 1}
                 onReply={onReply}
                 onEdit={onEdit}

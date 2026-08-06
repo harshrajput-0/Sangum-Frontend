@@ -4,7 +4,7 @@ import * as commentsService from '../services/comments.service';
 import { commentTextSchema } from '../validation/comment.schema';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
 import { useCommentComposer } from './useCommentComposer';
-import { countTopLevel, insertTopLevel, insertReply, removeNode, updateNodeText, toggleNodeLike } from '../lib/commentTree';
+import { normalizeComment, countTopLevel, insertTopLevel, insertReply, removeNode, updateNodeText, toggleNodeLike } from '../lib/commentTree';
 
 export interface UseCommentsOptions {
   postId: string; // TODO(api): generalize to a full CommentTarget once non-post entities need comments
@@ -31,7 +31,7 @@ export function useComments({ postId, onCommentCountChange }: UseCommentsOptions
     setIsLoading(true);
     try {
       const result = await commentsService.getComments(target);
-      setComments(result);
+      setComments(result.map(normalizeComment));
       setHasLoaded(true);
     } finally {
       setIsLoading(false);
