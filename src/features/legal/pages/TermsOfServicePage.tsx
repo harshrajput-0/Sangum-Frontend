@@ -1,50 +1,5 @@
-import ArticleLayout, { type ArticleData } from "./components/ArticleLayout";
-
-const InfoBox = ({ children }: { children: React.ReactNode }) => (
-  <div className="mb-4 flex items-start gap-2.5 rounded-md border border-info/25 bg-info/5 p-3.5">
-    <svg
-      width="15"
-      height="15"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      className="mt-0.5 shrink-0 text-info"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 16v-4M12 8h.01" />
-    </svg>
-    <p className="text-sm leading-relaxed text-text-secondary">{children}</p>
-  </div>
-);
-
-const WarningBox = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex items-start gap-2.5 rounded-md border border-warning/25 bg-warning/5 p-3.5">
-    <svg
-      width="15"
-      height="15"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentCoDue to unexpected capacity constraints, Claude is unable to respond to your message. Please try again soon. For higher limits, lor"
-      strokeWidth="2"
-      className="mt-0.5 shrink-0 text-warning"
-    >
-      <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-      <path d="M12 9v4M12 17h.01" />
-    </svg>
-    <p className="text-sm leading-relaxed text-text-secondary">{children}</p>
-  </div>
-);
-
-const P = ({ className = "", children }: { className?: string; children: React.ReactNode }) => (
-  <p className={`text-md leading-relaxed text-text-secondary ${className}`}>{children}</p>
-);
-
-const H3 = ({ id, children }: { id: string; children: React.ReactNode }) => (
-  <h3 id={id} className="mb-2 text-base font-semibold text-text">
-    {children}
-  </h3>
-);
+import ArticleLayout, { type ArticleData } from "../components/ArticleLayout";
+import { InfoBox, WarningBox, P, H3 } from "../components/LegalContent";
 
 const termsOfServiceData: ArticleData = {
   eyebrow: "Legal",
@@ -236,6 +191,6 @@ const termsOfServiceData: ArticleData = {
 };
 
 /** Route: /legal/terms-of-service — just wires the article data into the layout. */
-export default function TermsOfServicePage() {
+export function TermsOfServicePage() {
   return <ArticleLayout data={termsOfServiceData} />;
 }
