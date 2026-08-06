@@ -1,4 +1,4 @@
-import type { SearchResults } from './types';
+import type { SearchResults } from './types/types';
 
 // TODO: Replace with Express API integration — GET /api/search?q=&type=
 export const mockSearchResults: SearchResults = {

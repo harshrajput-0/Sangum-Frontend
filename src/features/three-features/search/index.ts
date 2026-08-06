@@ -8,4 +8,4 @@ export type {
   SearchCommunityResult,
   SearchResourceResult,
   SearchTagResult,
-} from './types';
+} from './types/types';

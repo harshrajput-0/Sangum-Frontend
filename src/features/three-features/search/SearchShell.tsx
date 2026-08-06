@@ -12,7 +12,7 @@ import { CommunityResultRow } from './components/CommunityResultRow';
 import { ResourceResultRow } from './components/ResourceResultRow';
 import { TagChip } from './components/TagChip';
 import { mockSearchResults } from './mock';
-import type { SearchTab } from './types';
+import type { SearchTab } from './types/types';
 
 interface SearchShellProps {
   initialQuery?: string;
