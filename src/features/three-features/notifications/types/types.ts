@@ -2,7 +2,7 @@ export type NotificationType = 'mention' | 'post' | 'reply' | 'resource' | 'like
 export type NotificationFilter = 'all' | 'unread' | 'mention' | 'reply' | 'follow';
 export type NotificationGroup = 'today' | 'yesterday';
 
-export interface NotificationItem {
+export interface NotificationItems {
   id: string;
   type: NotificationType;
   actorName: string;
@@ -14,3 +14,5 @@ export interface NotificationItem {
   group: NotificationGroup;
   isRead: boolean;
 }
+
+

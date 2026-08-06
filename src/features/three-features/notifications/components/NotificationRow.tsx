@@ -1,5 +1,5 @@
 import { NotificationTypeBadge } from './NotificationTypeBadge';
-import type { NotificationType } from '../types';
+import type { NotificationType } from '../types/types';
 
 interface NotificationRowProps {
   type: NotificationType;

@@ -1,5 +1,5 @@
 import { AtSign, FileText, Reply, BookOpen, Heart, UserPlus, type LucideIcon } from 'lucide-react';
-import type { NotificationType } from '../types';
+import type { NotificationType } from '../types/types';
 
 const TYPE_CONFIG: Record<NotificationType, { icon: LucideIcon; bg: string; iconColor?: string }> = {
   mention: { icon: AtSign, bg: 'var(--primary)' },

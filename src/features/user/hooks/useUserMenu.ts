@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useClickOutside } from "./useClickOutside";
+import { useClickOutside } from "../../../shared/hooks/useClickOutside";
 
 interface UseUserMenuOptions {
   onProfileClick: () => void;

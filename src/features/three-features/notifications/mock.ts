@@ -1,4 +1,4 @@
-import type { NotificationItem } from './types';
+import type { NotificationItem } from './types/types';
 
 // TODO: Replace with Express API integration — GET /api/notifications
 export const mockNotifications: NotificationItem[] = [

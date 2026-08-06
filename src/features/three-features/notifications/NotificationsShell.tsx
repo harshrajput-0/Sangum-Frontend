@@ -2,11 +2,11 @@
 
 import { useMemo, useState } from 'react';
 import { Bell } from 'lucide-react';
-import { TabNav, EmptyState } from '../shared/components/ui';
+import { TabNav, EmptyState } from '@/shared/components/ui';
 import { NotificationsHeader } from './components/NotificationsHeader';
 import { NotificationRow } from './components/NotificationRow';
 import { mockNotifications } from './mock';
-import type { NotificationFilter, NotificationGroup } from './types';
+import type { NotificationFilter, NotificationGroup } from './types/types';
 
 const GROUP_ORDER: NotificationGroup[] = ['today', 'yesterday'];
 const GROUP_LABELS: Record<NotificationGroup, string> = { today: 'Today', yesterday: 'Yesterday' };
@@ -64,7 +64,7 @@ export function NotificationsShell() {
 
           return (
             <div key={group}>
-              <span className="mb-1 mt-[18px] block text-xs text-text-muted first:mt-0">
+              <span className="mb-1 mt-4.5 block text-xs text-text-muted first:mt-0">
                 {GROUP_LABELS[group]}
               </span>
               {groupNotifications.map((n) => (
@@ -89,7 +89,7 @@ export function NotificationsShell() {
       <div className="flex justify-center p-5">
         <button
           type="button"
-          className="rounded-sm border border-border-strong px-3 py-[7px] text-xs font-semibold text-text transition-colors hover:bg-surface-hover"
+          className="rounded-sm border border-border-strong px-3 py-1.75 text-xs font-semibold text-text transition-colors hover:bg-surface-hover"
         >
           Load more
         </button>
