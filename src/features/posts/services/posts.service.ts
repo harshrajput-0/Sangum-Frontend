@@ -226,7 +226,3 @@ export async function votePoll(postId: string, optionIndex: number): Promise<{ p
   return Promise.resolve(result);
 }
 
-// TODO(api): POST /api/posts/:postId/report
-export async function reportPost(_postId: string): Promise<void> {
-  return Promise.resolve();
-}
