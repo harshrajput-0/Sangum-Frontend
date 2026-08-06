@@ -1,4 +1,6 @@
-import { Github, Globe, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Globe } from "lucide-react";
+import { GitHub, LinkedIn, X, YouTube } from "@/shared/components/icons";
+
 import { Card } from "@/shared/components/ui";
 import { PlatformLinkRow } from "./PlatformLinkRow";
 import type { EditProfileFormData } from "../../types/profile.types";
@@ -24,28 +26,28 @@ export function LinksSocialsSection({ links, onLinkChange }: LinksSocialsSection
           onChange={(value) => onLinkChange("website", value)}
         />
         <PlatformLinkRow
-          icon={<Github size={16} />}
+          icon={<GitHub size={16} />}
           label="GitHub"
           placeholder="https://github.com/username"
           value={links.github ?? ""}
           onChange={(value) => onLinkChange("github", value)}
         />
         <PlatformLinkRow
-          icon={<Twitter size={16} />}
+          icon={<X size={16} />}
           label="Twitter / X"
           placeholder="https://x.com/username"
           value={links.twitter ?? ""}
           onChange={(value) => onLinkChange("twitter", value)}
         />
         <PlatformLinkRow
-          icon={<Linkedin size={16} />}
+          icon={<LinkedIn size={16} />}
           label="LinkedIn"
           placeholder="https://linkedin.com/in/username"
           value={links.linkedin ?? ""}
           onChange={(value) => onLinkChange("linkedin", value)}
         />
         <PlatformLinkRow
-          icon={<Youtube size={16} />}
+          icon={<YouTube size={16} />}
           label="YouTube"
           placeholder="https://youtube.com/@username"
           value={links.youtube ?? ""}

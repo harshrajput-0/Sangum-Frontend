@@ -1,73 +1,105 @@
-import { Card, Input, Textarea } from "@/shared/components/ui";
-import type { EditProfileFormData, FieldErrors } from "../../types/profile.types";
+"use client";
 
-export interface BasicInformationSectionProps {
-  fields: EditProfileFormData;
-  errors: FieldErrors<EditProfileFormData>;
-  bioCounterLabel: string;
-  onFieldChange: <K extends keyof EditProfileFormData>(
-    field: K,
-    value: EditProfileFormData[K],
-  ) => void;
+import { useAccountInfoForm } from "../../hooks/settings/useAccountInfoForm";
+import { useChangeEmailForm } from "../../hooks/settings/useChangeEmailForm";
+import { useChangePasswordForm } from "../../hooks/settings/useChangePasswordForm";
+import { useConnectedAccounts } from "../../hooks/settings/useConnectedAccounts";
+import { useDeactivateAccount } from "../../hooks/settings/useDeactivateAccount";
+import { useDisplaySettings } from "../../hooks/settings/useDisplaySettings";
+import { usePrivacySettings } from "../../hooks/settings/usePrivacySettings";
+import { useSecuritySettings } from "../../hooks/settings/useSecuritySettings";
+import { useSessions } from "../../hooks/settings/useSessions";
+// Reuses the overview view's data hook — same feature, different view.
+import { useProfileData } from "../../hooks/overview/useProfileData";
+
+import { ActiveSessionsSection } from "./ActiveSessionsSection";
+import { ChangeEmailSection } from "./ChangeEmailSection";
+import { ChangePasswordSection } from "./ChangePasswordSection";
+import { ConnectedAccountsSection } from "./ConnectedAccountsSection";
+import { DeactivateAccountSection } from "./DeactivateAccountSection";
+import { DisplayPreferencesSection } from "./DisplayPreferencesSection";
+import { LoginAlertsSection } from "./LoginAlertsSection";
+import { MessagingSection } from "./MessagingSection";
+import { OnlineStatusSection } from "./OnlineStatusSection";
+import { ProfileInformationSection } from "./ProfileInformationSection";
+import { ProfileVisibilitySection } from "./ProfileVisibilitySection";
+import { TwoFactorSection } from "./TwoFactorSection";
+import type { ProfileData } from "../../types/profile.types";
+
+export interface AccountSettingsShellProps {
+  username: string;
 }
 
-export function BasicInformationSection({
-  fields,
-  errors,
-  bioCounterLabel,
-  onFieldChange,
-}: BasicInformationSectionProps) {
+export function AccountSettingsShell({ username }: AccountSettingsShellProps) {
+  const { profile, isLoading, error } = useProfileData(username);
+
+  if (isLoading || !profile) {
+    return <p className="text-sm text-text-muted">Loading settings…</p>;
+  }
+  if (error) {
+    return <p className="text-sm text-danger">{error}</p>;
+  }
+
+  return <AccountSettingsBody profile={profile} />;
+}
+
+// Split out for the same rules-of-hooks reason as EditProfileShell.
+function AccountSettingsBody({ profile }: { profile: ProfileData }) {
+  const accountInfoForm = useAccountInfoForm(profile);
+  const display = useDisplaySettings();
+  const security = useSecuritySettings();
+  const sessions = useSessions();
+  const privacy = usePrivacySettings();
+  // TODO: pass the real current email once it's sourced from the auth/session layer.
+  const changeEmailForm = useChangeEmailForm("");
+  const changePasswordForm = useChangePasswordForm();
+  const connectedAccounts = useConnectedAccounts();
+  const deactivateForm = useDeactivateAccount();
+
   return (
-    <Card>
-      <h2 className="text-sm font-semibold text-text">Basic Information</h2>
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Input
-          id="edit-full-name"
-          label="Full Name"
-          value={fields.fullName}
-          error={errors.fullName}
-          onChange={(e) => onFieldChange("fullName", e.target.value)}
-        />
-        <Input
-          id="edit-email"
-          label="Email"
-          type="email"
-          value={fields.email}
-          error={errors.email}
-          onChange={(e) => onFieldChange("email", e.target.value)}
-        />
-        <Input
-          id="edit-username"
-          label="Username"
-          value={fields.username}
-          error={errors.username}
-          onChange={(e) => onFieldChange("username", e.target.value)}
-        />
-        <Input
-          id="edit-location"
-          label="Location"
-          value={fields.location}
-          error={errors.location}
-          onChange={(e) => onFieldChange("location", e.target.value)}
-        />
-        <Input
-          id="edit-headline"
-          label="Headline"
-          value={fields.headline}
-          error={errors.headline}
-          containerClassName="sm:col-span-2"
-          onChange={(e) => onFieldChange("headline", e.target.value)}
-        />
-        <Textarea
-          id="edit-bio"
-          label="Bio"
-          value={fields.bio}
-          error={errors.bio}
-          counterLabel={bioCounterLabel}
-          containerClassName="sm:col-span-2"
-          onChange={(e) => onFieldChange("bio", e.target.value)}
-        />
-      </div>
-    </Card>
+    <div className="flex flex-col gap-4 pb-4">
+      <ProfileInformationSection form={accountInfoForm} />
+      <DisplayPreferencesSection theme={display.theme} onThemeChange={display.setTheme} />
+
+      <TwoFactorSection
+        enabled={security.twoFactorEnabled}
+        isLoading={security.isLoading}
+        onToggle={security.toggleTwoFactor}
+      />
+      <ActiveSessionsSection
+        sessions={sessions.sessions}
+        isLoading={sessions.isLoading}
+        signingOutId={sessions.signingOutId}
+        onSignOut={sessions.signOut}
+      />
+      <LoginAlertsSection
+        enabled={security.loginAlertsEnabled}
+        isLoading={security.isLoading}
+        onToggle={security.toggleLoginAlerts}
+      />
+
+      <ProfileVisibilitySection
+        visibility={privacy.visibility}
+        onChange={privacy.setVisibility}
+      />
+      <MessagingSection messaging={privacy.messaging} onChange={privacy.setMessaging} />
+      <OnlineStatusSection
+        showOnlineStatus={privacy.showOnlineStatus}
+        searchIndexing={privacy.searchIndexing}
+        onToggleOnlineStatus={privacy.setShowOnlineStatus}
+        onToggleSearchIndexing={privacy.setSearchIndexing}
+      />
+
+      <ChangeEmailSection form={changeEmailForm} />
+      <ChangePasswordSection form={changePasswordForm} />
+      <ConnectedAccountsSection
+        providers={connectedAccounts.providers}
+        isLoading={connectedAccounts.isLoading}
+        connectingId={connectedAccounts.connectingId}
+        onConnect={connectedAccounts.connect}
+      />
+
+      <DeactivateAccountSection form={deactivateForm} />
+    </div>
   );
 }

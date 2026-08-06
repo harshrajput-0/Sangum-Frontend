@@ -28,6 +28,7 @@ export interface SocialLinks {
   website?: string;
   github?: string;
   twitter?: string;
+  x?: string;
   linkedin?: string;
   youtube?: string;
 }

@@ -15,7 +15,7 @@ export interface ProfileActionAreaProps {
   connectionStatus: ConnectionStatus;
   isMenuOpen: boolean;
   isBusy: boolean;
-  menuRef: RefObject<HTMLDivElement>;
+  menuRef: RefObject<HTMLDivElement | null>;
   onToggleMenu: () => void;
   onConnect: () => void;
   onCancelRequest: () => void;

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { Github, Globe, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Globe } from "lucide-react";
+import { GitHub, LinkedIn, X, YouTube } from "@/shared/components/icons";
 import {
   ICON_BUTTON_BASE_CLASSNAME,
   ICON_BUTTON_SIZE_CLASSES,
@@ -18,10 +19,10 @@ interface LinkConfig {
 }
 
 const LINK_CONFIG: LinkConfig[] = [
-  { key: "github", label: "GitHub", icon: <Github size={16} /> },
-  { key: "twitter", label: "Twitter / X", icon: <Twitter size={16} /> },
-  { key: "linkedin", label: "LinkedIn", icon: <Linkedin size={16} /> },
-  { key: "youtube", label: "YouTube", icon: <Youtube size={16} /> },
+  { key: "github", label: "GitHub", icon: <GitHub size={16} /> },
+  { key: "x", label: "X / X", icon: <X size={16} /> },
+  { key: "linkedin", label: "LinkedIn", icon: <LinkedIn size={16} /> },
+  { key: "youtube", label: "YouTube", icon: <YouTube size={16} /> },
   { key: "website", label: "Website", icon: <Globe size={16} /> },
 ];
 

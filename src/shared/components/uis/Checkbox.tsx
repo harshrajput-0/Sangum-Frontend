@@ -1,7 +1,7 @@
 // modules/auth/components/Checkbox.tsx
 
 import React from "react";
-import { CheckIcon } from "./icons/SangumIcons";
+import { CheckIcon } from "../ui/icons/SangumIcons";
 import { cn } from "@/shared/utils/cn";
 
 export interface CheckboxProps {
