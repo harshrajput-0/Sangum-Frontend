@@ -46,5 +46,3 @@ export async function toggleCommentLike(
   return { likedByCurrentUser: nextLikedState };
 }
 
-// TODO(api): POST /api/comments/:commentId/report
-export async function reportComment(_target: CommentTarget, _commentId: string): Promise<void> {}

@@ -15,7 +15,6 @@ export interface CommentsSectionProps {
   onEdit: (commentId: string, text: string) => void;
   onDelete: (commentId: string, isTopLevel: boolean) => void;
   onToggleLike: (commentId: string, nextLikedState: boolean) => void;
-  onReport: (commentId: string) => void;
 }
 
 /**
@@ -36,7 +35,6 @@ export function CommentsSection({
   onEdit,
   onDelete,
   onToggleLike,
-  onReport,
 }: CommentsSectionProps) {
   if (!isOpen) return null;
 
@@ -56,7 +54,7 @@ export function CommentsSection({
         <p className="text-sm text-text-muted">Loading comments…</p>
       ) : (
         <div className={`space-y-4 ${comments.length > 0 ? 'border-t border-border pt-4' : ''}`}>
-          <CommentList comments={comments} depth={0} onReply={onReply} onEdit={onEdit} onDelete={onDelete} onToggleLike={onToggleLike} onReport={onReport} />
+          <CommentList comments={comments} depth={0} onReply={onReply} onEdit={onEdit} onDelete={onDelete} onToggleLike={onToggleLike} />
         </div>
       )}
     </div>

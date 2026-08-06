@@ -111,9 +111,6 @@ export function useComments({ postId, onCommentCountChange }: UseCommentsOptions
     [target]
   );
 
-  const reportComment = useCallback(async (commentId: string) => {
-    await commentsService.reportComment(target, commentId);
-  }, [target]);
 
   const composer = useCommentComposer({ composerId: `composer-${postId}`, onSubmit: addComment });
 
@@ -146,6 +143,5 @@ export function useComments({ postId, onCommentCountChange }: UseCommentsOptions
     editComment,
     deleteComment,
     toggleLike,
-    reportComment,
   } as const;
 }

@@ -42,7 +42,7 @@ export function PostCard({ post, variant = 'feed' }: PostCardProps) {
               onToggleFollow={card.onToggleFollow}
               onToggleBookmark={card.onToggleBookmark}
               onCopyLink={card.onCopyLink}
-              onReport={card.onReport}
+              report={card.report}
             />
           ) : null
         }
@@ -80,7 +80,6 @@ export function PostCard({ post, variant = 'feed' }: PostCardProps) {
         onEdit={card.comments.editComment}
         onDelete={card.comments.deleteComment}
         onToggleLike={card.comments.toggleLike}
-        onReport={card.comments.reportComment}
       />
     </div>
   );

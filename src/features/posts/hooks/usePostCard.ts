@@ -6,6 +6,7 @@ import * as postsService from '../services/posts.service';
 import * as shareService from '../services/share.service';
 import { useCurrentUser } from '../../../shared/hooks/useCurrentUser';
 import { useComments } from '../../../shared/comments';
+import { useReportModal } from '../../../shared/report';
 
 export type PostCardVariant = 'feed' | 'profile';
 
@@ -13,15 +14,14 @@ export interface UsePostCardOptions {
   variant?: PostCardVariant;
 }
 
+
 /**
- * Per-card orchestration: like/save/follow/poll-vote/delete/share and
- * the comments-open toggle. `variant` controls which controls render
- * — matches the mock's exact behavior (own posts get NO controls on
- * Feed; edit/delete only appears in a profile context) generalized
- * slightly further: a Follow control now also appears for other
- * users' posts on a *visited* profile, not just on Feed, since
- * UserPostsSection can show anyone's posts, not only the viewer's own
- * (the mock never had to handle that case).
+ * Per-card orchestration: like/save/follow/poll-vote/delete/share,
+ * the comments-open toggle, and now the Report modal. `variant`
+ * controls which controls render — matches the mock's exact behavior
+ * (own posts get NO controls on Feed; edit/delete only appears in a
+ * profile context), generalized slightly further for a Follow control
+ * on visited profiles too (see PostFollowControl).
  */
 export function usePostCard(post: Post, { variant = 'feed' }: UsePostCardOptions = {}) {
   const currentUser = useCurrentUser();
@@ -37,6 +37,10 @@ export function usePostCard(post: Post, { variant = 'feed' }: UsePostCardOptions
     postId: post.id,
     onCommentCountChange: (delta) => patchPost(post.id, { commentCount: (post.commentCount ?? 0) + delta }),
   });
+
+
+  // Reporting 
+const report = useReportModal({ entityType: 'post', entityId: post.id });
 
   const onToggleLike = useCallback(async () => {
     const next = !post.likedByCurrentUser;
@@ -60,7 +64,7 @@ export function usePostCard(post: Post, { variant = 'feed' }: UsePostCardOptions
   }, [post.id, post.followedByCurrentUser, patchPost]);
 
   // No guard against re-voting — matches pollVote() in the mock,
-  // which supports changing or retracting a vote (see the service fix above).
+  // which supports changing or retracting a vote.
   const onVote = useCallback(
     async (optionIndex: number) => {
       const result = await postsService.votePoll(post.id, optionIndex);
@@ -92,8 +96,6 @@ export function usePostCard(post: Post, { variant = 'feed' }: UsePostCardOptions
 
   const onCopyLink = useCallback(() => shareService.copyPostLink(buildPostUrl()), [buildPostUrl]);
 
-  const onReport = useCallback(() => postsService.reportPost(post.id), [post.id]);
-
   return {
     isOwnPost,
     showOwnMenu,
@@ -110,7 +112,7 @@ export function usePostCard(post: Post, { variant = 'feed' }: UsePostCardOptions
     onDelete,
     onShare,
     onCopyLink,
-    onReport,
+    report,
     comments,
   } as const;
 }

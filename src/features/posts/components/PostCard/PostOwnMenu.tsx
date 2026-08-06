@@ -18,14 +18,14 @@ export function PostOwnMenu({ onEdit, onDelete }: PostOwnMenuProps) {
           <button
             type="button"
             onClick={() => { onEdit(); setIsOpen(false); }}
-            className="flex items-center gap-2 rounded-sm px-2.5 py-1.5 text-left text-xs font-medium text-text-secondary hover:bg-surface-hover hover:text-text"
+            className="flex w-full items-center gap-2 rounded-sm px-2.5 py-1.5 text-left text-xs font-medium text-text-secondary hover:bg-surface-hover hover:text-text"
           >
             <Pencil size={13} /> Edit
           </button>
           <button
             type="button"
             onClick={() => { onDelete(); setIsOpen(false); }}
-            className="flex items-center gap-2 rounded-sm px-2.5 py-1.5 text-left text-xs font-medium text-danger hover:bg-danger/10"
+            className="flex w-full items-center gap-2 rounded-sm px-2.5 py-1.5 text-left text-xs font-medium text-danger hover:bg-danger/10"
           >
             <Trash2 size={13} /> Delete
           </button>

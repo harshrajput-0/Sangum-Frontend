@@ -11,6 +11,7 @@ import { CommentList } from './CommentList';
 import { useCommentComposer } from '../hooks/useCommentComposer';
 import { useInlineEditField } from '../hooks/useInlineEditField';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { useReportModal } from '../../report';
 
 export interface CommentNodeProps {
   comment: Comment;
@@ -19,15 +20,11 @@ export interface CommentNodeProps {
   onEdit: (commentId: string, text: string) => void;
   onDelete: (commentId: string, isTopLevel: boolean) => void;
   onToggleLike: (commentId: string, nextLikedState: boolean) => void;
-  onReport: (commentId: string) => void;
 }
 
-export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggleLike, onReport }: CommentNodeProps) {
+export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggleLike }: CommentNodeProps) {
   const currentUser = useCurrentUser();
 
-  // comment.author/replies/etc. are optional now (loose backend
-  // types) — resolve fallbacks once, up front, rather than repeating
-  // `?? ...` through the JSX below.
   const author = comment.author ?? {};
   const authorName = author.name ?? 'Unknown';
   const authorInitials = author.initials ?? '?';
@@ -40,6 +37,7 @@ export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggl
 
   const reply = useCommentComposer({ composerId: `reply-${comment.id}`, onSubmit: (text) => onReply(comment.id, text) });
   const edit = useInlineEditField(comment.text ?? '', (text) => onEdit(comment.id, text));
+  const report = useReportModal({ entityType: 'comment', entityId: comment.id });
 
   return (
     <div className="comment-node">
@@ -57,7 +55,7 @@ export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggl
               isOwn={isOwn}
               onEdit={edit.startEditing}
               onDelete={() => onDelete(comment.id, depth === 0)}
-              onReport={() => onReport(comment.id)}
+              report={report}
             />
           </div>
 
@@ -109,7 +107,6 @@ export function CommentNode({ comment, depth, onReply, onEdit, onDelete, onToggl
                 onEdit={onEdit}
                 onDelete={onDelete}
                 onToggleLike={onToggleLike}
-                onReport={onReport}
               />
             </div>
           )}

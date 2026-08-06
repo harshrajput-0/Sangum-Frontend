@@ -8,10 +8,9 @@ export interface CommentListProps {
   onEdit: (commentId: string, text: string) => void;
   onDelete: (commentId: string, isTopLevel: boolean) => void;
   onToggleLike: (commentId: string, nextLikedState: boolean) => void;
-  onReport: (commentId: string) => void;
 }
 
-export function CommentList({ comments, depth, onReply, onEdit, onDelete, onToggleLike, onReport }: CommentListProps) {
+export function CommentList({ comments, depth, onReply, onEdit, onDelete, onToggleLike }: CommentListProps) {
   return (
     <>
       {comments.map((comment) => (
@@ -23,7 +22,6 @@ export function CommentList({ comments, depth, onReply, onEdit, onDelete, onTogg
           onEdit={onEdit}
           onDelete={onDelete}
           onToggleLike={onToggleLike}
-          onReport={onReport}
         />
       ))}
     </>
