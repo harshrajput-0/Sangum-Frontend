@@ -1,5 +1,106 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../../../../shared/components/ui/Button";
+
+/**
+ * Animated wave-grid canvas — sits behind the glow/blobs.
+ * Client-only (canvas + rAF), respects prefers-reduced-motion.
+ */
+const WaveGridBackground: React.FC<{ className?: string }> = ({
+  className,
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const parent = canvas?.parentElement;
+    if (!canvas || !parent) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const SPACING = 42;
+    const COLOR = "109,93,254"; // primary as rgb
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    let w = 0;
+    let h = 0;
+    let dpr = 1;
+    let frameId = 0;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = parent!.clientWidth;
+      h = parent!.clientHeight;
+      canvas!.width = w * dpr;
+      canvas!.height = h * dpr;
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function waveOffset(x: number, y: number, time: number) {
+      const cx = w / 2;
+      const cy = h / 2;
+      const dist = Math.hypot(x - cx, y - cy);
+      return Math.sin(dist * 0.012 - time * 0.0018) * 6;
+    }
+
+    function draw(time: number) {
+      ctx!.clearRect(0, 0, w, h);
+      ctx!.lineWidth = 1;
+
+      for (let y = 0; y <= h + SPACING; y += SPACING) {
+        ctx!.beginPath();
+        for (let x = 0; x <= w; x += 12) {
+          const py = y + waveOffset(x, y, time);
+          if (x === 0) ctx!.moveTo(x, py);
+          else ctx!.lineTo(x, py);
+        }
+        const alpha = 0.1 + 0.05 * Math.sin(y * 0.02 + time * 0.001);
+        ctx!.strokeStyle = `rgba(${COLOR},${Math.max(0.03, alpha)})`;
+        ctx!.stroke();
+      }
+      for (let x = 0; x <= w + SPACING; x += SPACING) {
+        ctx!.beginPath();
+        for (let y = 0; y <= h; y += 12) {
+          const px = x + waveOffset(x, y, time);
+          if (y === 0) ctx!.moveTo(px, y);
+          else ctx!.lineTo(px, y);
+        }
+        const alpha = 0.1 + 0.05 * Math.cos(x * 0.02 + time * 0.001);
+        ctx!.strokeStyle = `rgba(${COLOR},${Math.max(0.03, alpha)})`;
+        ctx!.stroke();
+      }
+    }
+
+    function step(time: number) {
+      draw(time);
+      frameId = requestAnimationFrame(step);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    if (!reduceMotion) {
+      frameId = requestAnimationFrame(step);
+    } else {
+      draw(0);
+    }
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={className ?? "absolute inset-0 h-full w-full opacity-60"}
+    />
+  );
+};
 
 export const Hero: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -8,27 +109,44 @@ export const Hero: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email.trim()) {
+      // TODO: wire this up to your actual email/waitlist service.
+      // e.g. call an API route:
+      //   await fetch("/api/waitlist", {
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify({ email }),
+      //   });
+      // or a provider SDK (Resend, Mailchimp, ConvertKit, etc.).
+      // Handle the error case (toast/inline message) before flipping
+      // `submitted` to true — right now this optimistically succeeds.
       setSubmitted(true);
     }
   };
 
   return (
     <section className="relative min-h-screen flex items-center bg-(--dbg) justify-center overflow-hidden">
+      {/* Faint ambient glow — purple to cyan, left to right */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(90deg, var(--primary), var(--accent))",
+          opacity: 0.14,
+          filter: "blur(90px)",
+          maskImage:
+            "radial-gradient(ellipse 70% 55% at 50% 45%, black 0%, transparent 72%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 70% 55% at 50% 45%, black 0%, transparent 72%)",
+        }}
+      />
+
+      {/* Animated wave-grid background */}
+      <WaveGridBackground className="absolute inset-0 h-full w-full opacity-60 pointer-events-none" />
+
       {/* Background glow blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-150 h-120 bg-primary/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 left-1/4 w-75 h-75 bg-accent/8 rounded-full blur-[100px]" />
       </div>
-
-      {/* Subtle grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(var(--dtext) 1px, transparent 1px), linear-gradient(90deg, var(--dtext) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
 
       <div className="relative max-w-4xl mx-auto px-6 py-24 text-center">
         {/* Badge */}
@@ -38,17 +156,17 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-[var(--dtext)] leading-[1.08] tracking-tight mb-8">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-(--dtext) leading-[1.08] tracking-tight mb-8">
           Where Communities{" "}
           <span
             className="relative inline-block pb-2"
-  style={{
-    background: "linear-gradient(135deg, var(--primary), var(--accent))",
-    WebkitBackgroundClip: "text",
-    backgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    color: "transparent",
-  }}
+            style={{
+              background: "linear-gradient(135deg, var(--primary), var(--accent))",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+            }}
           >
             Come Together.
           </span>
@@ -67,7 +185,7 @@ export const Hero: React.FC = () => {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
           <Button size="lg">Join Early Access</Button>
-          <Button variant="doutline" size="lg" className="border[var(--dborder)]">
+          <Button variant="outline" size="lg" className="border-(--dborder)">
             <span className="flex items-center gap-2 text-(--dtext)">
               <svg
                 className="w-4 h-4"
@@ -112,7 +230,7 @@ export const Hero: React.FC = () => {
             </Button>
           </form>
         ) : (
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--dsurface) border border-accent/40 text-accent text-sm">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-(--dsurface) border border-accent/40 text-accent text-sm">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
