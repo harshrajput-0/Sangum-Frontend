@@ -53,11 +53,11 @@ export function useCreatePostForm({ mode, editingPostId, onDone }: UseCreatePost
   }, []);
 
   const addPollOption = useCallback(() => {
-    setValues((v) => ({ ...v, pollOptions: [...v.pollOptions, ''] }));
+    setValues((v) => (v.pollOptions.length >= 6 ? v : { ...v, pollOptions: [...v.pollOptions, ''] }));
   }, []);
 
   const removePollOption = useCallback((index: number) => {
-    setValues((v) => ({ ...v, pollOptions: v.pollOptions.filter((_, i) => i !== index) }));
+    setValues((v) => (v.pollOptions.length <= 2 ? v : { ...v, pollOptions: v.pollOptions.filter((_, i) => i !== index) }))
   }, []);
 
   const reset = useCallback(() => {
