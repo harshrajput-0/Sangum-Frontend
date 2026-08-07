@@ -1,151 +1,89 @@
-"use client";
+'use client';
 
-import type { ReactNode } from "react";
-import { usePageTitle } from "@/shared/hooks/usePageTitle";
+import { useEffect, useState } from 'react';
 
+export function AboutPage() {
+  const [revealed, setRevealed] = useState(false);
 
-interface MissionItem {
-  title: string;
-  description: string;
-  iconBg: string;
-  iconColor: string;
-  icon: ReactNode;
-}
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setRevealed(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
-const missionItems: MissionItem[] = [
-  {
-    title: "Community First",
-    description:
-      "We believe in the power of community and collaboration to solve meaningful problems.",
-    iconBg: "rgba(109,93,254,0.15)",
-    iconColor: "var(--primary-light)",
-    icon: <path d="M17 20h5v-2a4 4 0 00-3-3.87" />,
-  },
-  {
-    title: "Knowledge Sharing",
-    description:
-      "We make knowledge accessible so everyone can learn, grow, and share their skills.",
-    iconBg: "rgba(20,216,196,0.15)",
-    iconColor: "var(--accent)",
-    icon: <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />,
-  },
-  {
-    title: "Open & Inclusive",
-    description: "Everyone is welcome here. We celebrate diversity and support inclusivity.",
-    iconBg: "rgba(59,130,246,0.15)",
-    iconColor: "var(--info)",
-    icon: <circle cx="12" cy="12" r="10" />,
-  },
-];
+  const reveal = (delayMs: number): React.HTMLAttributes<HTMLElement> => ({
+    className: `transition-all duration-700 ease-out ${
+      revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+    }`,
+    style: { transitionDelay: `${delayMs}ms` },
+  });
 
-const stats: { value: string; label: string }[] = [
-  { value: "12,543+", label: "Developers" },
-  { value: "342+", label: "Communities" },
-  { value: "2,784+", label: "Resources" },
-  { value: "98.7%", label: "Happy Members" },
-];
-
-export const AboutPage = () => {
-  usePageTitle("About Us — Sangum");
   return (
-    <div className="w-full">
-      {/* Hero */}
-      <section className="mx-auto max-w-[1280px] px-4 pt-[70px] pb-[50px] text-text bg-bg text-center md:px-6">
-        <span className="mb-3 block text-(length:--fs-xs) font-bold uppercase tracking-[0.08em] text-primary">
-          About Sangum
+    <div className="max-w-150 mx-auto px-6 py-10 pb-8 mb-14">
+      <p
+        {...reveal(0)}
+        className={`${reveal(0).className} text-xs uppercase tracking-wider font-semibold text-text-disabled mb-6`}
+      >
+        About
+      </p>
+
+      <p
+        {...reveal(0)}
+        className={`${reveal(0).className} font-heading text-2xl sm:text-3xl font-semibold text-text mb-8 leading-snug`}
+      >
+        Hi — I&apos;m the person building Sangum.
+      </p>
+
+      <p
+        {...reveal(75)}
+        className={`${reveal(75).className} font-heading text-lg leading-relaxed text-text-secondary mb-5`}
+      >
+        Most &quot;community&quot; apps end up feeling like broadcast channels in a
+        friendlier coat of paint. Feeds you scroll past, not places you
+        actually show up to.
+      </p>
+
+      <p
+        {...reveal(150)}
+        className={`${reveal(150).className} font-heading text-lg leading-relaxed text-text-secondary mb-5`}
+      >
+        I wanted something different, so instead of waiting for someone to
+        build it, <strong className="text-text font-semibold">I started building it myself.</strong>
+      </p>
+
+      <div {...reveal(200)} className={`${reveal(200).className} w-8 h-px bg-border-strong my-8`} />
+
+      <p
+        {...reveal(250)}
+        className={`${reveal(250).className} font-heading text-lg leading-relaxed text-text-secondary mb-5`}
+      >
+        Sangum isn&apos;t a startup. There&apos;s no funding, no team, no
+        growth targets to hit. It&apos;s just one person, working on it
+        steadily, in the open.
+      </p>
+
+      <p
+        {...reveal(325)}
+        className={`${reveal(325).className} font-heading text-lg leading-relaxed text-text-secondary mb-5`}
+      >
+        Right now, accounts and sign-in are live. Communities, posts, chat,
+        and notifications are being built next — piece by piece, not all at
+        once.
+      </p>
+
+      <p
+        {...reveal(400)}
+        className={`${reveal(400).className} font-heading text-lg leading-relaxed text-text-secondary mb-5`}
+      >
+        It&apos;s not finished, and that&apos;s on purpose. It&apos;s built
+        one working piece at a time, out in the open.
+      </p>
+
+      <div {...reveal(475)} className={`${reveal(475).className} font-heading text-base text-text mt-10`}>
+        Thanks for reading.
+        <span className="block text-sm text-text-muted mt-1 font-sans">
+          — built solo, still growing
         </span>
-        <h1 className="mx-auto mb-4 max-w-[600px] text-[28px] font-bold leading-tight tracking-[-0.02em] md:text-[38px]">
-          Building the future of developer communities
-        </h1>
-        <p className="mx-auto max-w-[520px] text-(length:--fs-base)] text-text-secondary">
-          Sangum is a platform designed to connect developers, share knowledge, and build better
-          together.
-        </p>
-      </section>
-
-      {/* Mission */}
-      <section className="mx-auto mb-[50px] max-w-[1280px] px-4 md:px-6">
-        <h2 className="mb-6 text-center text-(length:--fs-xl)] font-semibold text-text">
-          Our mission
-        </h2>
-        <p className="mx-auto mb-[30px] max-w-[600px] text-center text-(length:--fs-base)] text-text-secondary">
-          To empower developers by fostering inclusive communities, providing quality resources,
-          and enabling meaningful collaboration.
-        </p>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {missionItems.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-lg border border-border bg-surface p-5 text-center"
-            >
-              <div
-                className="mx-auto mb-2.5 flex h-9 w-9 items-center justify-center rounded-md"
-                style={{ background: item.iconBg, color: item.iconColor }}
-              >
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  {item.icon}
-                </svg>
-              </div>
-              <span className="mb-1.5 block text-(length:--fs-lg)] font-semibold text-text">
-                {item.title}
-              </span>
-              <p className="text-(length:--fs-xs)] text-text-muted">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Story */}
-      <section className="mx-auto mb-[50px] max-w-[1280px] px-4 md:px-6">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-[1.4fr_1fr]">
-          <div>
-            <h2 className="mb-3.5 text-(length:--fs-xl)] font-semibold text-text">
-              Our story
-            </h2>
-            <p className="mb-3.5 text-(length:--fs-base)] text-text-secondary">
-              Sangum was founded by developers, for developers. We noticed a gap in platforms
-              that truly focus on developer communities and real knowledge sharing without the
-              noise.
-            </p>
-            <p className="text-(length:--fs-base) text-text-secondary">
-              So we built Sangum — a place where developers can connect, learn, and grow
-              together. From a small idea to a growing global community, we&apos;re just getting
-              started.
-            </p>
-          </div>
-          <div
-            className="h-[200px] rounded-radius-lg"
-            style={{ background: "var(--brand-gradient-cover)" }}
-          />
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="mx-auto mb-[60px] max-w-[1280px] px-4 md:px-6">
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <span className="block text-(length:--fs-2xl)] font-bold tracking-[-0.01em] text-text">
-                {stat.value}
-              </span>
-              <div className="text-(length:--fs-xs)] text-text-muted">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      </div>
     </div>
   );
 }

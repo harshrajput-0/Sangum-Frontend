@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -23,7 +24,6 @@ export const PublicHeader = () => {
 
   // close the mobile menu automatically on route change
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMenuOpen(false);
   }, [pathname]);
 
@@ -63,7 +63,7 @@ export const PublicHeader = () => {
         </Link>
 
         {/* Nav links — desktop */}
-        <div className="hidden md:flex items-center gap-8 text-sm text-text-secondary justify-center">
+        <div className="hidden md:flex items-center gap-1 text-sm text-text-secondary justify-center">
           {navItems.map(({ href, label }) => {
             const active = pathname === href;
             return (
@@ -71,14 +71,21 @@ export const PublicHeader = () => {
                 key={href}
                 href={href}
                 className={cn(
-                  "relative py-1 text-text-secondary transition-colors duration-200 hover:text-text",
-                  "after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:rounded-full",
-                  "after:origin-left after:scale-x-0 after:bg-white",
-                  "after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100",
-                  active && "text-text after:scale-x-100"
+                  "group relative px-4 py-2 rounded-full text-text-secondary transition-colors duration-200",
+                  "hover:text-text",
+                  active && "text-text"
                 )}
               >
-                {label}
+                {/* animated background pill — scales/fades in behind the label */}
+                <span
+                  className={cn(
+                    "absolute inset-0 rounded-full bg-white/10 transition-all duration-200 ease-out",
+                    active
+                      ? "scale-100 opacity-100"
+                      : "scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100"
+                  )}
+                />
+                <span className="relative">{label}</span>
               </Link>
             );
           })}
@@ -89,11 +96,11 @@ export const PublicHeader = () => {
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-2 text-text-secondary">
-            <Button variant="outline" size="sm">
+            <Button asChild variant="outline" size="sm">
               <Link href="/login">Login</Link>
             </Button>
 
-            <Button size="sm">
+            <Button asChild size="sm">
               <Link href="/register">Register</Link>
             </Button>
           </div>
@@ -181,12 +188,13 @@ export const PublicHeader = () => {
                   transform: isMenuOpen ? "translateY(0)" : "translateY(-6px)",
                 }}
               >
-                <Button variant="outline" size="lg">
+                <Button asChild variant="outline" size="lg">
                   <Link href="/login" onClick={() => setIsMenuOpen(false)}>
                     Login
                   </Link>
                 </Button>
-                <Button  variant="primary" size="lg">
+
+                <Button asChild variant="primary" size="lg">
                   <Link href="/register" onClick={() => setIsMenuOpen(false)}>
                     Register
                   </Link>
