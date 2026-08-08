@@ -26,8 +26,8 @@ export const PublicFooter = () => {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-dborder bg-[#070a0d] w-full">
-      <div className="mx-auhref p-8">
+    <footer className="border-t border-dborder bg-bg w-ful flex justify-center">
+      <div className="mx-auhref p-8 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10">
           {/* Logo + tagline */}
           <div>

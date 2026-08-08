@@ -44,8 +44,8 @@ const FEATURES: Feature[] = [
 
 export default function WhatItsForSection() {
   return (
-    <section id="features" className="border-t border-[#313d4d] bg-[#0b0f14] py-16">
-      <div className="mx-auto max-w-[1040px] px-6">
+    <section id="features" className="border-t border-dborder py-16">
+      <div className="mx-auto max-w-260 px-6">
         <SectionHeading
           eyebrow="What it's for"
           title="Everything a community actually needs"

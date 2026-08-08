@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { PublicHeader } from "@/shared/components/navigation/PublicHeader";
 import { PublicFooter } from "@/shared/components/navigation/PublicFooter";
+import { GlowDriftBackground } from "@/shared/animations/GlowDriftBackground";
 
 interface PublicLayoutProps {
   children: ReactNode;
@@ -8,12 +9,14 @@ interface PublicLayoutProps {
 
 export function PublicLayout({ children }: PublicLayoutProps) {
   return (
-    <div>
+<GlowDriftBackground>
+
       <PublicHeader />
 
       <main>{children}</main>
 
       <PublicFooter />
-    </div>
+</GlowDriftBackground>
+
   );
 }

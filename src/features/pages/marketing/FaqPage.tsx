@@ -147,236 +147,236 @@ function Reveal({
 /* Ambient background: fixed grid + animated node network + fade       */
 /* ------------------------------------------------------------------ */
 
-function NetworkCanvas() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+// function NetworkCanvas() {
+//     const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+//     useEffect(() => {
+//         const canvas = canvasRef.current;
+//         if (!canvas) return;
+//         const ctx = canvas.getContext('2d');
+//         if (!ctx) return;
 
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+//         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        type Node = {
-            x: number;
-            y: number;
-            tx: number;
-            ty: number;
-            vx: number;
-            vy: number;
-            r: number;
-            color: string;
-            born: number;
-            spawned: boolean;
-            settleSpeed: number;
-            isOrigin?: boolean;
-        };
+//         type Node = {
+//             x: number;
+//             y: number;
+//             tx: number;
+//             ty: number;
+//             vx: number;
+//             vy: number;
+//             r: number;
+//             color: string;
+//             born: number;
+//             spawned: boolean;
+//             settleSpeed: number;
+//             isOrigin?: boolean;
+//         };
 
-        let w = 0;
-        let h = 0;
-        let dpr = 1;
-        let t = 0;
-        let raf = 0;
-        let nodes: Node[] = [];
+//         let w = 0;
+//         let h = 0;
+//         let dpr = 1;
+//         let t = 0;
+//         let raf = 0;
+//         let nodes: Node[] = [];
 
-        const MAX_NODES = 46;
-        const COLORS = ['#6d5dfe', '#4f8cff', '#39BFBF'];
+//         const MAX_NODES = 46;
+//         const COLORS = ['#6d5dfe', '#4f8cff', '#39BFBF'];
 
-        function resize() {
-            dpr = Math.min(window.devicePixelRatio || 1, 2);
-            w = window.innerWidth;
-            h = window.innerHeight;
-            canvas!.width = w * dpr;
-            canvas!.height = h * dpr;
-            ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-        }
+//         function resize() {
+//             dpr = Math.min(window.devicePixelRatio || 1, 2);
+//             w = window.innerWidth;
+//             h = window.innerHeight;
+//             canvas!.width = w * dpr;
+//             canvas!.height = h * dpr;
+//             ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+//         }
 
-        // function resize() {
-        //   dpr = Math.min(window.devicePixelRatio || 1, 2);
-        //   w = canvas!.clientWidth = window.innerWidth;
-        //   h = canvas!.clientHeight = window.innerHeight;
-        //   canvas!.width = w * dpr;
-        //   canvas!.height = h * dpr;
-        //   ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-        // }
+//         // function resize() {
+//         //   dpr = Math.min(window.devicePixelRatio || 1, 2);
+//         //   w = canvas!.clientWidth = window.innerWidth;
+//         //   h = canvas!.clientHeight = window.innerHeight;
+//         //   canvas!.width = w * dpr;
+//         //   canvas!.height = h * dpr;
+//         //   ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+//         // }
 
-        function makeNode(delay: number): Node {
-            const cx = w / 2;
-            const cy = h * 0.42;
-            const angle = Math.random() * Math.PI * 2;
-            const dist = 60 + Math.random() * Math.min(w, h) * 0.48;
-            return {
-                x: cx + Math.cos(angle) * dist * 0.15,
-                y: cy + Math.sin(angle) * dist * 0.15,
-                tx: cx + Math.cos(angle) * dist,
-                ty: cy + Math.sin(angle) * dist,
-                vx: (Math.random() - 0.5) * 0.15,
-                vy: (Math.random() - 0.5) * 0.15,
-                r: 1.6 + Math.random() * 2.4,
-                color: COLORS[Math.floor(Math.random() * COLORS.length)],
-                born: delay,
-                spawned: false,
-                settleSpeed: 0.02 + Math.random() * 0.02,
-            };
-        }
+//         function makeNode(delay: number): Node {
+//             const cx = w / 2;
+//             const cy = h * 0.42;
+//             const angle = Math.random() * Math.PI * 2;
+//             const dist = 60 + Math.random() * Math.min(w, h) * 0.48;
+//             return {
+//                 x: cx + Math.cos(angle) * dist * 0.15,
+//                 y: cy + Math.sin(angle) * dist * 0.15,
+//                 tx: cx + Math.cos(angle) * dist,
+//                 ty: cy + Math.sin(angle) * dist,
+//                 vx: (Math.random() - 0.5) * 0.15,
+//                 vy: (Math.random() - 0.5) * 0.15,
+//                 r: 1.6 + Math.random() * 2.4,
+//                 color: COLORS[Math.floor(Math.random() * COLORS.length)],
+//                 born: delay,
+//                 spawned: false,
+//                 settleSpeed: 0.02 + Math.random() * 0.02,
+//             };
+//         }
 
-        function init() {
-            resize();
-            nodes = [];
-            nodes.push({
-                x: w / 2,
-                y: h * 0.42,
-                tx: w / 2,
-                ty: h * 0.42,
-                vx: 0,
-                vy: 0,
-                r: 3.6,
-                color: '#8b7dff',
-                born: 0,
-                spawned: true,
-                settleSpeed: 1,
-                isOrigin: true,
-            });
-            for (let i = 1; i < MAX_NODES; i++) nodes.push(makeNode(200 + i * 70));
-        }
+//         function init() {
+//             resize();
+//             nodes = [];
+//             nodes.push({
+//                 x: w / 2,
+//                 y: h * 0.42,
+//                 tx: w / 2,
+//                 ty: h * 0.42,
+//                 vx: 0,
+//                 vy: 0,
+//                 r: 3.6,
+//                 color: '#8b7dff',
+//                 born: 0,
+//                 spawned: true,
+//                 settleSpeed: 1,
+//                 isOrigin: true,
+//             });
+//             for (let i = 1; i < MAX_NODES; i++) nodes.push(makeNode(200 + i * 70));
+//         }
 
-        function draw(active: Node[]) {
-            ctx!.clearRect(0, 0, w, h);
-            for (let i = 0; i < active.length; i++) {
-                for (let j = i + 1; j < active.length; j++) {
-                    const a = active[i];
-                    const b = active[j];
-                    const dist = Math.hypot(a.x - b.x, a.y - b.y);
-                    const isFromOrigin = a.isOrigin || b.isOrigin;
-                    const limit = isFromOrigin ? 999 : 100;
-                    if (dist < limit) {
-                        const alpha = isFromOrigin ? 0.22 : Math.max(0, 0.14 - dist / 900);
-                        if (alpha <= 0) continue;
-                        ctx!.beginPath();
-                        ctx!.moveTo(a.x, a.y);
-                        ctx!.lineTo(b.x, b.y);
-                        ctx!.strokeStyle = `rgba(109,93,254,${alpha})`;
-                        ctx!.lineWidth = isFromOrigin ? 0.6 : 0.5;
-                        ctx!.stroke();
-                    }
-                }
-            }
-            active.forEach((n) => {
-                const age = Math.min(1, (t - n.born) / 500);
-                ctx!.beginPath();
-                ctx!.arc(n.x, n.y, n.r * (n.isOrigin ? 1 : age), 0, Math.PI * 2);
-                ctx!.fillStyle = n.color;
-                ctx!.globalAlpha = n.isOrigin ? 1 : 0.85 * age;
-                ctx!.fill();
-                ctx!.globalAlpha = 1;
-            });
-        }
+//         function draw(active: Node[]) {
+//             ctx!.clearRect(0, 0, w, h);
+//             for (let i = 0; i < active.length; i++) {
+//                 for (let j = i + 1; j < active.length; j++) {
+//                     const a = active[i];
+//                     const b = active[j];
+//                     const dist = Math.hypot(a.x - b.x, a.y - b.y);
+//                     const isFromOrigin = a.isOrigin || b.isOrigin;
+//                     const limit = isFromOrigin ? 999 : 100;
+//                     if (dist < limit) {
+//                         const alpha = isFromOrigin ? 0.22 : Math.max(0, 0.14 - dist / 900);
+//                         if (alpha <= 0) continue;
+//                         ctx!.beginPath();
+//                         ctx!.moveTo(a.x, a.y);
+//                         ctx!.lineTo(b.x, b.y);
+//                         ctx!.strokeStyle = `rgba(109,93,254,${alpha})`;
+//                         ctx!.lineWidth = isFromOrigin ? 0.6 : 0.5;
+//                         ctx!.stroke();
+//                     }
+//                 }
+//             }
+//             active.forEach((n) => {
+//                 const age = Math.min(1, (t - n.born) / 500);
+//                 ctx!.beginPath();
+//                 ctx!.arc(n.x, n.y, n.r * (n.isOrigin ? 1 : age), 0, Math.PI * 2);
+//                 ctx!.fillStyle = n.color;
+//                 ctx!.globalAlpha = n.isOrigin ? 1 : 0.85 * age;
+//                 ctx!.fill();
+//                 ctx!.globalAlpha = 1;
+//             });
+//         }
 
-        function step() {
-            t += 16;
-            nodes.forEach((n) => {
-                if (!n.spawned && t >= n.born) n.spawned = true;
-                if (!n.spawned || n.isOrigin) return;
-                n.x += (n.tx - n.x) * n.settleSpeed;
-                n.y += (n.ty - n.y) * n.settleSpeed;
-                n.x += n.vx;
-                n.y += n.vy;
-                n.tx += n.vx;
-                n.ty += n.vy;
-                const cx = w / 2;
-                const cy = h * 0.42;
-                const d = Math.hypot(n.x - cx, n.y - cy);
-                const maxD = Math.min(w, h) * 0.5;
-                if (d > maxD) {
-                    n.vx *= -1;
-                    n.vy *= -1;
-                }
-            });
-            draw(nodes.filter((n) => n.spawned));
-            raf = requestAnimationFrame(step);
-        }
+//         function step() {
+//             t += 16;
+//             nodes.forEach((n) => {
+//                 if (!n.spawned && t >= n.born) n.spawned = true;
+//                 if (!n.spawned || n.isOrigin) return;
+//                 n.x += (n.tx - n.x) * n.settleSpeed;
+//                 n.y += (n.ty - n.y) * n.settleSpeed;
+//                 n.x += n.vx;
+//                 n.y += n.vy;
+//                 n.tx += n.vx;
+//                 n.ty += n.vy;
+//                 const cx = w / 2;
+//                 const cy = h * 0.42;
+//                 const d = Math.hypot(n.x - cx, n.y - cy);
+//                 const maxD = Math.min(w, h) * 0.5;
+//                 if (d > maxD) {
+//                     n.vx *= -1;
+//                     n.vy *= -1;
+//                 }
+//             });
+//             draw(nodes.filter((n) => n.spawned));
+//             raf = requestAnimationFrame(step);
+//         }
 
-        function handleResize() {
-            resize();
-        }
+//         function handleResize() {
+//             resize();
+//         }
 
-        init();
-        if (!reduceMotion) {
-            raf = requestAnimationFrame(step);
-        } else {
-            nodes.forEach((n) => {
-                n.spawned = true;
-                n.x = n.tx;
-                n.y = n.ty;
-            });
-            draw(nodes);
-        }
+//         init();
+//         if (!reduceMotion) {
+//             raf = requestAnimationFrame(step);
+//         } else {
+//             nodes.forEach((n) => {
+//                 n.spawned = true;
+//                 n.x = n.tx;
+//                 n.y = n.ty;
+//             });
+//             draw(nodes);
+//         }
 
-        window.addEventListener('resize', handleResize);
+//         window.addEventListener('resize', handleResize);
 
-        let ro: ResizeObserver | undefined;
-        let lastW = w;
-        let lastH = h;
-        if (typeof ResizeObserver !== 'undefined') {
-            ro = new ResizeObserver(() => {
-                const newW = window.innerWidth;
-                const newH = window.innerHeight;
-                if (Math.abs(newW - lastW) > 1 || Math.abs(newH - lastH) > 1) {
-                    lastW = newW;
-                    lastH = newH;
-                    init();
-                    if (reduceMotion) {
-                        nodes.forEach((n) => {
-                            n.spawned = true;
-                            n.x = n.tx;
-                            n.y = n.ty;
-                        });
-                        draw(nodes);
-                    }
-                }
-            });
-            ro.observe(document.documentElement);
-        }
+//         let ro: ResizeObserver | undefined;
+//         let lastW = w;
+//         let lastH = h;
+//         if (typeof ResizeObserver !== 'undefined') {
+//             ro = new ResizeObserver(() => {
+//                 const newW = window.innerWidth;
+//                 const newH = window.innerHeight;
+//                 if (Math.abs(newW - lastW) > 1 || Math.abs(newH - lastH) > 1) {
+//                     lastW = newW;
+//                     lastH = newH;
+//                     init();
+//                     if (reduceMotion) {
+//                         nodes.forEach((n) => {
+//                             n.spawned = true;
+//                             n.x = n.tx;
+//                             n.y = n.ty;
+//                         });
+//                         draw(nodes);
+//                     }
+//                 }
+//             });
+//             ro.observe(document.documentElement);
+//         }
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            if (raf) cancelAnimationFrame(raf);
-            ro?.disconnect();
-        };
-    }, []);
+//         return () => {
+//             window.removeEventListener('resize', handleResize);
+//             if (raf) cancelAnimationFrame(raf);
+//             ro?.disconnect();
+//         };
+//     }, []);
 
-    return <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-80" />;
-}
+//     return <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-80" />;
+// }
 
-function SiteBackdrop() {
-    return (
-        <div
-            className="fixed inset-0 z-0 overflow-hidden bg-dbg pointer-events-none"
-            aria-hidden="true"
-        >
-            <div
-                className="absolute inset-0"
-                style={{
-                    backgroundImage:
-                        'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
-                    backgroundSize: '44px 44px',
-                    WebkitMaskImage:
-                        'radial-gradient(ellipse 70% 60% at 50% 38%, black 25%, transparent 78%)',
-                    maskImage: 'radial-gradient(ellipse 70% 60% at 50% 38%, black 25%, transparent 78%)',
-                }}
-            />
-            <NetworkCanvas />
-            <div
-                className="absolute inset-0"
-                style={{
-                    background:
-                        'radial-gradient(ellipse 70% 70% at 50% 42%, rgba(11,15,20,0.1) 0%, rgba(11,15,20,0.92) 88%)',
-                }}
-            />
-        </div>
-    );
-}
+// function SiteBackdrop() {
+//     return (
+//         <div
+//             className="fixed inset-0 z-0 overflow-hidden bg-dbg pointer-events-none"
+//             aria-hidden="true"
+//         >
+//             <div
+//                 className="absolute inset-0"
+//                 style={{
+//                     backgroundImage:
+//                         'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
+//                     backgroundSize: '44px 44px',
+//                     WebkitMaskImage:
+//                         'radial-gradient(ellipse 70% 60% at 50% 38%, black 25%, transparent 78%)',
+//                     maskImage: 'radial-gradient(ellipse 70% 60% at 50% 38%, black 25%, transparent 78%)',
+//                 }}
+//             />
+//             {/* <NetworkCanvas /> */}
+//             <div
+//                 className="absolute inset-0"
+//                 style={{
+//                     background:
+//                         'radial-gradient(ellipse 70% 70% at 50% 42%, rgba(11,15,20,0.1) 0%, rgba(11,15,20,0.92) 88%)',
+//                 }}
+//             />
+//         </div>
+//     );
+// }
 
 /* ------------------------------------------------------------------ */
 /* FAQ accordion item                                                   */
@@ -424,17 +424,17 @@ function FaqRow({
 /* Page                                                                  */
 /* ------------------------------------------------------------------ */
 
-export default function FaqPage() {
+export function FaqPage() {
     // Only one FAQ item open at a time, page-wide — mirrors the original
     // behaviour. The very first item starts open.
     const [openId, setOpenId] = useState<string | null>('0-0');
 
     return (
         <div
-            className="min-h-screen bg-dbg text-dtext antialiased"
+            className="min-h-screen text-dtext antialiased"
             style={{ fontFamily: FONT_SANS }}
         >
-            <SiteBackdrop />
+            {/* <SiteBackdrop /> */}
 
             <section className="relative z-10 py-16">
                 <div className="mx-auto max-w-170 px-6">

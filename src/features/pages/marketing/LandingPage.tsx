@@ -3,7 +3,12 @@
 // LandingPage.tsx 
 import React from "react";
 import { Hero } from "@/features/pages/marketing/components/Hero";
-import { FeatureGrid } from "@/features/pages/marketing/components/FeatureGrid";
+// import { FeatureGrid } from "@/features/pages/marketing/components/FeatureGrid";
+
+import AboutSection from "./components/landing/AboutSection";
+import WhatItsForSection from "./components/landing/WhatItsForSection";
+import WaitlistSection from "./components/landing/WaitlistSection";
+
 import { Progress } from "@/features/pages/marketing/components/ProgressSection";
 
 
@@ -11,9 +16,15 @@ import { Progress } from "@/features/pages/marketing/components/ProgressSection"
 export const LandingPage: React.FC = () => {
   return (
     <div>
+
+
         <Hero />
-        <FeatureGrid />
+            <AboutSection />
+      <WhatItsForSection />
         <Progress />
+      <WaitlistSection />
+
+        {/* <FeatureGrid /> */}
     </div>
   );
 };

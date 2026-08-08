@@ -31,8 +31,8 @@ export default function WaitlistSection() {
   }
 
   return (
-    <section id="waitlist" className="border-t border-[#313d4d] bg-[#0b0f14] py-16">
-      <div className="mx-auto max-w-[680px] px-6 text-center">
+    <section id="waitlist" className="border-t border-dborder  py-16">
+      <div className="mx-auto max-w-170 px-6 text-center">
         <SectionHeading
           eyebrow="Get in early"
           title="Want early access?"
@@ -41,13 +41,13 @@ export default function WaitlistSection() {
         />
 
         {status === 'submitted' ? (
-          <p className="mx-auto max-w-[420px] rounded-[10px] border border-[#313d4d] bg-[#171d25] px-4 py-3 text-sm text-[#f8fafc]">
+          <p className="mx-auto max-w-105 rounded-md border border-dborder bg-dsurface px-4 py-3 text-sm text-dtext">
             Thanks — you&apos;re on the list. We&apos;ll be in touch.
           </p>
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="mx-auto flex max-w-[420px] flex-wrap justify-center gap-2"
+            className="mx-auto flex max-w-105 flex-wrap justify-center gap-2"
           >
             <input
               type="email"
@@ -55,19 +55,19 @@ export default function WaitlistSection() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email address"
-              className="min-w-[200px] flex-1 rounded-[10px] border border-[#313d4d] bg-[#171d25] px-[14px] py-[13px] text-sm text-[#f8fafc] outline-none transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] placeholder:text-[#64748b] focus:border-[#6d5dfe]"
+              className="min-w-50 flex-1 rounded-md border border-dborder bg-dsurface px-3.5 py-3.25 text-sm text-dtext outline-none transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] placeholder:text-dtext-disabled focus:border-[#6d5dfe]"
             />
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="whitespace-nowrap rounded-[10px] bg-[#6d5dfe] px-[22px] py-[13px] text-sm font-semibold text-white transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-[#5b4be8] disabled:opacity-60"
+              className="whitespace-nowrap rounded-md bg-[#6d5dfe] px-5.5 py-3.25 text-sm font-semibold text-white transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-[#5b4be8] disabled:opacity-60"
             >
               {status === 'submitting' ? 'Sending…' : 'Notify Me'}
             </button>
           </form>
         )}
 
-        <div className="mt-4 text-xs text-[#64748b]">No spam, we promise. Unsubscribe anytime.</div>
+        <div className="mt-4 text-xs text-dtext-disabled">No spam, we promise. Unsubscribe anytime.</div>
       </div>
     </section>
   );

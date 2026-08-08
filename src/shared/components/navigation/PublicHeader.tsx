@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Button } from "../ui/Button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { ThemeToggle } from "../ui/ThemeToggle";
+// import { ThemeToggle } from "../ui/ThemeToggle";
 import { SangumLogoHorizontal } from "../ui/icons/SangumLogo";
 import { usePathname } from "next/navigation";
 import { cn } from "@/shared/utils/cn";
@@ -53,7 +53,7 @@ export const PublicHeader = () => {
           : "bg-bg text-text border-b border-transparent shadow-none"
       )}
     >
-      <div className="max-w-full mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
           {/* Sangam logo — two interlocking arcs */}
@@ -92,7 +92,7 @@ export const PublicHeader = () => {
         </div>
 
         <div className="flex items-center gap-2 justify-end">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-2 text-text-secondary">

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import SectionHeading from "./landing/SectionHeading";
 
 type StepStatus = "done" | "active" | "upcoming";
 
@@ -80,6 +81,7 @@ const RevealStep: React.FC<{
   const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
@@ -180,18 +182,13 @@ export const Progress: React.FC = () => {
     <section id="progress" className="py-24 px-6">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-14">
-          <p className="text-xs text-primary uppercase tracking-[0.15em] font-medium mb-3">
-            Where we are
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-text tracking-tight mb-3">
-            Roadmap
-          </h2>
-          <p className="text-text-secondary">
-            {"We're building in the open. Here's where things stand."}
-          </p>
-        </div>
-
+ 
+        <SectionHeading
+          eyebrow="Where we are"
+          title="Roadmap"
+          description="We're building in the open. Here's where things stand."
+          className="mb-8"
+        />
         {/* Steps */}
         <div className="relative">
           {steps.map((step, i) => (
