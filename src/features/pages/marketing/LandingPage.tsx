@@ -4,7 +4,7 @@
 import React from "react";
 import { Hero } from "@/features/pages/marketing/components/Hero";
 import { FeatureGrid } from "@/features/pages/marketing/components/FeatureGrid";
-import { Progress } from "@/features/pages/marketing/components/DProgress";
+import { Progress } from "@/features/pages/marketing/components/ProgressSection";
 
 
 

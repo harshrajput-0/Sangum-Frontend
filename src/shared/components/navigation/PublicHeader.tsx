@@ -96,11 +96,11 @@ export const PublicHeader = () => {
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-2 text-text-secondary">
-            <Button asChild variant="outline" size="sm">
+            <Button  variant="outline" size="sm">
               <Link href="/login">Login</Link>
             </Button>
 
-            <Button asChild size="sm">
+            <Button size="sm">
               <Link href="/register">Register</Link>
             </Button>
           </div>
@@ -188,13 +188,13 @@ export const PublicHeader = () => {
                   transform: isMenuOpen ? "translateY(0)" : "translateY(-6px)",
                 }}
               >
-                <Button asChild variant="outline" size="lg">
+                <Button variant="outline" size="lg">
                   <Link href="/login" onClick={() => setIsMenuOpen(false)}>
                     Login
                   </Link>
                 </Button>
 
-                <Button asChild variant="primary" size="lg">
+                <Button variant="primary" size="lg">
                   <Link href="/register" onClick={() => setIsMenuOpen(false)}>
                     Register
                   </Link>
