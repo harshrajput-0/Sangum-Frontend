@@ -2,36 +2,32 @@
 
 import { useState, type FormEvent } from 'react';
 import SectionHeading from './SectionHeading';
+import { joinWaitlist } from '@/shared/lib/waitlist';
 
-/**
- * Example email signup. Swap the `handleSubmit` body for a real call to
- * your API route / mailing-list provider (e.g. POST /api/waitlist).
- */
 export default function WaitlistSection() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email) return;
 
     setStatus('submitting');
-    try {
-      // Example: replace with your real endpoint.
-      // await fetch('/api/waitlist', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email }),
-      // });
-      await new Promise((resolve) => setTimeout(resolve, 500));
+    setError(null);
+
+    const result = await joinWaitlist(email);
+
+    if (result.ok) {
       setStatus('submitted');
-    } catch {
+    } else {
       setStatus('idle');
+      setError(result.error);
     }
   }
 
   return (
-    <section id="waitlist" className="border-t border-dborder  py-16">
+    <section id="waitlist" className="border-t border-dborder bg-dbg py-16">
       <div className="mx-auto max-w-170 px-6 text-center">
         <SectionHeading
           eyebrow="Get in early"
@@ -65,6 +61,12 @@ export default function WaitlistSection() {
               {status === 'submitting' ? 'Sending…' : 'Notify Me'}
             </button>
           </form>
+        )}
+
+        {error && (
+          <p className="mt-3 text-sm text-[#f87171]" role="alert">
+            {error}
+          </p>
         )}
 
         <div className="mt-4 text-xs text-dtext-disabled">No spam, we promise. Unsubscribe anytime.</div>

@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Button } from "../../../../shared/components/ui/Button";
+import { Button } from "@/shared/components/ui";
+import { joinWaitlist } from "@/shared/lib/waitlist"; // adjust to match where lib/waitlist.ts actually lives in your project
 
 /**
  * Animated wave-grid canvas — sits behind the glow/blobs.
@@ -105,21 +106,23 @@ const WaveGridBackground: React.FC<{ className?: string }> = ({
 export const Hero: React.FC = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
-      // TODO: wire this up to your actual email/waitlist service.
-      // e.g. call an API route:
-      //   await fetch("/api/waitlist", {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify({ email }),
-      //   });
-      // or a provider SDK (Resend, Mailchimp, ConvertKit, etc.).
-      // Handle the error case (toast/inline message) before flipping
-      // `submitted` to true — right now this optimistically succeeds.
+    if (!email.trim()) return;
+
+    setSubmitting(true);
+    setError(null);
+
+    const result = await joinWaitlist(email);
+
+    setSubmitting(false);
+    if (result.ok) {
       setSubmitted(true);
+    } else {
+      setError(result.error);
     }
   };
 
@@ -225,8 +228,8 @@ export const Hero: React.FC = () => {
                 transition-colors
               "
             />
-            <Button type="submit" size="md">
-              Notify Me
+            <Button type="submit" size="md" disabled={submitting}>
+              {submitting ? "Sending…" : "Notify Me"}
             </Button>
           </form>
         ) : (
@@ -236,6 +239,12 @@ export const Hero: React.FC = () => {
             </svg>
             You&apos;re on the list! We&apos;ll reach out soon.
           </div>
+        )}
+
+        {error && (
+          <p className="mt-3 text-sm text-red-400" role="alert">
+            {error}
+          </p>
         )}
 
         <p className="mt-3 text-xs text-dtext-muted">
