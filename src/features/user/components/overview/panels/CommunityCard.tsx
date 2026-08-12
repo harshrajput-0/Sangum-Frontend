@@ -23,6 +23,7 @@ const TONE_CLASSES: Record<BadgeTone, string> = {
   danger: "bg-danger-bg text-danger",
   info: "bg-info-bg text-info",
   neutral: "bg-neutral-bg text-neutral",
+  outline: "border-1 border-border"
 };
 
 export function CommunityCard({ community }: CommunityCardProps) {

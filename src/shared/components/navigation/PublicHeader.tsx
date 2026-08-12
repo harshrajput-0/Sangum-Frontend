@@ -1,209 +1,120 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import { useState, useEffect } from "react";
-import { Button } from "../ui/Button";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-// import { ThemeToggle } from "../ui/ThemeToggle";
+import { Button } from "../ui";
 import { SangumLogoHorizontal } from "../ui/icons/SangumLogo";
-import { usePathname } from "next/navigation";
-import { cn } from "@/shared/utils/cn";
+
+const NAV_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Communities", href: "/community" },
+  { label: "Resources", href: "/resources" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
 
 export const PublicHeader = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // close the mobile menu automatically on route change
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
-
-  // lock body scroll while the mobile menu is open
-  useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
+    if (!mobileOpen) return;
+    const onClick = (e: MouseEvent) => {
+      const nav = document.getElementById("publicNav");
+      if (nav && !nav.contains(e.target as Node)) {
+        setMobileOpen(false);
+      }
     };
-  }, [isMenuOpen]);
-
-  const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/pricing", label: "Pricing" },
-    { href: "/legal", label: "Legal" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact Us" },
-  ];
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, [mobileOpen]);
 
   return (
     <nav
-      className={cn(
-        "sticky top-0 left-0 right-0 z-50 border-border",
-        "transition-[background-color,box-shadow,border-color] duration-300",
+      id="publicNav"
+      className={[
+        "sticky top-0 z-100 flex items-center justify-between h-16",
+        "transition-[background,border-color,padding,backdrop-filter,box-shadow] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]",
         scrolled
-          ? "bg-bg backdrop-blur-xl border-b border-border text-text shadow-[0_8px_24px_-16px_rgba(0,0,0,0.5)]"
-          : "bg-bg text-text border-b border-transparent shadow-none"
-      )}
+          ? "bg-[rgba(11,15,20,0.55)] border-b border-[rgba(255,255,255,0.08)] px-10 py-3.5 backdrop-blur-xl backdrop-saturate-[1.6] shadow-[0_1px_2px_rgba(0,0,0,0.30)]"
+          : "bg-transparent border-b border-transparent px-10 py-5",
+      ].join(" ")}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          {/* Sangam logo — two interlocking arcs */}
-          <span className="inline-flex transition-transform duration-300 ease-out group-hover:scale-105 group-active:scale-95">
-            <SangumLogoHorizontal height={32} />
-          </span>
-        </Link>
-
-        {/* Nav links — desktop */}
-        <div className="hidden md:flex items-center gap-1 text-sm text-text-secondary justify-center">
-          {navItems.map(({ href, label }) => {
-            const active = pathname === href;
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={cn(
-                  "group relative px-4 py-2 rounded-full text-text-secondary transition-colors duration-200",
-                  "hover:text-text",
-                  active && "text-text"
-                )}
-              >
-                {/* animated background pill — scales/fades in behind the label */}
-                <span
-                  className={cn(
-                    "absolute inset-0 rounded-full bg-white/10 transition-all duration-200 ease-out",
-                    active
-                      ? "scale-100 opacity-100"
-                      : "scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100"
-                  )}
-                />
-                <span className="relative">{label}</span>
-              </Link>
-            );
-          })}
-        </div>
-
-        <div className="flex items-center gap-2 justify-end">
-          {/* <ThemeToggle /> */}
-
-          {/* Desktop */}
-          <div className="hidden md:flex items-center gap-2 text-text-secondary">
-            <Button  variant="outline" size="sm">
-              <Link href="/login">Login</Link>
-            </Button>
-
-            <Button size="sm">
-              <Link href="/register">Register</Link>
-            </Button>
-          </div>
-
-          {/* Mobile hamburger — 44px+ tap target, crossfades between Menu and X */}
-          <button
-            className="md:hidden relative flex items-center justify-center h-11 w-11 -mr-1 rounded-full transition-colors duration-200 hover:bg-white/10 active:scale-90"
-            onClick={() => setIsMenuOpen((open) => !open)}
-            aria-label="Toggle menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-nav"
-          >
-            <span className="relative block h-5.5 w-5.5">
-              <Menu
-                size={22}
-                className={cn(
-                  "absolute inset-0 transition-all duration-300 ease-out",
-                  isMenuOpen ? "rotate-90 scale-75 opacity-0" : "rotate-0 scale-100 opacity-100"
-                )}
-              />
-              <X
-                size={22}
-                className={cn(
-                  "absolute inset-0 transition-all duration-300 ease-out",
-                  isMenuOpen ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-75 opacity-0"
-                )}
-              />
-            </span>
-          </button>
-        </div>
+      {/* Logo */}
+      <div className="flex items-center gap-2 text-text">
+        <SangumLogoHorizontal height={30}/>
       </div>
 
-      {/* Backdrop — dims the page behind the mobile menu, tap to close */}
-      <div
-        aria-hidden="true"
-        onClick={() => setIsMenuOpen(false)}
-        className={cn(
-          "md:hidden fixed inset-0 top-16 z-40 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-out",
-          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        )}
-      />
+      {/* Desktop nav links */}
+      <div className="hidden md:flex gap-6 text-[13px] text-[#C5C7CB]">
+        {NAV_LINKS.map((link) => (
+          <NavItem key={link.href} label={link.label} href={link.href}/>
+        ))}
+      </div>
 
-      {/* Mobile menu — always mounted, animated open/close via grid-template-rows
-          (so height animates without knowing the content's height up front),
-          with nav items staggering in slightly after the panel starts opening. */}
-      <div
-        id="mobile-nav"
-        className={cn(
-          "md:hidden relative z-50 grid transition-[grid-template-rows] duration-300 ease-out",
-          isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        )}
+      {/* Desktop actions */}
+      <div className="hidden md:flex items-center gap-2">
+        <Button variant="outline" href="/login">Log in</Button>
+        <Button  href="/register">Register</Button>
+      </div>
+
+      {/* Hamburger (mobile only) */}
+      <button
+        onClick={() => setMobileOpen((v) => !v)}
+        aria-label={mobileOpen ? "Close menu" : "Open menu"}
+        className="flex md:hidden items-center justify-center w-9 h-9 rounded-md bg-transparent border border-transparent text-[#C5C7CB] cursor-pointer hover:bg-[#1D2530] hover:text-[#FFFDFC] transition-colors"
       >
-        <div className="overflow-hidden">
-          <div className="border-t border-border bg-bg shadow-[0_16px_32px_-16px_rgba(0,0,0,0.6)] rounded-b-2xl">
-            <div className="flex flex-col gap-1 px-4 py-4">
-              {navItems.map(({ href, label }, i) => {
-                const active = pathname === href;
-                return (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={cn(
-                      "px-3 py-3.5 rounded-xl text-base text-text-secondary transition-all duration-300 ease-out active:scale-[0.98]",
-                      active
-                        ? "text-text bg-white/10 font-medium"
-                        : "hover:text-text hover:bg-white/5"
-                    )}
-                    style={{
-                      transitionDelay: isMenuOpen ? `${i * 40 + 60}ms` : "0ms",
-                      opacity: isMenuOpen ? 1 : 0,
-                      transform: isMenuOpen ? "translateY(0)" : "translateY(-6px)",
-                    }}
-                  >
-                    {label}
-                  </Link>
-                );
-              })}
+        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+      </button>
 
-              <div
-                className="flex flex-col gap-3 mt-3 pt-4 border-t border-border transition-all duration-300 ease-out"
-                style={{
-                  transitionDelay: isMenuOpen ? `${navItems.length * 40 + 80}ms` : "0ms",
-                  opacity: isMenuOpen ? 1 : 0,
-                  transform: isMenuOpen ? "translateY(0)" : "translateY(-6px)",
-                }}
-              >
-                <Button variant="outline" size="lg">
-                  <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                    Login
-                  </Link>
-                </Button>
-
-                <Button variant="primary" size="lg">
-                  <Link href="/register" onClick={() => setIsMenuOpen(false)}>
-                    Register
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Mobile dropdown */}
+      <div
+        className={[
+          "flex flex-col gap-1 absolute top-full left-0 right-0 z-50",
+          "bg-[#0B0F14] border-b border-[#2A3441] shadow-[0_12px_32px_rgba(0,0,0,0.45)] px-4 py-3.5",
+          "transition-[opacity,transform] duration-180 ease-[cubic-bezier(0.4,0,0.2,1)]",
+          mobileOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-2 pointer-events-none",
+        ].join(" ")}
+      >
+        {NAV_LINKS.map((link) => (
+          <NavItem key={link.href} label={link.label} href={link.href} className="px-3 py-2.5" />
+        ))}
+        <hr className="border-t border-[#2A3441] my-2.5" />
+        <Button variant="outline" href="/login">Log in</Button>
+        <Button  href="/register">Register</Button>
       </div>
     </nav>
   );
-};
+}
+
+function NavItem({
+  label,
+  href,
+  className = "",
+}: {
+  label: string;
+  href: string;
+  className?: string;
+}) {
+  return (
+    <Link href={href}
+      className={[
+        "relative cursor-pointer inline-block text-[#C5C7CB] hover:text-[#6D5DFE] transition-colors duration-120 ease-[cubic-bezier(0.4,0,0.2,1)]",
+        className,
+      ].join(" ")}
+    >
+      {label}
+    </Link>
+  );
+}
+

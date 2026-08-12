@@ -45,7 +45,7 @@ export function ProfileActionArea({
   return (
     <div className="flex items-center gap-2">
       {connectionStatus === "own" && (
-        <Button variant="primary" icon={<Edit3 size={16} />} onClick={onEditProfile}>
+        <Button variant="primary" iconLeft={<Edit3 size={16} />} onClick={onEditProfile}>
           Edit Profile
         </Button>
       )}
@@ -54,13 +54,13 @@ export function ProfileActionArea({
         <>
           <Button
             variant="primary"
-            icon={<UserPlus size={16} />}
+            iconLeft={<UserPlus size={16} />}
             onClick={onConnect}
             disabled={isBusy}
           >
             Connect
           </Button>
-          <Button variant="outline" icon={<MessageCircle size={16} />}>
+          <Button variant="outline" iconLeft={<MessageCircle size={16} />}>
             Message
           </Button>
         </>
@@ -70,13 +70,13 @@ export function ProfileActionArea({
         <>
           <Button
             variant="outline"
-            icon={<X size={16} />}
+            iconLeft={<X size={16} />}
             onClick={onCancelRequest}
             disabled={isBusy}
           >
             Cancel Request
           </Button>
-          <Button variant="outline" icon={<MessageCircle size={16} />}>
+          <Button variant="outline" iconLeft={<MessageCircle size={16} />}>
             Message
           </Button>
         </>
@@ -86,7 +86,7 @@ export function ProfileActionArea({
         <>
           <Button
             variant="primary"
-            icon={<UserCheck size={16} />}
+            iconLeft={<UserCheck size={16} />}
             onClick={onAccept}
             disabled={isBusy}
           >
@@ -94,7 +94,7 @@ export function ProfileActionArea({
           </Button>
           <Button
             variant="outline"
-            icon={<X size={16} />}
+            iconLeft={<X size={16} />}
             onClick={onDecline}
             disabled={isBusy}
           >
@@ -105,10 +105,10 @@ export function ProfileActionArea({
 
       {connectionStatus === "connected" && (
         <>
-          <Button variant="primary" icon={<MessageCircle size={16} />}>
+          <Button variant="primary" iconLeft={<MessageCircle size={16} />}>
             Message
           </Button>
-          <Button variant="outline" icon={<UserCheck size={16} />}>
+          <Button variant="outline" iconLeft={<UserCheck size={16} />}>
             Connected
           </Button>
         </>

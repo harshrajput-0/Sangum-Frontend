@@ -28,7 +28,7 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
 };
 
 const BASE_CLASSNAME =
-  'inline-flex items-center justify-center rounded-md font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex items-center justify-center rounded-sm font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50';
 
 export function Button({
   variant = 'primary',

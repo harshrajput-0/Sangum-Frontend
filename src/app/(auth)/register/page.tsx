@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { RegisterShell } from "@/features/auth";
+import { RegisterShell } from "@/features/auth/pages/RegisterShell";
 
 export const metadata: Metadata = {
   title: "Create your account | Sangum",

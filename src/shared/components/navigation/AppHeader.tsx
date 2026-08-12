@@ -30,7 +30,7 @@ export const AppHeader: React.FC = () => {
             </Button>
             <ThemeToggle />
             
-            <IconButton aria-label="Notification"><NotificationsIcon/></IconButton>
+            <IconButton label="Notification" icon={<NotificationsIcon/>} />
             {/* // href recieve endpoints */}
             {/* <Avatar displayName="Avatar" username="avatar" size="sm" href="userss"/> */}
             
