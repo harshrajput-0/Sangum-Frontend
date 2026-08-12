@@ -1,7 +1,7 @@
-import { FeedPage } from "@/features/oldmodule/post/page/FeedPage";
+import { FeedShell } from "@/features/posts";
 
 const page = () => {
-  return <FeedPage />
+  return <FeedShell />
 }
 
 export default page

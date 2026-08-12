@@ -24,7 +24,7 @@ export function TextareaField({ id, label, value, onChange, placeholder, maxLeng
         onChange={(e) => onChange(e.target.value)}
         maxLength={maxLength}
         placeholder={placeholder}
-        className="min-h-[90px] w-full resize-y rounded-md border border-border bg-input-bg px-3.5 py-2.5 text-sm text-text placeholder:text-text-muted outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
+        className="min-h-22.5 w-full resize-y rounded-md border border-border bg-input-bg px-3.5 py-2.5 text-sm text-text placeholder:text-text-muted outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
       />
     </div>
   );

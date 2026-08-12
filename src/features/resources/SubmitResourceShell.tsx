@@ -28,7 +28,7 @@ export function SubmitResourceShell() {
         <Link href="/resources" className="rounded-md p-1.5 text-text-muted hover:bg-surface-hover hover:text-text">
           <ArrowLeft size={18} />
         </Link>
-        <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text">Submit a Resource</h1>
+        <h1 className="font-heading text-2xl font-bold text-text">Submit a Resource</h1>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">

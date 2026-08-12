@@ -28,7 +28,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
       href={`/resources/${resource.id}`}
       className="group block cursor-pointer overflow-hidden rounded-xl border border-border bg-surface transition-all duration-base hover:-translate-y-1 hover:border-border-strong hover:shadow-xl"
     >
-      <div className={`relative flex aspect-[5/3] items-center justify-center bg-gradient-to-br ${GRADIENT_CLASSES[accent]}`}>
+      <div className={`relative flex aspect-5/3 items-center justify-center bg-linear-to-br ${GRADIENT_CLASSES[accent]}`}>
         <span className="absolute left-2.5 top-2.5">
           <ResourceTypeBadge type={resource.type} />
         </span>

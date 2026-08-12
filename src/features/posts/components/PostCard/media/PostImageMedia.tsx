@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export interface PostImageMediaProps {
   image: string;
@@ -14,8 +14,14 @@ const ASPECT_CLASSES: Record<'4:5' | '5:3' | '16:9', string> = {
 
 export function PostImageMedia({ image, alt, aspect = '16:9' }: PostImageMediaProps) {
   return (
-    <div className="mb-4 w-fullmin-w-35 overflow-hidden rounded-lg bg-bg-elevated">
-      <Image src={image} alt={alt} loading="lazy" className={`${ASPECT_CLASSES[aspect]} w-full object-cover`} />
+    <div className={`relative mb-4 w-full overflow-hidden rounded-lg bg-bg-elevated ${ASPECT_CLASSES[aspect]}`}>
+      <Image
+        src={image}
+        alt={alt}
+        fill
+        sizes="(max-width: 640px) 100vw, 640px"
+        className="object-cover"
+      />
     </div>
   );
 }

@@ -1,8 +1,5 @@
-// import { PreviewTestingPage } from "@/modules/testing/PreviewTestingPage";
-import { FeedPage } from "@/modules/post/page/FeedPage";
-// import { ProfilePage } from "@/modules/user/pages/feed/FeedPostCard";
+import { FeedShell } from '@/features/posts';
 
-
-export default function Page() {
-  return <FeedPage />;
+export default function HomePage() {
+  return <FeedShell />;
 }

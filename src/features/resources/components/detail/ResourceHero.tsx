@@ -19,7 +19,7 @@ export function ResourceHero({ resource }: ResourceHeroProps) {
   const bannerLabel = resource.bannerLabel ?? getBannerLabel(resource.title);
 
   return (
-    <div className={`relative mb-4 flex h-40 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br sm:h-52 ${GRADIENT_CLASSES[accent]}`}>
+    <div className={`relative mb-4 flex h-40 items-center justify-center overflow-hidden rounded-xl bg-linear-to-br sm:h-52 ${GRADIENT_CLASSES[accent]}`}>
       <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_30%_20%,rgba(255,255,255,0.18),transparent_70%)]" />
       <span className="absolute left-3 top-3">
         <ResourceTypeBadge type={resource.type} />

@@ -23,7 +23,7 @@ export function ResourceLibraryShell() {
   return (
     <div>
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text">Resource Library</h1>
+        <h1 className="font-heading text-2xl font-bold text-text">Resource Library</h1>
         <Link
           href="/resources/submit"
           className="self-start rounded-md bg-primary px-4 py-2 text-sm font-medium text-text-on-primary hover:bg-primary-hover sm:self-auto"

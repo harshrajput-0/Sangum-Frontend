@@ -7,6 +7,7 @@ export * from "./ComingSoonBadge";
 export * from "./IconButton";
 export * from "./Input";
 export * from "./Select";
+export * from "./Spinner";
 export * from "./Textarea";
 export * from "./ToggleSwitch";
 

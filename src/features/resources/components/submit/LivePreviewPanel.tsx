@@ -20,7 +20,7 @@ export function LivePreviewPanel({ draft }: LivePreviewPanelProps) {
       </div>
 
       <div className="mb-4 overflow-hidden rounded-xl border border-border bg-surface">
-        <div className="relative flex aspect-video items-center justify-center bg-gradient-to-br from-primary to-info">
+        <div className="relative flex aspect-video items-center justify-center bg-linear-to-br from-primary to-info">
           <span className="absolute left-2.5 top-2.5">
             <ResourceTypeBadge type={draft.type} />
           </span>
