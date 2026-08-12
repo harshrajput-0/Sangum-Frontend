@@ -9,24 +9,24 @@ import { FeedEndOfFeed } from './FeedEndOfFeed';
 import { FeedEmptyState } from './FeedEmptyState';
 
 export function FeedShell() {
-  const feed = useFeed();
+  const { tab, setTab, posts, isLoading, isInitialLoad, hasMore, sentinelRef } = useFeed();
 
-  const showEmpty = !feed.isInitialLoad && !feed.isLoading && feed.posts.length === 0;
-  const showEndOfFeed = !feed.isInitialLoad && !feed.hasMore && feed.posts.length > 0;
+  const showEmpty = !isInitialLoad && !isLoading && posts.length === 0;
+  const showEndOfFeed = !isInitialLoad && !hasMore && posts.length > 0;
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-6">
       <CreatePostComposerBar />
 
-      <FeedTabs activeTab={feed.tab} onChange={feed.setTab} />
+      <FeedTabs activeTab={tab} onChange={setTab} />
 
-      <FeedList posts={feed.posts} />
+      <FeedList posts={posts} />
 
-      {feed.isLoading && <FeedLoadingSkeleton />}
+      {isLoading && <FeedLoadingSkeleton />}
       {showEndOfFeed && <FeedEndOfFeed />}
-      {showEmpty && <FeedEmptyState tab={feed.tab} />}
+      {showEmpty && <FeedEmptyState tab={tab} />}
 
-      <div ref={feed.sentinelRef} className="h-1" />
+      <div ref={sentinelRef} className="h-1" />
     </div>
   );
 }

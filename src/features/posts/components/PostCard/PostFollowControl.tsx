@@ -1,6 +1,8 @@
+'use client';
+
 import { useState } from 'react';
 import { MoreVertical, Bookmark, Link2, Flag, Check, UserMinus, Plus } from 'lucide-react';
-import { Button, IconButton } from '../../../../shared/components/ui';
+import { IconButton } from '../../../../shared/components/ui';
 import { useTransientState } from '../../../../shared/hooks/useTransientState';
 import { ReportModalOverlay, type UseReportModalReturn } from '../../../../shared/report';
 
@@ -37,21 +39,20 @@ export function PostFollowControl({ isFollowed, isSaved, onToggleFollow, onToggl
   return (
     <div className="ml-auto flex shrink-0 items-center gap-2">
       {!isFollowed && (
-        <Button
-          variant="outline"
-          size="sm"
-          iconLeft={<Plus size={12} strokeWidth={2.5} />}
+        <button
+          type="button"
           onClick={onToggleFollow}
-          className="rounded-full !border-primary !text-primary-light hover:!bg-primary/10"
+          className="flex items-center gap-1 rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary-light hover:bg-primary/10"
         >
+          <Plus size={12} strokeWidth={2.5} />
           Follow
-        </Button>
+        </button>
       )}
 
       <div className="relative">
         <IconButton icon={<MoreVertical size={16} />} label="Post options" variant="ghost" size="sm" onClick={() => setIsMenuOpen((v) => !v)} />
         {isMenuOpen && (
-          <div className="absolute right-0 top-full z-20 mt-1.5 flex min-w-[170px] flex-col gap-0.5 rounded-md border border-border bg-surface p-1.5 shadow-lg">
+          <div className="absolute right-0 top-full z-20 mt-1.5 flex min-w-42.5 flex-col gap-0.5 rounded-md border border-border bg-surface p-1.5 shadow-lg">
             <button
               type="button"
               onClick={onToggleBookmark}

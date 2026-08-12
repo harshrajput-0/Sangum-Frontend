@@ -1,4 +1,5 @@
 import type { ImgHTMLAttributes } from "react";
+import Image from "next/image";
 
 export type AvatarSize = "sm" | "md" | "lg";
 
@@ -37,7 +38,7 @@ export function Avatar({
 
   if (imageSrc) {
     return (
-      <img
+      <Image
         src={imageSrc}
         alt={imageAlt ?? initials}
         className={["shrink-0 rounded-full object-cover", sizeClass, className].join(" ")}

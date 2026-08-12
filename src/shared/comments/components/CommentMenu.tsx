@@ -22,7 +22,7 @@ export function CommentMenu({ isOwn, onEdit, onDelete, report }: CommentMenuProp
     <div className="relative ml-auto">
       <IconButton icon={<MoreVertical size={15} />} label="Comment options" variant="ghost" size="xs" onClick={() => setIsOpen((v) => !v)} />
       {isOpen && (
-        <div className="absolute right-0 top-full z-20 mt-1.5 flex min-w-[140px] flex-col gap-0.5 rounded-md border border-border bg-surface p-1.5 shadow-lg">
+        <div className="absolute right-0 top-full z-20 mt-1.5 flex min-w-35 flex-col gap-0.5 rounded-md border border-border bg-surface p-1.5 shadow-lg">
           {isOwn ? (
             <>
               <button

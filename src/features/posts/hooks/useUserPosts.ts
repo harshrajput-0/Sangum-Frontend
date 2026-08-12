@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useState } from 'react';
 import { usePostsStore } from '../stores/posts.store';
 import * as postsService from '../services/posts.service';
@@ -21,6 +23,7 @@ export function useUserPosts(userId: string) {
   }, [userId, setUserPosts]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     void load();
   }, [load]);
 

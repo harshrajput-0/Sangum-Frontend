@@ -33,7 +33,7 @@ export function ReportModal({
   const isOtherOpen = selectedReasonId === OTHER_REASON_ID;
 
   return (
-    <div role="dialog" aria-modal="true" aria-labelledby="report-modal-title" className="w-[340px] rounded-lg border border-border bg-surface p-5 shadow-lg">
+    <div role="dialog" aria-modal="true" aria-labelledby="report-modal-title" className="w-85 rounded-lg border border-border bg-surface p-5 shadow-lg">
       <div className="flex items-start gap-3">
         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-danger/35 bg-danger-bg">
           <Flag className="h-5 w-5 text-danger" strokeWidth={2} />
@@ -59,7 +59,7 @@ export function ReportModal({
                 onChange={() => onSelectReason(reason.id)}
                 className="sr-only"
               />
-              <span className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-150 ${isChecked ? 'border-primary' : 'border-border-strong'}`}>
+              <span className={`flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-150 ${isChecked ? 'border-primary' : 'border-border-strong'}`}>
                 {isChecked && <span className="h-2 w-2 rounded-full bg-primary" />}
               </span>
               {reason.label}
@@ -70,7 +70,7 @@ export function ReportModal({
 
       <div
         className={`overflow-hidden transition-[max-height,opacity,margin-top] duration-200 ease-brand ${
-          isOtherOpen ? 'mt-2 max-h-[120px] opacity-100' : 'mt-0 max-h-0 opacity-0'
+          isOtherOpen ? 'mt-2 max-h-30 opacity-100' : 'mt-0 max-h-0 opacity-0'
         }`}
       >
         <Textarea
@@ -79,7 +79,7 @@ export function ReportModal({
           placeholder="Tell us more about the issue…"
           resize="y"
           rows={3}
-          className="min-h-[72px] text-sm"
+          className="min-h-18 text-sm"
         />
       </div>
 

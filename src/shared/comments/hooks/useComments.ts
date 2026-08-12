@@ -1,4 +1,6 @@
-import { useCallback, useState } from 'react';
+'use client';
+
+import { useCallback, useMemo, useState } from 'react';
 import type { Comment, CommentTarget } from '../types/comment.types';
 import * as commentsService from '../services/comments.service';
 import { commentTextSchema } from '../validation/comment.schema';
@@ -20,7 +22,7 @@ export interface UseCommentsOptions {
  */
 export function useComments({ postId, onCommentCountChange }: UseCommentsOptions) {
   const currentUser = useCurrentUser();
-  const target: CommentTarget = { entityType: 'post', entityId: postId };
+  const target: CommentTarget = useMemo(() => ({ entityType: 'post', entityId: postId }), [postId]);
 
   const [isSectionOpen, setIsSectionOpen] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -36,8 +38,7 @@ export function useComments({ postId, onCommentCountChange }: UseCommentsOptions
     } finally {
       setIsLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postId]);
+  }, [target]);
 
   const buildNewComment = useCallback(
     (text: string): Comment => ({

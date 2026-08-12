@@ -31,7 +31,7 @@ export function TagsInput({ tags, draft, isAtLimit, onDraftChange, onKeyDown, on
           onKeyDown={onKeyDown}
           disabled={isAtLimit}
           placeholder={isAtLimit ? 'Tag limit reached' : 'Add up to 10 tags…'}
-          className="min-w-[120px] flex-1 bg-transparent px-1 py-1 text-sm text-text outline-none placeholder:text-text-muted disabled:cursor-not-allowed"
+          className="min-w-30 flex-1 bg-transparent px-1 py-1 text-sm text-text outline-none placeholder:text-text-muted disabled:cursor-not-allowed"
         />
       </div>
     </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { ReportModal, type ReportModalProps } from './ReportModal';
 
@@ -24,7 +26,7 @@ export function ReportModalOverlay(props: ReportModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm"
+      className="fixed inset-0 z-110 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm"
       onClick={(e) => { if (e.target === e.currentTarget) props.onCancel(); }}
     >
       <ReportModal {...props} />

@@ -42,7 +42,7 @@ export function CommentComposer({
           placeholder={placeholder}
           resize="y"
           rows={isCompact ? 2 : 3}
-          className={isCompact ? 'min-h-[40px] text-sm' : 'min-h-[46px] text-sm'}
+          className={isCompact ? 'min-h-10 text-sm' : 'min-h-11.5 text-sm'}
         />
         <div className="mt-2 flex justify-end gap-2">
           <Button variant="outline" size="sm" onClick={onCancel}>

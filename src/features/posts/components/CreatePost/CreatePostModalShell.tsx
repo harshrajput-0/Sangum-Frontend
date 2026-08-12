@@ -45,7 +45,7 @@ export function CreatePostModalShell() {
 
   return (
     <div
-      className="no-scrollbar fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/60 px-4 py-8 backdrop-blur-sm sm:items-center max-phone:items-stretch max-phone:p-0"
+      className="no-scrollbar fixed inset-0 z-100 flex items-start justify-center overflow-y-auto bg-black/60 px-4 py-8 backdrop-blur-sm sm:items-center max-phone:items-stretch max-phone:p-0"
       onClick={(e) => { if (e.target === e.currentTarget) close(); }}
     >
       <div className="w-full max-w-lg rounded-xl border border-border bg-surface shadow-xl max-phone:flex max-phone:h-full max-phone:max-w-none max-phone:min-h-dvh max-phone:flex-col max-phone:rounded-none">

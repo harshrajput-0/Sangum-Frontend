@@ -20,7 +20,7 @@ export function useExcerptOverflow<T extends HTMLElement>(content: string, hasSu
     setIsOverflowing(el.scrollHeight > el.clientHeight + 2);
   }, [content]);
 
-  const toggle = useCallback(() => setIsExpanded((v: any) => !v), []);
+  const toggle = useCallback(() => setIsExpanded((v) => !v), []);
 
   return {
     ref,

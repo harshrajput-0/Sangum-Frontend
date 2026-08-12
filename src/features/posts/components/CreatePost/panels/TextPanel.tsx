@@ -33,7 +33,7 @@ export function TextPanel({ content, onChange }: TextPanelProps) {
           onChange={(e) => onChange(e.target.value)}
           placeholder="Write your post content here…"
           rows={6}
-          className="min-h-[140px] w-full resize-y bg-bg-elevated px-3.5 py-2.5 text-sm text-text placeholder:text-text-muted outline-none"
+          className="min-h-35 w-full resize-y bg-bg-elevated px-3.5 py-2.5 text-sm text-text placeholder:text-text-muted outline-none"
         />
       </div>
     </div>

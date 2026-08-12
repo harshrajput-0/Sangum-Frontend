@@ -10,7 +10,7 @@ import { OverviewPanel } from './components/detail/OverviewPanel';
 import { RelatedPanel } from './components/detail/RelatedPanel';
 import { ResourceInfoCard } from './components/detail/ResourceInfoCard';
 import { MoreFromAuthorCard } from './components/detail/MoreFromAuthorCard';
-import { CommentsPanel } from '@/features/comments';
+import { CommentsPanel } from '@/shared/comments';
 import { mockResourceDetail, mockResourceComments, mockMoreResourceComments } from './mock';
 
 type DetailTab = 'overview' | 'comments' | 'related';

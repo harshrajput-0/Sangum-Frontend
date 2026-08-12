@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallback, useState } from 'react';
 import { OTHER_REASON_ID, REPORT_REASONS } from '../constants/reportReasons.constants';
 import { submitReport } from '../services/report.service';

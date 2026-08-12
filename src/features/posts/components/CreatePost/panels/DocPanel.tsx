@@ -31,7 +31,7 @@ export function DocPanel({ file, description, onFileChange, onDescriptionChange 
           placeholder="What's in this document?"
           resize="y"
           rows={3}
-          className="min-h-[80px] text-sm"
+          className="min-h-20 text-sm"
         />
       </div>
     </div>

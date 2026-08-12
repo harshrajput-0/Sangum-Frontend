@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { MoreVertical, Pencil, Trash2 } from 'lucide-react';
 import { IconButton } from '../../../../shared/components/ui';
@@ -14,7 +16,7 @@ export function PostOwnMenu({ onEdit, onDelete }: PostOwnMenuProps) {
     <div className="relative ml-auto shrink-0">
       <IconButton icon={<MoreVertical size={16} />} label="Post options" variant="ghost" size="sm" onClick={() => setIsOpen((v) => !v)} />
       {isOpen && (
-        <div className="absolute right-0 top-full z-20 mt-1.5 flex min-w-[140px] flex-col gap-0.5 rounded-md border border-border bg-surface p-1.5 shadow-lg">
+        <div className="absolute right-0 top-full z-20 mt-1.5 flex min-w-35 flex-col gap-0.5 rounded-md border border-border bg-surface p-1.5 shadow-lg">
           <button
             type="button"
             onClick={() => { onEdit(); setIsOpen(false); }}

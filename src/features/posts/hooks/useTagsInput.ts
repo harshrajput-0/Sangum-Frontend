@@ -2,26 +2,27 @@ import { useCallback, useState, type KeyboardEvent } from 'react';
 
 const MAX_TAGS = 10;
 
+function computeNextTags(current: string[], raw: string): string[] {
+  const value = raw.trim().replace(/,+$/, '');
+  if (!value || current.length >= MAX_TAGS) return current;
+  if (current.some((t) => t.toLowerCase() === value.toLowerCase())) return current;
+  return [...current, value];
+}
+
 /**
- * Mirrors the mock's tag-chip behavior exactly: commas (including
- * pasted text containing commas) commit chips as you type, Enter
- * commits the current draft, Backspace on an empty draft pops the
- * last chip, duplicates are rejected case-insensitively, and the
- * draft locks once the 10-tag limit is hit.
+ * Mirrors the mock's tag-chip behavior: commas (including pasted text
+ * containing several) commit chips as you type, Enter commits the
+ * current draft, Backspace on an empty draft pops the last chip,
+ * duplicates are rejected case-insensitively, and the draft locks
+ * once the 10-tag limit is hit.
  */
 export function useTagsInput(tags: string[], onTagsChange: (tags: string[]) => void) {
   const [draft, setDraft] = useState('');
 
-  // Returns the resulting array so callers that need the committed
-  // value immediately (see commitPending, used right before submit)
-  // aren't stuck reading stale state from before the re-render.
   const addTag = useCallback(
     (raw: string): string[] => {
-      const value = raw.trim().replace(/,+$/, '');
-      if (!value || tags.length >= MAX_TAGS) return tags;
-      if (tags.some((t) => t.toLowerCase() === value.toLowerCase())) return tags;
-      const next = [...tags, value];
-      onTagsChange(next);
+      const next = computeNextTags(tags, raw);
+      if (next !== tags) onTagsChange(next);
       return next;
     },
     [tags, onTagsChange]
@@ -34,6 +35,10 @@ export function useTagsInput(tags: string[], onTagsChange: (tags: string[]) => v
     [tags, onTagsChange]
   );
 
+  // Reduces over the CURRENT tags array to build the full result of
+  // adding every comma-separated part in one pass, then commits once
+  // — fixes a bug where pasting "foo,bar,baz," only kept the last tag,
+  // since each addTag() call previously read the same stale `tags`.
   const onDraftChange = useCallback(
     (value: string) => {
       if (!value.includes(',')) {
@@ -42,11 +47,11 @@ export function useTagsInput(tags: string[], onTagsChange: (tags: string[]) => v
       }
       const parts = value.split(',');
       const remainder = parts.pop() ?? '';
-      let current = tags;
-      parts.forEach((p) => { current = addTag(p); });
+      const next = parts.reduce((acc, part) => computeNextTags(acc, part), tags);
+      if (next !== tags) onTagsChange(next);
       setDraft(remainder);
     },
-    [tags, addTag]
+    [tags, onTagsChange]
   );
 
   const onKeyDown = useCallback(
@@ -62,10 +67,6 @@ export function useTagsInput(tags: string[], onTagsChange: (tags: string[]) => v
     [draft, addTag, removeTag, tags.length]
   );
 
-  // Commits whatever's still typed (no trailing comma yet) and
-  // returns the resulting array synchronously — called right before
-  // submit so a half-typed tag isn't lost, and so validation can use
-  // the up-to-date list without waiting on a re-render.
   const commitPending = useCallback((): string[] => {
     if (!draft.trim()) return tags;
     const next = addTag(draft);

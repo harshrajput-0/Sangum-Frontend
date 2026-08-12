@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Textarea, Button } from '../../components/ui';
 
 export interface CommentEditFormProps {
@@ -17,7 +16,7 @@ export function CommentEditForm({ value, onChange, onSave, onCancel }: CommentEd
         autoFocus
         resize="y"
         rows={2}
-        className="min-h-[60px] text-sm"
+        className="min-h-15 text-sm"
       />
       <div className="mt-2 flex justify-end gap-2">
         <Button variant="outline" size="sm" onClick={onCancel}>

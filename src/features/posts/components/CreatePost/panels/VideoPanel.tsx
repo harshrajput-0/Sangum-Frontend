@@ -31,7 +31,7 @@ export function VideoPanel({ file, caption, onFileChange, onCaptionChange }: Vid
           placeholder="Say something about this video…"
           resize="y"
           rows={3}
-          className="min-h-[80px] text-sm"
+          className="min-h-20 text-sm"
         />
       </div>
     </div>
