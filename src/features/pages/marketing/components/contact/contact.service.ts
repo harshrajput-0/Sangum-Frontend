@@ -6,13 +6,9 @@ export type ContactFormData = {
   message: string;
 };
 
-export const sendContactMessage = async (
-  data: ContactFormData
-) => {
-  const response = await axios.post(
-    "http://localhost:5000/api/contact",
-    data
-  );
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+export const sendContactMessage = async (data: ContactFormData) => {
+  const response = await axios.post(`${API_URL}/api/contact`, data);
   return response.data;
 };

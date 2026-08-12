@@ -24,10 +24,10 @@ export function ContactPage() {
           check every day.
         </p>
         <a
-          href="mailto:hello@sangum.app"
+          href="mailto:sangum.dev@proton.me"
           className="inline-flex items-center gap-2 font-heading text-base font-semibold text-text border-b border-border-strong pb-0.5 hover:text-accent hover:border-accent transition-colors"
         >
-          hello@sangum.app
+          sangum.dev@proton.me
         </a>
       </div>
 
