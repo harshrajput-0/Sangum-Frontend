@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LoginShell } from "@/features/auth/pages/LoginShell";
+import { LoginShell } from "@/features/auth";
 
 export const metadata: Metadata = {
   title: "Log in | Sangum",
