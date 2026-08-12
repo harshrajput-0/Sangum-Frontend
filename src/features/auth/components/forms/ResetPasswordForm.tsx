@@ -41,7 +41,7 @@ export function ResetPasswordForm({
 
       <div className="mb-6 text-center">
         <IconBadge icon={<Lock size={24} strokeWidth={2} />} />
-        <h1 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-text">
+        <h1 className="mb-2 font-heading text-xl font-bold text-text">
           Reset your <span className="text-primary-light">password</span>
         </h1>
         <p className="text-sm text-text-secondary">Create a new password for your account.</p>

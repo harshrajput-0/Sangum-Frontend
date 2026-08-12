@@ -37,7 +37,7 @@ export function LoginForm({
       <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-primary-light">
         Welcome back
       </span>
-      <h1 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-text">
+      <h1 className="mb-2 font-heading text-xl font-bold text-text">
         Log in to your <span className="text-primary-light">Sangum account</span>
       </h1>
       <p className="mb-6 text-sm leading-relaxed text-text-secondary">
@@ -58,6 +58,7 @@ export function LoginForm({
         <PasswordField
           id="login-password"
           label="Password"
+          placeholder="Enter your password"
           value={values.password}
           onChange={(value) => onChange("password", value)}
           showPassword={showPassword}

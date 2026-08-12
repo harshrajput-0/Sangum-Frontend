@@ -31,7 +31,7 @@ export function ForgotPasswordForm({
 
       {isSubmitted ? (
         <>
-          <h1 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-text">
+          <h1 className="mb-2 font-heading text-xl font-bold text-text">
             Check your <span className="text-primary-light">inbox</span>
           </h1>
           <p className="mb-6 text-sm leading-relaxed text-text-secondary">
@@ -41,7 +41,7 @@ export function ForgotPasswordForm({
         </>
       ) : (
         <>
-          <h1 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-text">
+          <h1 className="mb-2 font-heading text-xl font-bold text-text">
             Forgot your <span className="text-primary-light">password?</span>
           </h1>
           <p className="mb-6 text-sm leading-relaxed text-text-secondary">

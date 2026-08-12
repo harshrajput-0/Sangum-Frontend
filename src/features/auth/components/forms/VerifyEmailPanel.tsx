@@ -30,11 +30,11 @@ export function VerifyEmailPanel({
         </span>
       </div>
 
-      <h1 className="mb-2 font-[family-name:var(--font-heading)] text-2xl font-extrabold text-text">
+      <h1 className="mb-2 font-heading text-2xl font-extrabold text-text">
         Check your <span className="text-primary-light">inbox</span>
       </h1>
       <p className="mb-2 text-sm text-text">We sent a verification link to</p>
-      <p className="mb-3 inline-block rounded-full border border-border bg-surface px-4 py-1.5 font-[family-name:var(--font-mono)] text-sm text-text">
+      <p className="mb-3 inline-block rounded-full border border-border bg-surface px-4 py-1.5 font-mono text-sm text-text">
         {email ?? "your email address"}
       </p>
       <p className="mb-4 text-sm leading-relaxed text-text-muted">
