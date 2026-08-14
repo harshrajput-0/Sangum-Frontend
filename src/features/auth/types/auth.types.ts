@@ -1,24 +1,24 @@
 export type SocialProvider = "google" | "github" | "linkedin";
 
-export interface AuthUser {
-  id: string;
-  fullName: string;
-  username: string;
-  email: string;
-  avatarUrl?: string;
-}
+// Canonical user shape now lives in shared/types/user.types.ts — any
+// authed feature reads it, not just auth. Re-exported here so existing
+// imports inside this feature don't all need to change paths.
+export type { AuthUser } from "@/shared/types/user.types";
 
 export interface LoginPayload {
-  identifier: string; // email or username
+  email: string;
   password: string;
-  rememberMe?: boolean;
 }
 
 export interface RegisterPayload {
-  fullName: string;
-  username: string;
   email: string;
   password: string;
+  // Backend only requires email + password; if these are omitted it
+  // auto-generates a username and leaves displayName unset. The
+  // Register form still collects both, so we send them when present —
+  // this is a resilience fallback, not a UI simplification.
+  fullName?: string;
+  username?: string;
 }
 
 export interface ForgotPasswordPayload {
@@ -27,18 +27,14 @@ export interface ForgotPasswordPayload {
 
 export interface ResetPasswordPayload {
   token: string;
-  password: string;
+  newPassword: string;
 }
 
-export interface ResendVerificationPayload {
+export interface CompleteEmailPayload {
   email: string;
 }
 
-/**
- * Normalized shape every auth.service.ts method throws/rejects with,
- * so hooks can render field-level and form-level errors consistently.
- */
-export interface AuthApiError {
-  message: string;
-  fieldErrors?: Partial<Record<string, string>>;
-}
+// The request helpers in shared/lib/http.ts and apiClient.ts already
+// throw this exact shape — re-exported under the old name so existing
+// imports inside this feature keep working.
+export type { ApiError as AuthApiError } from "@/shared/types/apiResponse.types";

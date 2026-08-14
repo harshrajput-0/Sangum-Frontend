@@ -4,8 +4,15 @@ export const AUTH_ROUTES = {
   login: "/login",
   register: "/register",
   forgotPassword: "/forgot-password",
+  // Dynamic segment — backend puts the token in the URL path, not a
+  // query param: /reset-password/:token
   resetPassword: "/reset-password",
   verifyEmail: "/verify-email",
+  oauthCallback: "/oauth/callback",
+  completeEmail: "/complete-email",
+  // TODO: not built yet — this is where a fully-set-up user
+  // (hasEmail && isVerified) lands after login/register/oauth.
+  onboarding: "/onboarding",
 } as const;
 
 export const PASSWORD_MIN_LENGTH = 8;

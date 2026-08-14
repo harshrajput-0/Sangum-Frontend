@@ -17,21 +17,21 @@ const INITIAL_VALUES: ResetPasswordFormValues = {
 };
 
 /**
- * @param token - the reset token from the `?token=` query param, read
- * server-side in app/(auth)/reset-password/page.tsx and passed down
- * as a plain prop through ResetPasswordShell.
+ * @param token - the reset token, read server-side from the dynamic
+ * route segment in app/(auth)/reset-password/[token]/page.tsx and
+ * passed down as a plain prop through ResetPasswordShell. Always a
+ * non-empty string when this route matches — an invalid/expired/
+ * already-used token is a submit-time error from the backend, not a
+ * routing concern.
  */
-export function useResetPasswordForm(token: string | undefined) {
+export function useResetPasswordForm(token: string) {
   const router = useRouter();
-  const [values, setValues] =
-    useState<ResetPasswordFormValues>(INITIAL_VALUES);
+  const [values, setValues] = useState<ResetPasswordFormValues>(INITIAL_VALUES);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const hasValidToken = Boolean(token);
 
   const passwordStrengthScore = useMemo(
     () => calculatePasswordStrength(values.password),
@@ -46,10 +46,7 @@ export function useResetPasswordForm(token: string | undefined) {
     [],
   );
 
-  const toggleShowPassword = useCallback(
-    () => setShowPassword((prev) => !prev),
-    [],
-  );
+  const toggleShowPassword = useCallback(() => setShowPassword((prev) => !prev), []);
   const toggleShowConfirmPassword = useCallback(
     () => setShowConfirmPassword((prev) => !prev),
     [],
@@ -59,11 +56,6 @@ export function useResetPasswordForm(token: string | undefined) {
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       setSubmitError(null);
-
-      if (!token) {
-        setSubmitError("This reset link is invalid or has expired.");
-        return;
-      }
 
       const result = resetPasswordSchema.safeParse(values);
       if (!result.success) {
@@ -78,16 +70,16 @@ export function useResetPasswordForm(token: string | undefined) {
 
       setIsSubmitting(true);
       try {
-        await authService.resetPassword({
-          token,
-          password: result.data.password,
-        });
+        await authService.resetPassword({ token, newPassword: result.data.password });
+        // Backend invalidates every existing session on a successful
+        // reset, so there's nowhere to land but a fresh login.
         router.push(AUTH_ROUTES.login);
       } catch (error) {
         const apiError = error as AuthApiError;
+        // 400 covers invalid, expired, AND already-used tokens — the
+        // backend's message already distinguishes these.
         setSubmitError(
-          apiError.message ??
-            "Unable to reset your password. Please try again.",
+          apiError.message ?? "Unable to reset your password. Please try again.",
         );
       } finally {
         setIsSubmitting(false);
@@ -101,7 +93,6 @@ export function useResetPasswordForm(token: string | undefined) {
     errors,
     submitError,
     isSubmitting,
-    hasValidToken,
     showPassword,
     showConfirmPassword,
     passwordStrengthScore,

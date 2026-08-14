@@ -5,8 +5,9 @@ import { ResetPasswordForm } from "../components/forms/ResetPasswordForm";
 import { AuthCard } from "../components/cards/AuthCard";
 
 interface ResetPasswordShellProps {
-  /** Read server-side from `?token=` in app/(auth)/reset-password/page.tsx */
-  token?: string;
+  /** Read server-side from the dynamic route segment in
+   * app/(auth)/reset-password/[token]/page.tsx — always a string. */
+  token: string;
 }
 
 export function ResetPasswordShell({ token }: ResetPasswordShellProps) {
@@ -15,7 +16,6 @@ export function ResetPasswordShell({ token }: ResetPasswordShellProps) {
     errors,
     submitError,
     isSubmitting,
-    hasValidToken,
     showPassword,
     showConfirmPassword,
     passwordStrengthScore,
@@ -32,7 +32,6 @@ export function ResetPasswordShell({ token }: ResetPasswordShellProps) {
         errors={errors}
         submitError={submitError}
         isSubmitting={isSubmitting}
-        hasValidToken={hasValidToken}
         showPassword={showPassword}
         showConfirmPassword={showConfirmPassword}
         passwordStrengthScore={passwordStrengthScore}

@@ -1,12 +1,10 @@
 import { useCallback, useMemo, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { authService } from "../services/auth.service";
-import {
-  registerSchema,
-  type RegisterFormValues,
-} from "../validation/register.schema";
+import { registerSchema, type RegisterFormValues } from "../validation/register.schema";
 import { AUTH_ROUTES } from "../constants/auth.constants";
 import { calculatePasswordStrength } from "../utils/passwordStrength";
+import { resolveOnboardingRoute } from "../utils/resolveOnboardingRoute";
 import type { AuthApiError, SocialProvider } from "../types/auth.types";
 
 type FieldErrors = Partial<Record<keyof RegisterFormValues, string>>;
@@ -40,9 +38,7 @@ export function useRegisterForm() {
     [],
   );
 
-  const toggleShowPassword = useCallback(() => {
-    setShowPassword((prev) => !prev);
-  }, []);
+  const toggleShowPassword = useCallback(() => setShowPassword((prev) => !prev), []);
 
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
@@ -63,20 +59,21 @@ export function useRegisterForm() {
       setIsSubmitting(true);
       try {
         const { fullName, username, email, password } = result.data;
-        const { email: confirmedEmail } = await authService.register({
-          fullName,
-          username,
-          email,
-          password,
-        });
-        router.push(
-          `${AUTH_ROUTES.verifyEmail}?email=${encodeURIComponent(confirmedEmail)}`,
-        );
+        // All four are always sent together — fullName/username are
+        // only optional in the backend's own contract as a fallback
+        // for other callers, never for this form.
+        const user = await authService.register({ fullName, username, email, password });
+
+        const destination = resolveOnboardingRoute(user);
+        const target =
+          destination === AUTH_ROUTES.verifyEmail
+            ? `${destination}?email=${encodeURIComponent(email)}`
+            : destination;
+        router.push(target);
       } catch (error) {
         const apiError = error as AuthApiError;
         setSubmitError(
-          apiError.message ??
-            "Unable to create your account. Please try again.",
+          apiError.message ?? "Unable to create your account. Please try again.",
         );
       } finally {
         setIsSubmitting(false);

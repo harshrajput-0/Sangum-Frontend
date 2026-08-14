@@ -1,24 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { authService } from "../services/auth.service";
 import { RESEND_COOLDOWN_SECONDS } from "../constants/auth.constants";
+import { useSessionStore } from "@/shared/stores/session.store";
 import type { AuthApiError } from "../types/auth.types";
 
-/**
- * @param email - the address to resend to, read server-side from
- * `?email=` in app/(auth)/verify-email/page.tsx and passed down as a
- * plain prop through VerifyEmailShell.
- */
-export function useVerifyEmailCountdown(email: string | undefined) {
-  const [secondsRemaining, setSecondsRemaining] = useState(
-    RESEND_COOLDOWN_SECONDS,
-  );
+export function useVerifyEmailCountdown() {
+  const isAuthenticated = useSessionStore((state) => state.isAuthenticated);
+  const [secondsRemaining, setSecondsRemaining] = useState(RESEND_COOLDOWN_SECONDS);
   const [isResending, setIsResending] = useState(false);
   const [resendError, setResendError] = useState<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const startCountdown = useCallback(() => {
+  // Starts (or restarts) the ticking interval only — never touches
+  // secondsRemaining directly, so it's safe to call from an effect
+  // body without triggering a synchronous setState-in-effect.
+  const startTicking = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
-    setSecondsRemaining(RESEND_COOLDOWN_SECONDS);
     intervalRef.current = setInterval(() => {
       setSecondsRemaining((prev) => {
         if (prev <= 1) {
@@ -31,30 +28,41 @@ export function useVerifyEmailCountdown(email: string | undefined) {
   }, []);
 
   useEffect(() => {
-    startCountdown();
+    startTicking();
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [startCountdown]);
+  }, [startTicking]);
 
   const canResend = secondsRemaining <= 0 && !isResending;
 
   const resend = useCallback(async () => {
-    if (!email || !canResend) return;
+    if (!canResend) return;
+
+    if (!isAuthenticated) {
+      // Reached this page without a live in-memory session (e.g. the
+      // tab was reopened) — resend needs a Bearer token, so there's
+      // nothing to retry here; ask them to log back in instead of
+      // failing silently.
+      setResendError("Your session expired. Please log in again to resend the email.");
+      return;
+    }
+
     setResendError(null);
     setIsResending(true);
     try {
-      await authService.resendVerificationEmail({ email });
-      startCountdown();
+      await authService.resendVerificationEmail();
+      // Runs inside an event handler, not an effect, so a direct
+      // setState reset here is fine.
+      setSecondsRemaining(RESEND_COOLDOWN_SECONDS);
+      startTicking();
     } catch (error) {
       const apiError = error as AuthApiError;
-      setResendError(
-        apiError.message ?? "Unable to resend the email. Please try again.",
-      );
+      setResendError(apiError.message ?? "Unable to resend the email. Please try again.");
     } finally {
       setIsResending(false);
     }
-  }, [email, canResend, startCountdown]);
+  }, [canResend, isAuthenticated, startTicking]);
 
   return {
     secondsRemaining,

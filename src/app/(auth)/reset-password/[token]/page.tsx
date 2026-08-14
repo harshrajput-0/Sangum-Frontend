@@ -6,10 +6,10 @@ export const metadata: Metadata = {
 };
 
 interface ResetPasswordPageProps {
-  searchParams: Promise<{ token?: string }>;
+  params: Promise<{ token: string }>;
 }
 
-export default async function ResetPasswordPage({ searchParams }: ResetPasswordPageProps) {
-  const { token } = await searchParams;
+export default async function ResetPasswordPage({ params }: ResetPasswordPageProps) {
+  const { token } = await params;
   return <ResetPasswordShell token={token} />;
 }

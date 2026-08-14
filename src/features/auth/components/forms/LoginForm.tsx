@@ -3,11 +3,11 @@ import Link from "next/link";
 import { AUTH_ROUTES } from "../../constants/auth.constants";
 import { TextField } from "../fields/TextField";
 import { PasswordField } from "../fields/PasswordField";
-import { CheckboxField } from "../fields/CheckboxField";
 import { Divider } from "../common/Divider";
 import { SocialAuthButtons } from "../common/SocialAuthButtons";
 import type { LoginFormValues } from "../../validation/login.schema";
 import type { SocialProvider } from "../../types/auth.types";
+import type { LoginBanner } from "../../utils/resolveLoginBanner";
 
 interface LoginFormProps {
   values: LoginFormValues;
@@ -16,7 +16,8 @@ interface LoginFormProps {
   isSubmitting: boolean;
   showPassword: boolean;
   toggleShowPassword: () => void;
-  onChange: (field: keyof LoginFormValues, value: string | boolean) => void;
+  banner: LoginBanner | null;
+  onChange: (field: keyof LoginFormValues, value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onSocialLogin: (provider: SocialProvider) => void;
 }
@@ -28,6 +29,7 @@ export function LoginForm({
   isSubmitting,
   showPassword,
   toggleShowPassword,
+  banner,
   onChange,
   onSubmit,
   onSocialLogin,
@@ -37,28 +39,40 @@ export function LoginForm({
       <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-primary-light">
         Welcome back
       </span>
-      <h1 className="mb-2 font-heading text-xl font-bold text-text">
+      <h1 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-text">
         Log in to your <span className="text-primary-light">Sangum account</span>
       </h1>
       <p className="mb-6 text-sm leading-relaxed text-text-secondary">
         Access your communities, continue your conversations, and stay connected.
       </p>
 
+      {banner && (
+        <div
+          className={`mb-4 rounded-md border px-3.5 py-2.5 text-xs font-medium ${
+            banner.type === "success"
+              ? "border-success/30 bg-success-bg text-success"
+              : "border-danger/30 bg-danger-bg text-danger"
+          }`}
+        >
+          {banner.message}
+        </div>
+      )}
+
       <form onSubmit={onSubmit} noValidate>
         <TextField
-          id="login-identifier"
-          label="Email or Username"
-          placeholder="Enter your email or username"
-          value={values.identifier}
-          onChange={(value) => onChange("identifier", value)}
-          error={errors.identifier}
-          autoComplete="username"
+          id="login-email"
+          label="Email"
+          type="email"
+          placeholder="Enter your email"
+          value={values.email}
+          onChange={(value) => onChange("email", value)}
+          error={errors.email}
+          autoComplete="email"
         />
 
         <PasswordField
           id="login-password"
           label="Password"
-          placeholder="Enter your password"
           value={values.password}
           onChange={(value) => onChange("password", value)}
           showPassword={showPassword}
@@ -73,13 +87,6 @@ export function LoginForm({
               Forgot password?
             </Link>
           }
-        />
-
-        <CheckboxField
-          id="login-remember-me"
-          checked={values.rememberMe ?? false}
-          onChange={(checked) => onChange("rememberMe", checked)}
-          label="Remember me"
         />
 
         {submitError && (

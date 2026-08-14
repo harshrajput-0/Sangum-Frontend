@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   title: "Log in | Sangum",
 };
 
-export default function LoginPage() {
-  return <LoginShell />;
+interface LoginPageProps {
+  searchParams: Promise<{ verified?: string; error?: string }>;
+}
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const { verified, error } = await searchParams;
+  return <LoginShell verified={verified} error={error} />;
 }
