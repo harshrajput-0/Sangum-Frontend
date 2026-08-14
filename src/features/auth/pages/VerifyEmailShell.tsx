@@ -11,7 +11,7 @@ interface VerifyEmailShellProps {
 
 export function VerifyEmailShell({ email }: VerifyEmailShellProps) {
   const { secondsRemaining, canResend, isResending, resendError, resend } =
-    useVerifyEmailCountdown(email);
+    useVerifyEmailCountdown();
 
   return (
     <AuthCard maxWidthClassName="max-w-[420px]">
