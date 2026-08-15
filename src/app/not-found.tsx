@@ -1,20 +1,54 @@
+'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Home, ArrowLeft } from 'lucide-react';
+import { Button } from '@/shared/components/ui';
 
 export default function NotFound() {
-    return (
-        <div className="flex flex-col items-center justify-center text-sm max-md:px-4 py-20 min-h-screen">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
-                404 Not Found
-            </h1>
-            <div className="h-px w-80 rounded bg-gradient-to-r from-gray-400 to-gray-800 my-5 md:my-7"></div>
-            <p className="md:text-xl text-gray-400 max-w-lg text-center">
-                The page you are looking for does not exist or has been moved.
-            </p>
-            <Link href="/" className="group flex items-center gap-1 bg-white hover:bg-gray-200 px-7 py-2.5 text-gray-800 rounded-full mt-10 font-medium active:scale-95 transition-all">
-                Back to Home
-                <svg className="group-hover:translate-x-0.5 transition" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.583 11h12.833m0 0L11 4.584M17.416 11 11 17.417" stroke="#1E1E1E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+  const router = useRouter();
+
+  return (
+    <section className="bg-glow flex min-h-screen flex-col">
+      <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-5 py-16 text-center">
+        <span
+          className="pointer-events-none absolute inset-0 flex items-center justify-center font-heading text-[280px] font-extrabold leading-none text-text opacity-[0.03] sm:text-[380px]"
+          aria-hidden="true"
+        >
+          404
+        </span>
+
+        <div className="relative w-full max-w-md">
+          <span className="mb-2 block bg-linear-to-r from-primary-hover to-accent bg-clip-text font-heading text-6xl font-extrabold text-transparent sm:text-7xl">
+            404
+          </span>
+          <h1 className="mb-2 text-xl font-semibold text-text sm:text-2xl">Page not found</h1>
+          <p className="mb-7 text-sm leading-relaxed text-text-secondary">
+            The page you&apos;re looking for doesn&apos;t exist or may have been moved.
+          </p>
+
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:justify-center">
+            <Button href="/" variant="primary" size="lg" iconLeft={<Home size={15} />}>
+              Go Home
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              iconLeft={<ArrowLeft size={15} />}
+              onClick={() => router.back()}
+            >
+              Go Back
+            </Button>
+          </div>
+
+          <p className="mt-6 text-xs text-text-muted">
+            Think this is a mistake?{' '}
+            <Link href="/contact" className="cursor-pointer font-medium text-primary-light hover:underline">
+              Contact support
             </Link>
+          </p>
         </div>
-    );
+      </main>
+    </section>
+  );
 }
