@@ -17,7 +17,7 @@ export const onboardingWizardSchema = z.object({
       .max(20, 'Username cannot exceed 20 characters')
       .regex(
         USERNAME_REGEX,
-        "Username can contain lowercase letters, numbers, underscores, hyphens, and dots, but can't start or end with a hyphen/dot, or contain them consecutively",
+        "Username can contain letters, numbers, dots, hyphens, and underscores, but can't start or end with one or use two in a row",
       )
       .optional(),
   ),

@@ -72,6 +72,18 @@ export function useRegisterForm() {
         router.push(target);
       } catch (error) {
         const apiError = error as AuthApiError;
+
+        if (apiError.code === "ACCOUNT_PENDING_VERIFICATION") {
+          // Not a real error from the user's point of view — the backend
+          // already resent a fresh verification link as a courtesy. Send
+          // them to the same "check your inbox" screen instead of
+          // showing a red form error for something that isn't their fault.
+          router.push(
+            `${AUTH_ROUTES.verifyEmail}?email=${encodeURIComponent(values.email)}&reason=pending`,
+          );
+          return;
+        }
+
         setSubmitError(
           apiError.message ?? "Unable to create your account. Please try again.",
         );

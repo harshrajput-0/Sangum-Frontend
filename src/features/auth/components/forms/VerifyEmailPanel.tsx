@@ -4,6 +4,7 @@ import { AUTH_ROUTES } from "../../constants/auth.constants";
 
 interface VerifyEmailPanelProps {
   email: string | undefined;
+  isPendingConflict?: boolean;
   secondsRemaining: number;
   canResend: boolean;
   isResending: boolean;
@@ -13,6 +14,7 @@ interface VerifyEmailPanelProps {
 
 export function VerifyEmailPanel({
   email,
+  isPendingConflict,
   secondsRemaining,
   canResend,
   isResending,
@@ -33,7 +35,11 @@ export function VerifyEmailPanel({
       <h1 className="mb-2 font-heading text-2xl font-extrabold text-text">
         Check your <span className="text-primary-light">inbox</span>
       </h1>
-      <p className="mb-2 text-sm text-text">We sent a verification link to</p>
+      <p className="mb-2 text-sm text-text">
+        {isPendingConflict
+          ? "That email already has an account waiting to be verified. We just sent a fresh link to"
+          : "We sent a verification link to"}
+      </p>
       <p className="mb-3 inline-block rounded-full border border-border bg-surface px-4 py-1.5 font-mono text-sm text-text">
         {email ?? "your email address"}
       </p>
@@ -41,27 +47,35 @@ export function VerifyEmailPanel({
         Open the email we sent and click the verification link to activate your account.
       </p>
 
-      <div className="mb-2 flex items-center justify-center gap-1.5 text-sm">
-        <span className="text-text-muted">Didn&apos;t receive it?</span>
-        <button
-          type="button"
-          onClick={onResend}
-          disabled={!canResend}
-          className={
-            canResend
-              ? "font-medium text-primary-light hover:underline"
-              : "font-medium text-text-disabled"
-          }
-        >
-          {canResend
-            ? isResending
-              ? "Resending..."
-              : "Resend email"
-            : `Resend available in ${secondsRemaining}s`}
-        </button>
-      </div>
+      {isPendingConflict ? (
+        <p className="mb-2 text-sm text-text-muted">
+          We already sent it — just now.
+        </p>
+      ) : (
+        <div className="mb-2 flex items-center justify-center gap-1.5 text-sm">
+          <span className="text-text-muted">Didn&apos;t receive it?</span>
+          <button
+            type="button"
+            onClick={onResend}
+            disabled={!canResend}
+            className={
+              canResend
+                ? "font-medium text-primary-light hover:underline"
+                : "font-medium text-text-disabled"
+            }
+          >
+            {canResend
+              ? isResending
+                ? "Resending..."
+                : "Resend email"
+              : `Resend available in ${secondsRemaining}s`}
+          </button>
+        </div>
+      )}
 
-      {resendError && <p className="mb-2 text-[13px] text-danger">{resendError}</p>}
+      {!isPendingConflict && resendError && (
+        <p className="mb-2 text-[13px] text-danger">{resendError}</p>
+      )}
 
       <p className="mb-5 text-[13px] text-text-muted">
         Wrong email?{" "}
@@ -73,8 +87,13 @@ export function VerifyEmailPanel({
         </Link>
       </p>
 
-      <p className="text-xs text-text-disabled">
+      <p className="mb-3 text-xs text-text-disabled">
         Can&apos;t find the email? Check your spam or promotions folder.
+      </p>
+
+      <p className="rounded-md bg-warning-bg px-3 py-2 text-xs leading-relaxed text-warning">
+        Unverified accounts are only held for 24 hours — after that, anyone
+        can register with this email again.
       </p>
     </div>
   );

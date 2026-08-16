@@ -81,6 +81,18 @@ export const authService = {
     });
   },
 
+  /**
+   * Public — the verification JWT itself is the credential, no session
+   * needed (and often none exists, e.g. someone verifying from a link
+   * clicked on a different device). Only fires when the user clicks
+   * "Verify email" on the token page, never automatically on load.
+   */
+  async verifyEmail(token: string): Promise<void> {
+    await publicRequest<null>(`/auth/verify-email/${encodeURIComponent(token)}`, {
+      method: "POST",
+    });
+  },
+
   async resendVerificationEmail(): Promise<void> {
     // Authed — the backend reads the account off the access token,
     // no email argument needed (or possible) here.

@@ -6,10 +6,10 @@ export const metadata: Metadata = {
 };
 
 interface VerifyEmailPageProps {
-  searchParams: Promise<{ email?: string }>;
+  searchParams: Promise<{ email?: string; reason?: string }>;
 }
 
 export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageProps) {
-  const { email } = await searchParams;
-  return <VerifyEmailShell email={email} />;
+  const { email, reason } = await searchParams;
+  return <VerifyEmailShell email={email} isPendingConflict={reason === "pending"} />;
 }

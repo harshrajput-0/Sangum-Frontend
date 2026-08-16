@@ -10,6 +10,8 @@ export interface ApiErrorResponse {
   statusCode: number;
   message: string;
   errors: string[];
+  /** Present for specific, frontend-actionable cases (e.g. "ACCOUNT_PENDING_VERIFICATION"). */
+  code?: string;
 }
 
 export type ApiResponse<T> = ApiSuccessResponse<T> | ApiErrorResponse;
@@ -23,4 +25,5 @@ export interface ApiError {
   statusCode: number;
   message: string;
   errors: string[];
+  code?: string;
 }

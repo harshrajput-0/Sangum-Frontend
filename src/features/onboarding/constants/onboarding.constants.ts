@@ -1,9 +1,13 @@
-// Mirrors backend/src/modules/users/user.validation.ts exactly.
+// Mirrors backend/src/utils/username.ts exactly (single source of truth
+// on that side; duplicated here per this app's feature-isolation
+// convention — see COMPLETE_EMAIL_FALLBACK_ROUTE below for the same
+// reasoning). Also duplicated in features/auth/validation/register.schema.ts
+// — if this changes, that needs the same update.
 export const FULL_NAME_MIN = 2;
 export const FULL_NAME_MAX = 50;
 export const USERNAME_MIN = 5;
 export const USERNAME_MAX = 20;
-export const USERNAME_REGEX = /^(?![.-])(?!.*[.-]{2,})[a-z0-9_.-]+(?<![.-])$/;
+export const USERNAME_REGEX = /^[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*$/;
 
 // Mirrors backend/src/config/multer.ts ALLOWED_MIME_TYPES + 5MB limit.
 export const AVATAR_MAX_SIZE_BYTES = 5 * 1024 * 1024;

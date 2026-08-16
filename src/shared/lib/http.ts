@@ -33,6 +33,7 @@ export async function publicRequest<T>(
       statusCode: body?.statusCode ?? response.status,
       message: body?.message ?? "Something went wrong. Please try again.",
       errors: body && "errors" in body ? body.errors : [],
+      ...(body && "code" in body && body.code ? { code: body.code } : {}),
     };
     throw error;
   }

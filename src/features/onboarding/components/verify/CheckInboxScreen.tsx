@@ -38,13 +38,13 @@ export function CheckInboxScreen({ secondsLeft, isResendActive, onResendClick, o
           size="sm"
           onClick={onResendClick}
           disabled={isResendActive}
-          className="!px-0 !py-0 h-auto underline-offset-2 hover:underline"
+          className="px-0! py-0! h-auto underline-offset-2 hover:underline"
         >
           {isResendActive ? `Resend in ${secondsLeft}s` : 'Resend email'}
         </Button>
       </div>
 
-      <Button variant="ghost" size="sm" onClick={onSkipClick} className="!px-0 !py-0 h-auto underline-offset-2 hover:underline">
+      <Button variant="ghost" size="sm" onClick={onSkipClick} className="px-0! py-0! h-auto underline-offset-2 hover:underline">
         Skip for now
       </Button>
     </section>
