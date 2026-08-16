@@ -9,7 +9,8 @@
   --breakpoint-tablet: 640px;
 
   /* Typography */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-heading: "Plus Jakarta Sans", var(--font-sans);
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
@@ -32,6 +33,11 @@
 
   /* Motion */
   --ease-brand: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Animation */
+  --animate-pulse-ring: pulseRing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-welcome-in: welcomeFadeUp 0.5s var(--ease-brand) both;
+  --animate-welcome-in-delay: welcomeFadeUp 0.5s var(--ease-brand) 0.08s both;
 }
 
 /* ============================================================
@@ -106,7 +112,7 @@
   --shadow-lg: var(--elevation-lg);
   --shadow-xl: var(--elevation-xl);
 
-   --dbg: #0b0f14;
+  --dbg: #0b0f14;
   --dbg-elevated: #11161d;
   --dsurface: #171d25;
   --dsurface-hover: #26303d;
@@ -130,12 +136,25 @@
   --primary-active: #493bc9;
   --primary-light: #8b7dff;
 
-  --accent: #39BFBF;
-  --accent-hover: #2FA6A6;
+  --accent: #39bfbf;
+  --accent-hover: #2fa6a6;
 
-  --brand-gradient: linear-gradient(135deg, var(--primary) 0%, #4f8cff 50%, var(--accent) 100%);
-  --brand-gradient-soft: linear-gradient(135deg, var(--primary-light) 0%, #6ea8ff 100%);
-  --brand-gradient-cover: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+  --brand-gradient: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    #4f8cff 50%,
+    var(--accent) 100%
+  );
+  --brand-gradient-soft: linear-gradient(
+    135deg,
+    var(--primary-light) 0%,
+    #6ea8ff 100%
+  );
+  --brand-gradient-cover: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    #3b82f6 100%
+  );
 
   /* Semantic status — base hue is invariant; hover/active for
      interactive elements (buttons etc.), -bg tint set per theme */
@@ -196,7 +215,6 @@
      [data-theme]. Used by components that must stay dark in both
      modes (see @theme inline mapping above for the matching
      bg-dbg / text-dtext utilities). */
- 
 }
 
 body {
@@ -279,9 +297,6 @@ body {
   --elevation-xl: 0 24px 64px rgba(15, 23, 42, 0.14);
 }
 
-
-
-
 /* ============================================================
    Scrollbar Utilities
    ============================================================ */
@@ -303,9 +318,21 @@ BACKGROUND GRADIENT
 
 @utility bg-glow {
   background:
-    radial-gradient(620px 460px at 15% 10%, color-mix(in srgb, var(--primary) 14%, transparent), transparent 65%),
-    radial-gradient(560px 420px at 100% 90%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 65%),
-    radial-gradient(500px 500px at 85% 5%, color-mix(in srgb, var(--info) 8%, transparent), transparent 70%);
+    radial-gradient(
+      620px 460px at 15% 10%,
+      color-mix(in srgb, var(--primary) 14%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      560px 420px at 100% 90%,
+      color-mix(in srgb, var(--accent) 11%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      500px 500px at 85% 5%,
+      color-mix(in srgb, var(--info) 8%, transparent),
+      transparent 70%
+    );
 }
 
 @utility pulse-ring {
@@ -322,4 +349,15 @@ BACKGROUND GRADIENT
     transform: scale(1.45);
     opacity: 0;
   }
+}
+
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.55; }
+  75%, 100% { transform: scale(1.45); opacity: 0; }
+}
+
+@keyframes welcomeFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }

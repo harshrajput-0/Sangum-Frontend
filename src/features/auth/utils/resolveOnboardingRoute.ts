@@ -12,6 +12,9 @@ export function resolveOnboardingRoute(user: AuthUser): string {
   if (!user.hasEmail) {
     return AUTH_ROUTES.completeEmail;
   }
+  if (!user.isProfileComplete) {
+    return AUTH_ROUTES.onboarding;
+  }
   if (!user.isVerified) {
     return AUTH_ROUTES.verifyEmail;
   }

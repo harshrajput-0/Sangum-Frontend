@@ -1,0 +1,30 @@
+/* Feature-local keyframes not present in global.css (mockup defined
+   these inline). Kept here rather than added to global.css since
+   nothing else uses them yet — promote if that changes. */
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.55; }
+  75%, 100% { transform: scale(1.45); opacity: 0; }
+}
+.pulse-ring {
+  animation: pulseRing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes welcomeFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-welcome-in {
+  animation: welcomeFadeUp 0.5s var(--ease-brand) both;
+}
+.animate-welcome-in-delay {
+  animation: welcomeFadeUp 0.5s var(--ease-brand) 0.08s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-welcome-in,
+  .animate-welcome-in-delay,
+  .pulse-ring {
+    animation: none;
+  }
+}
