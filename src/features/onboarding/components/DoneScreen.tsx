@@ -15,7 +15,7 @@ export function DoneScreen({ fullName, username, avatarUrl, isVerified, onGoToFe
   const firstName = fullName ? fullName.split(' ')[0] : '';
 
   return (
-    <section className="text-center">
+    <section className="animate-welcome-in text-center">
       <AvatarDisplay avatarUrl={avatarUrl} fullName={fullName ?? ''} />
 
       <h1 className="mb-1.5 mt-3 text-2xl font-bold text-text">

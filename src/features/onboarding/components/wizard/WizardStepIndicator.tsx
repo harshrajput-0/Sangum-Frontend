@@ -1,5 +1,7 @@
+import type { WizardStep } from '../../types/onboarding.types';
+
 interface WizardStepIndicatorProps {
-  step: 1 | 2;
+  step: WizardStep;
 }
 
 const CheckIcon = () => (
@@ -8,17 +10,32 @@ const CheckIcon = () => (
   </svg>
 );
 
+// 3 steps: 1 identity, 2 avatar, 3 finishing (loading + success message).
 export function WizardStepIndicator({ step }: WizardStepIndicatorProps) {
   return (
     <div className="mb-8 flex items-center">
-      <StepCircle state={step === 1 ? 'current' : 'completed'} number={1} />
-      <div
-        className={`mx-2 h-0.5 flex-1 rounded-full transition-colors duration-200 ${
-          step === 1 ? 'bg-border' : 'bg-primary'
-        }`}
-      />
-      <StepCircle state={step === 1 ? 'upcoming' : 'current'} number={2} />
+      <StepCircle state={circleState(1, step)} number={1} />
+      <Connector filled={step > 1} />
+      <StepCircle state={circleState(2, step)} number={2} />
+      <Connector filled={step > 2} />
+      <StepCircle state={circleState(3, step)} number={3} />
     </div>
+  );
+}
+
+function circleState(circleNumber: number, activeStep: WizardStep): 'upcoming' | 'current' | 'completed' {
+  if (activeStep === circleNumber) return 'current';
+  if (activeStep > circleNumber) return 'completed';
+  return 'upcoming';
+}
+
+function Connector({ filled }: { filled: boolean }) {
+  return (
+    <div
+      className={`mx-2 h-0.5 flex-1 rounded-full transition-colors duration-200 ${
+        filled ? 'bg-primary' : 'bg-border'
+      }`}
+    />
   );
 }
 

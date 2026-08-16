@@ -1,20 +1,21 @@
 'use client';
 
 import { useRef } from 'react';
-import { Button, Spinner } from '@/shared/components/ui';
+import { Button } from '@/shared/components/ui';
 import { AVATAR_ACCEPT_ATTR } from '../../constants/onboarding.constants';
 
 interface WizardStep2AvatarProps {
   avatarPreviewUrl: string | null;
-  isSubmitting: boolean;
   submitError: string | null;
   onAvatarSelected: (file: File | null) => void;
   onFinish: () => void;
 }
 
+// No isSubmitting/spinner state here anymore — clicking Skip or Finish
+// advances immediately to step 3, which IS the loading state. This
+// screen unmounts before the request resolves either way.
 export function WizardStep2Avatar({
   avatarPreviewUrl,
-  isSubmitting,
   submitError,
   onAvatarSelected,
   onFinish,
@@ -22,7 +23,7 @@ export function WizardStep2Avatar({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <section>
+    <section className="animate-welcome-in">
       <h1 className="mb-1.5 text-2xl font-bold text-text">Add a profile photo</h1>
       <p className="mb-7 text-sm text-text-secondary">
         Skip this and we&apos;ll generate one for you automatically — you can always change it later.
@@ -63,18 +64,11 @@ export function WizardStep2Avatar({
       {submitError && <p className="mb-4 text-center text-xs text-danger">{submitError}</p>}
 
       <div className="flex gap-2">
-        <Button variant="outline" size="lg" fullWidth onClick={onFinish} disabled={isSubmitting}>
+        <Button variant="outline" size="lg" fullWidth onClick={onFinish}>
           Skip
         </Button>
-        <Button
-          variant="primary"
-          size="lg"
-          fullWidth
-          onClick={onFinish}
-          disabled={isSubmitting}
-          iconLeft={isSubmitting ? <Spinner size="sm" tone="current" /> : undefined}
-        >
-          {isSubmitting ? 'Finishing…' : 'Finish'}
+        <Button variant="primary" size="lg" fullWidth onClick={onFinish}>
+          Finish
         </Button>
       </div>
     </section>

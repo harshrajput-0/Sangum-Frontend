@@ -11,7 +11,7 @@ interface VerifyNudgeScreenProps {
 
 export function VerifyNudgeScreen({ isSending, error, onVerifyClick, onSkipClick }: VerifyNudgeScreenProps) {
   return (
-    <section className="text-center">
+    <section className="animate-welcome-in text-center">
       <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary/40 bg-primary/10 text-primary-light">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75}>
           <rect x="2" y="4" width="20" height="14" rx="2" />

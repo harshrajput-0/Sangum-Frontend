@@ -11,7 +11,7 @@ interface CheckInboxScreenProps {
 
 export function CheckInboxScreen({ secondsLeft, isResendActive, onResendClick, onSkipClick }: CheckInboxScreenProps) {
   return (
-    <section className="text-center">
+    <section className="animate-welcome-in text-center">
       <div className="relative mx-auto mb-5 flex h-16 w-16 items-center justify-center">
         <span className="pulse-ring absolute inset-0 rounded-full bg-primary/20" />
         <span className="absolute inset-0 rounded-full border-2 border-primary/40 bg-primary/10" />
@@ -38,13 +38,13 @@ export function CheckInboxScreen({ secondsLeft, isResendActive, onResendClick, o
           size="sm"
           onClick={onResendClick}
           disabled={isResendActive}
-          className="px-0! py-0! h-auto underline-offset-2 hover:underline"
+          className="!px-0 !py-0 h-auto underline-offset-2 hover:underline"
         >
           {isResendActive ? `Resend in ${secondsLeft}s` : 'Resend email'}
         </Button>
       </div>
 
-      <Button variant="ghost" size="sm" onClick={onSkipClick} className="px-0! py-0! h-auto underline-offset-2 hover:underline">
+      <Button variant="ghost" size="sm" onClick={onSkipClick} className="!px-0 !py-0 h-auto underline-offset-2 hover:underline">
         Skip for now
       </Button>
     </section>

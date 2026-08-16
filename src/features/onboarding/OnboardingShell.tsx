@@ -8,6 +8,7 @@ import { OnboardingWizard } from './components/wizard/OnboardingWizard';
 import { VerifyNudgeScreen } from './components/verify/VerifyNudgeScreen';
 import { CheckInboxScreen } from './components/verify/CheckInboxScreen';
 import { DoneScreen } from './components/DoneScreen';
+import { FEED_ROUTE } from './constants/onboarding.constants';
 
 export function OnboardingShell() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export function OnboardingShell() {
 
   return (
     <main className="bg-glow flex min-h-screen items-center justify-center px-5 py-14">
-      <div className="w-full max-w-105">
+      <div className="w-full max-w-[420px]">
         {currentScreen === 'wizard' && <OnboardingWizard onFinished={markProfileComplete} />}
 
         {currentScreen === 'verify-nudge' && verifyNudge.view === 'nudge' && (
@@ -44,7 +45,10 @@ export function OnboardingShell() {
             username={user?.username}
             avatarUrl={user?.avatar}
             isVerified={user?.isVerified ?? false}
-            onGoToFeed={() => router.push('/')}
+            // FEED_ROUTE = '/feed', not '/' — '/' is the public landing
+            // page ((public)/page.tsx), and sending an authenticated
+            // user there was the source of the reported Next.js error.
+            onGoToFeed={() => router.push(FEED_ROUTE)}
           />
         )}
       </div>
