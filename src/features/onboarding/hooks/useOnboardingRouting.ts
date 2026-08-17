@@ -49,7 +49,23 @@ export function useOnboardingRouting() {
   // already uses: read the current user, spread + patch, setUser.
   const markProfileComplete = useCallback(
     (result: { username: string; displayName: string; avatar: string | null }) => {
-      if (!user) return;
+      if (!user) {
+        // Should be unreachable: useRequireAuth (above) redirects
+        // unauthenticated visitors away before the wizard can ever
+        // render, so `user` is guaranteed populated by the time
+        // finish() can call this. This is exactly the condition that
+        // caused the original "stuck on Taking you to your feed"
+        // bug — silently returning here left it with no visible
+        // signal at all. Logging loudly instead, so a future
+        // regression of that guarantee doesn't reintroduce the same
+        // silent failure.
+        console.error(
+          'markProfileComplete called with no session user — onboarding cannot ' +
+            'complete. This should be unreachable; useRequireAuth should have ' +
+            'redirected before the wizard rendered.',
+        );
+        return;
+      }
       const updatedUser: AuthUser = {
         ...user,
         isProfileComplete: true,
