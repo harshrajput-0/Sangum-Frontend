@@ -6,14 +6,16 @@ import { AuthCard } from "../components/cards/AuthCard";
 import { AUTH_ROUTES } from "../constants/auth.constants";
 
 export function OAuthCallbackShell() {
-  const { error } = useOAuthCallback();
+  const { isError } = useOAuthCallback();
 
   return (
     <AuthCard maxWidthClassName="max-w-[360px]">
       <div className="text-center">
-        {error ? (
+        {isError ? (
           <>
-            <p className="mb-4 text-sm font-medium text-danger">{error}</p>
+            <p className="mb-4 text-sm font-medium text-danger">
+              We couldn&apos;t complete your sign-in. Please try again.
+            </p>
             <Link
               href={AUTH_ROUTES.login}
               className="text-xs font-medium text-primary-light hover:underline"

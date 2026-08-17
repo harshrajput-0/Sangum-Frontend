@@ -1,58 +1,52 @@
-import { useEffect, useState } from "react";
+'use client';
+
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { authService } from "../services/auth.service";
 import { useSessionStore } from "@/shared/stores/session.store";
 import { resolveOnboardingRoute } from "../utils/resolveOnboardingRoute";
-import { AUTH_ROUTES } from "../constants/auth.constants";
-import type { AuthApiError } from "../types/auth.types";
 
 /**
- * Runs once on mount at /oauth/callback. No access token is ever in
- * this redirect by design — the refresh cookie was already set during
- * the backend's OAuth redirect chain, so this exchanges it for a
- * usable access token, then routes onward.
+ * Runs once on mount at /oauth/callback. No access token or user data
+ * is ever in this redirect by design — the backend sets the refresh
+ * cookie during its own OAuth redirect chain (see
+ * auth.controller.ts's oauthCallback), then sends the browser here
+ * with nothing but the visit itself.
  *
- * KNOWN GAP: POST /auth/refresh-token only returns { accessToken } —
- * no user object — so there's no documented way here to check
- * hasEmail/isVerified and run the complete-email fallback. Until
- * there's an endpoint that returns the current user (e.g. GET
- * /auth/me), this routes straight to onboarding on success, matching
- * the common case (all three providers supply an email). See the
- * TODO below for where the hasEmail check needs to go once that
- * endpoint exists.
+ * This used to independently call authService.refresh() + a "get
+ * current user" endpoint here — that's now redundant and has been
+ * removed. SessionBootstrap (mounted once at the app root) already
+ * runs refresh() + getCurrentUser() on every page load, INCLUDING
+ * this one, and blocks all rendering until session `status` resolves
+ * to 'authenticated' | 'unauthenticated'. By the time this component
+ * mounts, the session has already been established or failed — this
+ * hook just reads that outcome and routes accordingly, instead of
+ * redoing the same two network calls a second time.
+ *
+ * This also closes the original bug this hook had: `user` used to be
+ * read from the store immediately after refresh() with no guarantee
+ * it had ever been populated (nothing set it), so this always fell
+ * through to a hardcoded /onboarding redirect regardless of the
+ * account's real state. Now `user` is guaranteed non-null whenever
+ * `status === 'authenticated'`, since SessionBootstrap only sets that
+ * status alongside a real user via setSession().
  */
 export function useOAuthCallback() {
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
+  const status = useSessionStore((s) => s.status);
+  const user = useSessionStore((s) => s.user);
 
   useEffect(() => {
-    let cancelled = false;
-
-    async function completeOAuthLogin() {
-      try {
-        await authService.refresh();
-
-        // TODO: once a "get current user" endpoint exists, fetch the
-        // user here and use resolveOnboardingRoute(user) instead —
-        // that's what actually implements the hasEmail fallback
-        // check. For now this only covers the common case.
-        const user = useSessionStore.getState().user;
-        if (!cancelled) {
-          router.replace(user ? resolveOnboardingRoute(user) : AUTH_ROUTES.onboarding);
-        }
-      } catch (err) {
-        const apiError = err as AuthApiError;
-        if (!cancelled) {
-          setError(apiError.message ?? "We couldn't complete your sign-in.");
-        }
-      }
+    if (status === 'authenticated' && user) {
+      router.replace(resolveOnboardingRoute(user));
     }
+    // 'unauthenticated' is left for the component to render as a
+    // visible error below, rather than silently bouncing back to
+    // /login — the backend only redirects here after OAuth already
+    // succeeded server-side, so this outcome means the session itself
+    // failed to establish (e.g. the refresh cookie didn't arrive, or
+    // GET /auth/me failed), which is worth surfacing, not hiding.
+  }, [status, user, router]);
 
-    completeOAuthLogin();
-    return () => {
-      cancelled = true;
-    };
-  }, [router]);
-
-  return { error };
+  const isError = status === 'unauthenticated';
+  return { isError };
 }
