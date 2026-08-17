@@ -1,6 +1,7 @@
 "use client";
 
 import { useResetPasswordForm } from "../hooks/useResetPasswordForm";
+import { useRequireGuest } from "../hooks/useRequireGuest";
 import { ResetPasswordForm } from "../components/forms/ResetPasswordForm";
 import { AuthCard } from "../components/cards/AuthCard";
 
@@ -11,6 +12,7 @@ interface ResetPasswordShellProps {
 }
 
 export function ResetPasswordShell({ token }: ResetPasswordShellProps) {
+  const { isAllowed } = useRequireGuest();
   const {
     values,
     errors,
@@ -24,6 +26,11 @@ export function ResetPasswordShell({ token }: ResetPasswordShellProps) {
     handleChange,
     handleSubmit,
   } = useResetPasswordForm(token);
+
+  // isAllowed is false only while an authenticated user's redirect
+  // (via resolveOnboardingRoute) is in flight — render nothing rather
+  // than flash this form for a tick.
+  if (!isAllowed) return null;
 
   return (
     <AuthCard>

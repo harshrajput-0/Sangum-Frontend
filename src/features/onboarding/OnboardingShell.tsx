@@ -12,13 +12,19 @@ import { FEED_ROUTE } from './constants/onboarding.constants';
 
 export function OnboardingShell() {
   const router = useRouter();
-  const { currentScreen, user, markProfileComplete, skipVerifyForNow } = useOnboardingRouting();
+  const { currentScreen, user, markProfileComplete, skipVerifyForNow, isAllowed } =
+    useOnboardingRouting();
 
   const verifyNudge = useVerifyNudge({ onSkip: skipVerifyForNow });
 
+  // isAllowed is false only while an unauthenticated visitor's
+  // redirect to /login is in flight — render nothing rather than
+  // flash the wizard for a tick.
+  if (!isAllowed) return null;
+
   return (
     <main className="bg-glow flex min-h-screen items-center justify-center px-5 py-14">
-      <div className="w-full max-w-[420px]">
+      <div className="w-full max-w-105">
         {currentScreen === 'wizard' && <OnboardingWizard onFinished={markProfileComplete} />}
 
         {currentScreen === 'verify-nudge' && verifyNudge.view === 'nudge' && (

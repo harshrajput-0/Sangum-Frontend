@@ -9,4 +9,6 @@ export { CompleteEmailShell } from "./pages/CompleteEmailShell";
 
 export { AuthLayout } from "./components/layouts/AuthLayout";
 
+export { useRequireAuth } from "./hooks/useRequireAuth";
+
 export type { AuthUser, SocialProvider } from "./types/auth.types";

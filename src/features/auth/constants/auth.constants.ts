@@ -10,9 +10,14 @@ export const AUTH_ROUTES = {
   verifyEmail: "/verify-email",
   oauthCallback: "/oauth/callback",
   completeEmail: "/complete-email",
-  // TODO: not built yet — this is where a fully-set-up user
-  // (hasEmail && isVerified) lands after login/register/oauth.
   onboarding: "/onboarding",
+  // Deliberately a local literal, not an import of onboarding's own
+  // FEED_ROUTE — same feature-isolation reasoning as onboarding's
+  // COMPLETE_EMAIL_FALLBACK_ROUTE. This is where resolveOnboardingRoute()
+  // sends a fully-set-up user (hasEmail && isProfileComplete &&
+  // isVerified). If /feed's path ever changes, that needs a manual update
+  // here too.
+  feed: "/feed",
 } as const;
 
 export const PASSWORD_MIN_LENGTH = 8;

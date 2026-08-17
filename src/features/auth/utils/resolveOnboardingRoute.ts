@@ -18,5 +18,5 @@ export function resolveOnboardingRoute(user: AuthUser): string {
   if (!user.isVerified) {
     return AUTH_ROUTES.verifyEmail;
   }
-  return AUTH_ROUTES.onboarding;
+  return AUTH_ROUTES.feed;
 }

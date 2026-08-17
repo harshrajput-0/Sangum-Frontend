@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSessionStore } from '@/shared/stores/session.store';
+import { useRequireAuth } from '@/features/auth';
 import type { AuthUser } from '@/shared/types/user.types';
 import { COMPLETE_EMAIL_FALLBACK_ROUTE } from '../constants/onboarding.constants';
 import type { OnboardingScreen } from '../types/onboarding.types';
@@ -11,6 +12,12 @@ export function useOnboardingRouting() {
   const router = useRouter();
   const user = useSessionStore((s) => s.user);
   const setUser = useSessionStore((s) => s.setUser);
+
+  // Closes the previous gap where an unauthenticated visitor landing
+  // on /onboarding directly (no session at all) saw a blank wizard
+  // with nothing ever redirecting them. isAllowed is false only while
+  // that redirect to /login is in flight.
+  const { isAllowed } = useRequireAuth();
 
   // Session-only bypass — separate from any flag, since skipping doesn't
   // change isVerified. The nudge correctly reappears on a future
@@ -59,5 +66,5 @@ export function useOnboardingRouting() {
     setSessionSkippedVerify(true);
   }, []);
 
-  return { currentScreen, user, markProfileComplete, skipVerifyForNow };
+  return { currentScreen, user, markProfileComplete, skipVerifyForNow, isAllowed };
 }
