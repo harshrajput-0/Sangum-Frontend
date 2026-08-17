@@ -1,7 +1,7 @@
 "use client";
 
-import { useVerifyEmailToken } from "../hooks/useVerifyEmailToken.js";
-import { VerifyEmailTokenPanel } from "../components/forms/VerifyEmailTokenPanel.js";
+import { useVerifyEmailToken } from "../hooks/useVerifyEmailToken";
+import { VerifyEmailTokenPanel } from "../components/forms/VerifyEmailTokenPanel";
 import { AuthCard } from "../components/cards/AuthCard";
 
 interface VerifyEmailTokenShellProps {
