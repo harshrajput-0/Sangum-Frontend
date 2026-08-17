@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
+import { SessionBootstrap } from "@/shared/components/SessionBootstrap";
 
 export const metadata: Metadata = {
   title: "Sangum",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SessionBootstrap>{children}</SessionBootstrap>
+      </body>
     </html>
   );
 }

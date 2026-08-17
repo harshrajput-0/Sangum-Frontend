@@ -1,13 +1,24 @@
 import { create } from "zustand";
 import type { AuthUser } from "../types/user.types";
 
+/**
+ * 'idle': bootstrap hasn't run yet (or hasn't been mounted — e.g. in
+ * tests). 'loading': the once-on-mount session check is in flight.
+ * Route guards must treat 'idle' | 'loading' as "don't know yet, don't
+ * redirect" — only 'authenticated' | 'unauthenticated' are safe to act
+ * on. See shared/hooks/useSessionBootstrap.ts.
+ */
+export type SessionStatus = "idle" | "loading" | "authenticated" | "unauthenticated";
+
 interface SessionState {
   accessToken: string | null;
   user: AuthUser | null;
   isAuthenticated: boolean;
+  status: SessionStatus;
   setSession: (accessToken: string, user: AuthUser) => void;
   setAccessToken: (accessToken: string) => void;
   setUser: (user: AuthUser) => void;
+  setStatus: (status: SessionStatus) => void;
   clearSession: () => void;
 }
 
@@ -15,10 +26,14 @@ export const useSessionStore = create<SessionState>((set) => ({
   accessToken: null,
   user: null,
   isAuthenticated: false,
-  setSession: (accessToken, user) => set({ accessToken, user, isAuthenticated: true }),
+  status: "idle",
+  setSession: (accessToken, user) =>
+    set({ accessToken, user, isAuthenticated: true, status: "authenticated" }),
   setAccessToken: (accessToken) => set({ accessToken }),
   setUser: (user) => set({ user }),
-  clearSession: () => set({ accessToken: null, user: null, isAuthenticated: false }),
+  setStatus: (status) => set({ status }),
+  clearSession: () =>
+    set({ accessToken: null, user: null, isAuthenticated: false, status: "unauthenticated" }),
 }));
 
 /**

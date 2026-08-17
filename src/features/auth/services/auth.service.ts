@@ -4,6 +4,7 @@ import { useSessionStore } from "@/shared/stores/session.store";
 import { API_BASE_URL } from "@/shared/config/env";
 import type { AuthUser } from "@/shared/types/user.types";
 import type { ApiError } from "@/shared/types/apiResponse.types";
+import { normalizeAuthUser, type RawAuthUser } from "../lib/normalizeAuthUser";
 import type {
   CompleteEmailPayload,
   ForgotPasswordPayload,
@@ -14,7 +15,7 @@ import type {
 } from "../types/auth.types";
 
 interface AuthSuccessData {
-  user: AuthUser;
+  user: RawAuthUser;
   accessToken: string;
 }
 
@@ -28,8 +29,9 @@ export const authService = {
       method: "POST",
       body: JSON.stringify(payload),
     });
-    useSessionStore.getState().setSession(accessToken, user);
-    return user;
+    const normalizedUser = normalizeAuthUser(user);
+    useSessionStore.getState().setSession(accessToken, normalizedUser);
+    return normalizedUser;
   },
 
   async login(payload: LoginPayload): Promise<AuthUser> {
@@ -37,8 +39,9 @@ export const authService = {
       method: "POST",
       body: JSON.stringify(payload),
     });
-    useSessionStore.getState().setSession(accessToken, user);
-    return user;
+    const normalizedUser = normalizeAuthUser(user);
+    useSessionStore.getState().setSession(accessToken, normalizedUser);
+    return normalizedUser;
   },
 
   async logout(): Promise<void> {
@@ -63,6 +66,18 @@ export const authService = {
     });
     useSessionStore.getState().setAccessToken(accessToken);
     return accessToken;
+  },
+
+  /**
+   * GET /auth/me — the "who am I" check. Requires a valid access
+   * token (authedRequest), so this only makes sense right after
+   * refresh() has populated one. Used by the session bootstrap on app
+   * load and by the OAuth callback, both of which need the full user
+   * object, not just a token.
+   */
+  async getCurrentUser(): Promise<AuthUser> {
+    const raw = await authedRequest<RawAuthUser>("/auth/me");
+    return normalizeAuthUser(raw);
   },
 
   async requestPasswordReset(payload: ForgotPasswordPayload): Promise<void> {
