@@ -1,6 +1,7 @@
 import type { FormEvent } from "react";
 import Link from "next/link";
 import { AUTH_ROUTES } from "../../constants/auth.constants";
+import { blockSpaceKey } from "@/shared/utils/blockSpaceKey";
 import { TextField } from "../fields/TextField";
 import { PasswordField } from "../fields/PasswordField";
 import { CheckboxField } from "../fields/CheckboxField";
@@ -64,6 +65,7 @@ export function RegisterForm({
           placeholder="Choose a username"
           value={values.username}
           onChange={(value) => onChange("username", value)}
+          onKeyDown={blockSpaceKey}
           error={errors.username}
           hint="This will be your unique public handle."
           autoComplete="username"

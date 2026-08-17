@@ -1,6 +1,7 @@
 'use client';
 
 import { Button, Input } from '@/shared/components/ui';
+import { blockSpaceKey } from '@/shared/utils/blockSpaceKey';
 import type { FieldValidationState } from '../../types/onboarding.types';
 
 interface WizardStep1IdentityProps {
@@ -87,6 +88,7 @@ export function WizardStep1Identity({
             id="wizard-username"
             value={username}
             onChange={(e) => onUsernameChange(e.target.value)}
+            onKeyDown={blockSpaceKey}
             placeholder="choose-a-username"
             className="w-full bg-transparent text-sm text-text placeholder:text-text-muted outline-none"
           />

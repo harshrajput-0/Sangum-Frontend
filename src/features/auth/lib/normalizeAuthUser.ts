@@ -18,6 +18,11 @@ export interface RawAuthUser {
   isProfileComplete: boolean;
   isVerified: boolean;
   hasEmail: boolean;
+  // TODO: uncomment alongside AuthUser.email in shared/types/user.types.ts
+  // (see /TODO.md at repo root). Once both are uncommented, no other
+  // change is needed here — normalizeAuthUser's spread already passes
+  // any matching field through automatically.
+  // email: string;
 }
 
 export function normalizeAuthUser(raw: RawAuthUser): AuthUser {

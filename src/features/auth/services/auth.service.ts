@@ -106,6 +106,19 @@ export const authService = {
     await publicRequest<null>(`/auth/verify-email/${encodeURIComponent(token)}`, {
       method: "POST",
     });
+
+    // Unlike completeEmail, a missing session here is expected, not
+    // an error — verifying often happens from a link clicked on a
+    // different device/browser than the one that's actually logged
+    // in. When there IS a live session in this tab, patch it
+    // immediately so resolveOnboardingRoute() stops sending this tab
+    // back to /verify-email on its next call (register/login/guard
+    // redirects) — this was the root cause of "Continue to log in"
+    // bouncing back to /verify-email instead of proceeding.
+    const currentUser = useSessionStore.getState().user;
+    if (currentUser) {
+      useSessionStore.getState().setUser({ ...currentUser, isVerified: true });
+    }
   },
 
   async resendVerificationEmail(): Promise<void> {

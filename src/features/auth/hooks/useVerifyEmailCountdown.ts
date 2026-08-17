@@ -1,14 +1,31 @@
+'use client';
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { authService } from "../services/auth.service";
 import { RESEND_COOLDOWN_SECONDS } from "../constants/auth.constants";
 import { useSessionStore } from "@/shared/stores/session.store";
 import type { AuthApiError } from "../types/auth.types";
 
-export function useVerifyEmailCountdown() {
+interface UseVerifyEmailCountdownArgs {
+  /**
+   * True when a verification email is already known to have gone out
+   * for this visit — register's own redirect (the backend sends the
+   * first email as a side effect of registration) or the
+   * ACCOUNT_PENDING_VERIFICATION conflict path (backend sends a fresh
+   * one on conflict). False for any other arrival — most commonly:
+   * logging in on a not-yet-verified account and landing here via
+   * resolveOnboardingRoute, where nothing has actually been sent for
+   * this visit at all.
+   */
+  assumeAlreadySent: boolean;
+}
+
+export function useVerifyEmailCountdown({ assumeAlreadySent }: UseVerifyEmailCountdownArgs) {
   const isAuthenticated = useSessionStore((state) => state.isAuthenticated);
+  const [hasSent, setHasSent] = useState(assumeAlreadySent);
   const [secondsRemaining, setSecondsRemaining] = useState(RESEND_COOLDOWN_SECONDS);
-  const [isResending, setIsResending] = useState(false);
-  const [resendError, setResendError] = useState<string | null>(null);
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Starts (or restarts) the ticking interval only — never touches
@@ -27,48 +44,59 @@ export function useVerifyEmailCountdown() {
     }, 1000);
   }, []);
 
+  // Only counts down once a send is actually known to have happened —
+  // this used to run unconditionally on mount, claiming "we sent it"
+  // and starting a real cooldown even on visits where nothing had
+  // been sent at all (e.g. arriving via a login-time redirect).
   useEffect(() => {
+    if (!hasSent) return;
     startTicking();
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [startTicking]);
+  }, [hasSent, startTicking]);
 
-  const canResend = secondsRemaining <= 0 && !isResending;
+  const canResend = hasSent && secondsRemaining <= 0 && !isSending;
 
-  const resend = useCallback(async () => {
-    if (!canResend) return;
+  // Handles both the very first send (hasSent === false, no cooldown
+  // gate applies yet) and subsequent resends (hasSent === true, gated
+  // by canResend) — the underlying API call is identical either way.
+  const send = useCallback(async () => {
+    if (isSending) return;
+    if (hasSent && !canResend) return; // still cooling down
 
     if (!isAuthenticated) {
       // Reached this page without a live in-memory session (e.g. the
-      // tab was reopened) — resend needs a Bearer token, so there's
+      // tab was reopened) — sending needs a Bearer token, so there's
       // nothing to retry here; ask them to log back in instead of
       // failing silently.
-      setResendError("Your session expired. Please log in again to resend the email.");
+      setSendError("Your session expired. Please log in again to send the email.");
       return;
     }
 
-    setResendError(null);
-    setIsResending(true);
+    setSendError(null);
+    setIsSending(true);
     try {
       await authService.resendVerificationEmail();
       // Runs inside an event handler, not an effect, so a direct
       // setState reset here is fine.
       setSecondsRemaining(RESEND_COOLDOWN_SECONDS);
+      setHasSent(true);
       startTicking();
     } catch (error) {
       const apiError = error as AuthApiError;
-      setResendError(apiError.message ?? "Unable to resend the email. Please try again.");
+      setSendError(apiError.message ?? "Unable to send the email. Please try again.");
     } finally {
-      setIsResending(false);
+      setIsSending(false);
     }
-  }, [canResend, isAuthenticated, startTicking]);
+  }, [isSending, hasSent, canResend, isAuthenticated, startTicking]);
 
   return {
+    hasSent,
     secondsRemaining,
     canResend,
-    isResending,
-    resendError,
-    resend,
+    isSending,
+    sendError,
+    send,
   };
 }

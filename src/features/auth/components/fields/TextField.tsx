@@ -1,9 +1,12 @@
+import type { KeyboardEvent } from "react";
+
 interface TextFieldProps {
   id: string;
   label: string;
   value: string;
   onChange: (value: string) => void;
   onBlur?: () => void;
+  onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type?: "text" | "email";
   autoComplete?: string;
@@ -20,6 +23,7 @@ export function TextField({
   value,
   onChange,
   onBlur,
+  onKeyDown,
   placeholder,
   type = "text",
   autoComplete,
@@ -47,6 +51,7 @@ export function TextField({
         autoComplete={autoComplete}
         onChange={(event) => onChange(event.target.value)}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
         aria-invalid={Boolean(error)}
         className={`w-full rounded-md border bg-input-bg px-3.5 py-2.5 text-sm text-text placeholder:text-text-muted outline-none focus:ring-4 ${
           error
