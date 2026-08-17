@@ -40,6 +40,7 @@ export function OnboardingWizard({ onFinished }: OnboardingWizardProps) {
           submitError={wizard.submitError}
           onAvatarSelected={wizard.onAvatarSelected}
           onFinish={wizard.finish}
+          onBack={wizard.backToStep1}
         />
       )}
 

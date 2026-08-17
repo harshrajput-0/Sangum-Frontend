@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { onboardingWizardSchema } from '../validation/onboardingWizard.schema';
 import { submitOnboarding } from '../services/onboarding.service';
 import { slugifyUsername } from '../lib/usernameSlugify';
@@ -48,10 +48,18 @@ export function useOnboardingWizard({ onFinished }: UseOnboardingWizardArgs) {
   const [step, setStep] = useState<WizardStep>(1);
   const [phase, setPhase] = useState<WizardSubmitPhase>('form');
 
-  const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-  const [fullNamePrefilled, setFullNamePrefilled] = useState(false);
-  const [usernamePrefilled, setUsernamePrefilled] = useState(false);
+  // Pre-fills from whatever the session already carries — AuthUser's
+  // username/displayName are non-optional, so a fresh account may
+  // already have something here (e.g. from OAuth, or a previous
+  // interrupted onboarding attempt). Lazy initializers instead of a
+  // mount-only effect: this is seeding initial state from a value
+  // that's already available on first render, not synchronizing with
+  // an external system, so it doesn't belong in an effect (and
+  // avoids the react-hooks/set-state-in-effect cascading-render lint).
+  const [fullName, setFullName] = useState(() => user?.displayName ?? '');
+  const [fullNamePrefilled, setFullNamePrefilled] = useState(() => Boolean(user?.displayName));
+  const [username, setUsername] = useState(() => user?.username ?? '');
+  const [usernamePrefilled, setUsernamePrefilled] = useState(() => Boolean(user?.username));
 
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [avatarPreviewUrl, setAvatarPreviewUrl] = useState<string | null>(null);
@@ -67,22 +75,6 @@ export function useOnboardingWizard({ onFinished }: UseOnboardingWizardArgs) {
   // before the first re-render lands. This is checked *before* any
   // await, so it can't race.
   const submitLockRef = useRef(false);
-
-  // Pre-fills from whatever the session already carries — AuthUser's
-  // username/displayName are non-optional, so a fresh account may
-  // already have something here (e.g. from OAuth, or a previous
-  // interrupted onboarding attempt). Runs once on mount only.
-  useEffect(() => {
-    if (user?.displayName) {
-      setFullName(user.displayName);
-      setFullNamePrefilled(true);
-    }
-    if (user?.username) {
-      setUsername(user.username);
-      setUsernamePrefilled(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const fullNameState = useMemo(() => validateFullName(fullName), [fullName]);
   const usernameState = useMemo(() => validateUsername(username), [username]);
@@ -110,7 +102,10 @@ export function useOnboardingWizard({ onFinished }: UseOnboardingWizardArgs) {
     setStep(2);
   }, [isStep1Valid]);
 
-  const backToStep1 = useCallback(() => setStep(1), []);
+  const backToStep1 = useCallback(() => {
+    setSubmitError(null);
+    setStep(1);
+  }, []);
 
   const onAvatarSelected = useCallback((file: File | null) => {
     setSubmitError(null);

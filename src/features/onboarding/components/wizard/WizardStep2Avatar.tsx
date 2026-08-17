@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/shared/components/ui';
 import { AVATAR_ACCEPT_ATTR } from '../../constants/onboarding.constants';
 
@@ -9,6 +10,7 @@ interface WizardStep2AvatarProps {
   submitError: string | null;
   onAvatarSelected: (file: File | null) => void;
   onFinish: () => void;
+  onBack: () => void;
 }
 
 // No isSubmitting/spinner state here anymore — clicking Skip or Finish
@@ -19,11 +21,21 @@ export function WizardStep2Avatar({
   submitError,
   onAvatarSelected,
   onFinish,
+  onBack,
 }: WizardStep2AvatarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
     <section className="animate-welcome-in">
+      <button
+        type="button"
+        onClick={onBack}
+        className="mb-3 flex items-center gap-1.5 text-xs font-medium text-primary-light hover:underline"
+      >
+        <ArrowLeft size={13} strokeWidth={2} />
+        Back
+      </button>
+
       <h1 className="mb-1.5 text-2xl font-bold text-text">Add a profile photo</h1>
       <p className="mb-7 text-sm text-text-secondary">
         Skip this and we&apos;ll generate one for you automatically — you can always change it later.
