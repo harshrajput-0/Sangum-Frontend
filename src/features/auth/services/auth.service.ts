@@ -134,8 +134,11 @@ export const authService = {
     });
 
     // The endpoint doesn't hand back a fresh user object, so patch the
-    // session's local copy so `hasEmail` flips immediately and
+    // session's local copy so `hasEmail`/`email` flip immediately and
     // resolveOnboardingRoute() re-evaluates correctly on the next call.
+    // Also sets `email` directly from what was just submitted — this
+    // is the address the backend just accepted, so there's no need to
+    // wait for a future refresh to know it.
     const currentUser = useSessionStore.getState().user;
     if (!currentUser) {
       const error: ApiError = {
@@ -146,7 +149,7 @@ export const authService = {
       throw error;
     }
 
-    const updatedUser: AuthUser = { ...currentUser, hasEmail: true };
+    const updatedUser: AuthUser = { ...currentUser, hasEmail: true, email: payload.email };
     useSessionStore.getState().setUser(updatedUser);
     return updatedUser;
   },

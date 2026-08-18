@@ -13,9 +13,8 @@ export interface AuthUser {
   isProfileComplete: boolean;
   isVerified: boolean;
   hasEmail: boolean;
-  // TODO: uncomment once the backend sends it (see /TODO.md at repo
-  // root, and AuthUserResponse in the backend's auth.types.ts). Until
-  // then this genuinely isn't available anywhere in the frontend —
-  // only the hasEmail boolean is.
-  // email: string;
+  // null (not just missing) whenever the account genuinely has no
+  // email yet — e.g. an OAuth-first account that hasn't completed the
+  // /complete-email step. Check hasEmail if you just need a boolean.
+  email: string | null;
 }
