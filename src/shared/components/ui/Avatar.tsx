@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import type { ImgHTMLAttributes } from "react";
 import Image from "next/image";
 import { UserRound } from "lucide-react";
@@ -79,14 +82,17 @@ export function Avatar({
   className = "",
 }: AvatarProps) {
   const sizeClass = SIZE_CLASSES[size];
+  const [erroredSrc, setErroredSrc] = useState<string | null>(null);
+  const imageFailed = imageSrc !== undefined && imageSrc === erroredSrc;
 
-  if (imageSrc) {
+  if (imageSrc && !imageFailed) {
     return (
       <Image
         src={imageSrc}
         alt={imageAlt ?? fullName ?? initials ?? "Avatar"}
         width={SIZE_PX[size]}
         height={SIZE_PX[size]}
+        onError={() => setErroredSrc(imageSrc)}
         className={["shrink-0 rounded-full object-cover", sizeClass, className].join(" ")}
       />
     );

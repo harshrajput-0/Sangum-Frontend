@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Check } from "lucide-react";
+import { Mail, Check, X } from "lucide-react";
 import { Button } from "@/shared/components/ui";
 import { AUTH_ROUTES } from "../../constants/auth.constants";
 
@@ -28,7 +28,18 @@ export function VerifyEmailPanel({
   onSkip,
 }: VerifyEmailPanelProps) {
   return (
-    <div className="text-center">
+    <div className="relative text-center">
+      {onSkip && (
+        <button
+          type="button"
+          onClick={onSkip}
+          aria-label="Skip for now"
+          className="absolute right-0 top-0 flex h-7 w-7 items-center justify-center rounded-full text-text-muted hover:bg-surface-hover hover:text-text"
+        >
+          <X size={18} strokeWidth={1.75} />
+        </button>
+      )}
+
       <div className="relative mx-auto mb-5 flex h-20 w-20 items-center justify-center">
         <span className="pulse-ring absolute inset-0 rounded-full bg-primary/20" />
         <span className="absolute inset-0 rounded-full border-2 border-primary/40 bg-primary/10" />
@@ -123,28 +134,10 @@ export function VerifyEmailPanel({
         </p>
       )}
 
-      {onSkip && (
-        <Button
-          variant="outline"
-          size="sm"
-          fullWidth
-          onClick={onSkip}
-          className={hasSent ? "mb-4" : "mb-2"}
-        >
-          Later
-        </Button>
-      )}
-
       <p className="rounded-md bg-warning-bg px-3 py-2 text-xs leading-relaxed text-warning">
         Unverified accounts are only held for 24 hours — after that, anyone
         can register with this email again.
       </p>
-
-      {onSkip && (
-        <p className="mt-3 text-xs text-text-muted">
-          This&apos;ll show up again next time you sign in until it&apos;s verified.
-        </p>
-      )}
     </div>
   );
 }
