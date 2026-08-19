@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useVerifyEmailCountdown } from "../hooks/useVerifyEmailCountdown";
+import { useVerifyEmailGuard } from "../hooks/useVerifyEmailGuard";
 import { VerifyEmailPanel } from "../components/forms/VerifyEmailPanel";
 import { AuthCard } from "../components/cards/AuthCard";
 import { AUTH_ROUTES } from "../constants/auth.constants";
@@ -26,6 +27,7 @@ interface VerifyEmailShellProps {
 
 export function VerifyEmailShell({ email: registeredEmail, isPendingConflict }: VerifyEmailShellProps) {
   const router = useRouter();
+  const { isAllowed } = useVerifyEmailGuard({ isPendingConflict });
   const isAuthenticated = useSessionStore((s) => s.isAuthenticated);
   const sessionEmail = useSessionStore((s) => s.user?.email);
 
@@ -55,6 +57,12 @@ export function VerifyEmailShell({ email: registeredEmail, isPendingConflict }: 
   // gate reappears on the next sign-in (resolveOnboardingRoute isn't
   // changed by skipping), it just doesn't block this visit.
   const onSkip = isAuthenticated ? () => router.push(AUTH_ROUTES.feed) : undefined;
+
+  // isAllowed is false only while useVerifyEmailGuard's redirect (to
+  // /feed if already verified, /login if there's no session at all)
+  // is in flight — render nothing rather than flash this panel for a
+  // tick, same convention as LoginShell/RegisterShell.
+  if (!isAllowed) return null;
 
   return (
     <AuthCard maxWidthClassName="max-w-[420px]">

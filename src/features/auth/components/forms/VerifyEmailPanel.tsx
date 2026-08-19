@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Mail, Check, X } from "lucide-react";
-import { Button } from "@/shared/components/ui";
+import { Button, Card } from "@/shared/components/ui";
 import { AUTH_ROUTES } from "../../constants/auth.constants";
 
 interface VerifyEmailPanelProps {
@@ -28,7 +28,7 @@ export function VerifyEmailPanel({
   onSkip,
 }: VerifyEmailPanelProps) {
   return (
-    <div className="relative text-center">
+    <Card className="relative text-center">
       {onSkip && (
         <button
           type="button"
@@ -61,7 +61,7 @@ export function VerifyEmailPanel({
               ? "That email already has an account waiting to be verified. We just sent a fresh link to"
               : "We sent a verification link to"}
           </p>
-          <p className="mb-3 inline-block rounded-full border border-border bg-surface px-4 py-1.5 font-mono text-sm text-text">
+          <p className="mb-3 inline-block rounded-full border border-border bg-bg-elevated px-4 py-1.5 font-mono text-sm text-text">
             {email ?? "your email address"}
           </p>
           <p className="mb-4 text-sm leading-relaxed text-text-muted">
@@ -100,18 +100,23 @@ export function VerifyEmailPanel({
           <p className="mb-2 text-sm text-text">
             We&apos;ll send a verification link to
           </p>
-          <p className="mb-5 inline-block rounded-full border border-border bg-surface px-4 py-1.5 font-mono text-sm text-text">
+          <p className="mb-5 inline-block rounded-full border border-border bg-bg-elevated px-4 py-1.5 font-mono text-sm text-text">
             {email ?? "your email address"}
           </p>
         </>
       )}
 
       {!hasSent && (
-        <div className="mb-4 flex justify-center">
-          <Button variant="primary" size="lg" onClick={onSend} disabled={isSending}>
-            {isSending ? "Sending…" : "Send verification email"}
-          </Button>
-        </div>
+        <Button
+          variant="primary"
+          size="lg"
+          fullWidth
+          className="mb-4"
+          onClick={onSend}
+          disabled={isSending}
+        >
+          {isSending ? "Sending…" : "Send verification email"}
+        </Button>
       )}
 
       {sendError && <p className="mb-2 text-[13px] text-danger">{sendError}</p>}
@@ -138,6 +143,6 @@ export function VerifyEmailPanel({
         Unverified accounts are only held for 24 hours — after that, anyone
         can register with this email again.
       </p>
-    </div>
+    </Card>
   );
 }
