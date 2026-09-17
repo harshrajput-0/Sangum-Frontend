@@ -35,7 +35,7 @@
     ".next/types/**/*.ts",
     // ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "src/app/(app)/messages",
+    "src/app/(chat)/messages",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
